@@ -46,27 +46,31 @@
 <script src="js/jquery-3.1.1.min.js"></script> 
 <script src="js/popper.min.js"></script> 
 <script src="js/bootstrap.js"></script> 
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	console.log("beging \n")
+$.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
+	console.log(document.cookie)
     $("#logBtn").click(function(){
 		
+		$("#myDiv").html(getjson());
 		if($('#username').val()!=''){
         $.ajax({
             type:"POST",
-            url:"http://localhost:8080/login",
-			data:{
-				"UID":$('#username').val(),
-				"PASSWORD":$('#password').val()
-			},
-            dataType:"json",
-			header:{'Content-Type': 'application/json',
-				   },
+            url:"http://39.105.38.34:8080/login/login",
+			contentType:"application/json",
+			data:JSON.stringify(getjson()),
+            dataType:'json',
+			xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
             success:function(data){
                 $("#myDiv").html(data);
-            },
-            error:function(jqXHR){
-                console.log("Error: "+jqXHR.status);
+				console.log("succ: "+data);
             }
+           
         });
 			}
 		else{
@@ -74,6 +78,15 @@ $(document).ready(function(){
 		}
     });
 });
+	
+	
+	function getjson(){
+		var json = {
+			id:$("#username").val(),
+			password:$("#password").val()
+		}
+		return json;
+	}
 </script>
 </body>
 </html>
