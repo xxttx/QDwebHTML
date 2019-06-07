@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
@@ -16,7 +16,7 @@
 <script src="../../js/bootstrap.js"></script> 
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
 <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
-
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- Flot --> 
 <script src="../../js/plugins/flot/jquery.flot.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
@@ -48,7 +48,7 @@
 </head>
 
 <body>
-	<div id="wrapper" class="gray-bg">
+<div id="wrapper" class="gray-bg">
 		 <div id="page-wrapper" class="gray-bg" style="margin: 0;">
 			 <div class="wrapper wrapper-content animated fadeInRight">
 				 <div class="row">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <h3><strong>John Smith</strong></h3>
+                        <h3 id="app"><strong>{{name}}</strong></h3>
                         <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
                         <address>
                             <strong>Twitter, Inc.</strong><br>
@@ -71,7 +71,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -93,7 +93,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -115,7 +115,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -137,7 +137,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -159,7 +159,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -181,7 +181,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -203,7 +203,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -225,7 +225,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -247,7 +247,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -269,7 +269,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -291,7 +291,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -313,7 +313,7 @@
                             <abbr title="Phone">P:</abbr> (123) 456-7890
                         </address>
                     </div>
-                        </a>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-4">
@@ -366,8 +366,36 @@
 		</div>
 		
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+        $.ajax({
+            type:"GET",
+            url:"http://39.105.38.34:8080/employee/ai/getAllUsers",
+			contentType:"application/json",
+			xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+            success:function(data){
+                $("#myDiv").html(data);
+				console.log("succ: "+data);
+            },
+			error:function(data){
+				console.log("fail");
+				
+			}
+			
+        });
+});
 	
 	
+new Vue({
+  el: '#app',
+  data: {
+    name: 'Hello Vue.js!'
+  }
+})
 	
+</script>
 </body>
 </html>
