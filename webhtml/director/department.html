@@ -61,15 +61,9 @@
                   <h5>{{department.sectorName}}</h5>
                 </div>
                 <div class="ibox-content">
-                  <div class="team-members"> 
-					  <a href="#"><img alt="member" class="rounded-circle" src="img/a1.jpg"></a>
-					  <a href="#"><img alt="member" class="rounded-circle" src="img/a2.jpg"></a> 
-					  <a href="#"><img alt="member" class="rounded-circle" src="img/a3.jpg"></a> 
-					  <a href="#"><img alt="member" class="rounded-circle" src="img/a5.jpg"></a>
-					  <a :href="'../common/mystaff.html?departmentId='+department.sectorId" class="float-right" ><img alt="member" class="rounded-circle" src="../../img/more.png"></a> 
-					</div>
+                  <div class="team-members"> <a href="#"><img alt="member" class="rounded-circle" src="img/a1.jpg"></a> <a href="#"><img alt="member" class="rounded-circle" src="img/a2.jpg"></a> <a href="#"><img alt="member" class="rounded-circle" src="img/a3.jpg"></a> <a href="#"><img alt="member" class="rounded-circle" src="img/a5.jpg"></a> <a :href="'../common/mystaff.html?departmentId='+department.sectorId" class="float-right" ><img alt="member" class="rounded-circle" src="../../img/more.png"></a> </div>
                   <h4>Info about Design Team</h4>
-                  <p> {{department.description}} </p>	
+                  <p> {{department.description}} </p>
                   <div> <span>Status of current project:</span>
                     <div class="stat-percent">48%</div>
                     <div class="progress progress-mini">
@@ -87,8 +81,7 @@
                       <div class="font-bold">BUDGET</div>
                       $200,913 <i class="fa fa-level-up text-navy"></i> </div>
                   </div>
-					<span class="btn btn-primary block full-width m-b" style="margin-top:15px;">设置部门主管</span>
-                </div>
+                  <span class="btn btn-primary block full-width m-b" style="margin-top:15px;">设置部门主管</span> </div>
               </div>
             </div>
           </div>
@@ -121,11 +114,7 @@ method:{
             crossDomain: true,
 			success:function(data){
 				that.departments=data;
-				//console.log("succ: "+ JSON.stringify(that.departments) );
-				console.log("一共有 ："+ Object.keys(that.departments).length + "个部门 \n")
 				that.departmentsRowNum = Math.floor(Object.keys(that.departments).length/4)+1;
-				//console.log("denum"+that.departmentsNum)
-				
             },
 			error:function(data){
 				console.log("fail");
