@@ -48,7 +48,7 @@
         <div class="row" >
           <div v-for="n in departmentsRowNum" class="col-lg-6">
             <div v-for="(department,index) in departments" v-if="index<n*3&&index>=(n-1)*3"  class="ibox" >
-              <div class="ibox">
+
                 <div class="ibox-title">
                   <h5>{{department.sectorName}}</h5>
                 </div>
@@ -74,7 +74,7 @@
                       待开发 <i class="fa fa-level-up text-navy"></i> </div>
                   </div>
                   <span class="btn btn-primary block full-width m-b" style="margin-top:15px;">编辑部门信息</span> </div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -97,7 +97,7 @@ method:{
 		console.log("ajax beging \n")
 		var that = this;
 		jQuery.ajax({
-			type:"POST",
+			type:"GET",
             url:"http://39.105.38.34:8080/api/v1/sectors",
 			contentType:"application/json",
 			xhrFields: {
@@ -105,8 +105,9 @@ method:{
             },
             crossDomain: true,
 			success:function(data){
-				that.departments=data;
-				that.departmentsRowNum = Math.floor(Object.keys(that.departments).length/4)+1;
+				that.departments=JSON.parse(data);
+				that.departmentsRowNum = Math.floor(JSON.parse(data).length/4)+1;
+				console.log("depart num is",that.departmentsRowNum)
             },
 			error:function(data){
 				console.log("fail");
