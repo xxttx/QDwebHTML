@@ -8,8 +8,8 @@
 */
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg') format('svg');
+  src: url('../webhtml/manager/fonts/glyphicons-halflings-regular.eot');
+  src: url('../webhtml/manager/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../webhtml/manager/fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../webhtml/manager/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../webhtml/manager/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../webhtml/manager/fonts/glyphicons-halflings-regular.svg') format('svg');
 }
 .glyphicon {
   position: relative;
@@ -8096,10 +8096,10 @@ body.landing-page {
   width: 100%;
 }
 .landing-page .header-back.one {
-  background: url('../webhtml/director/img/landing/header_one.jpg') 50% 0 no-repeat;
+  background: url('../webhtml/manager/img/landing/header_one.jpg') 50% 0 no-repeat;
 }
 .landing-page .header-back.two {
-  background: url('../webhtml/director/img/landing/header_two.jpg') 50% 0 no-repeat;
+  background: url('../webhtml/manager/img/landing/header_two.jpg') 50% 0 no-repeat;
 }
 .landing-page .carousel {
   height: 470px;
@@ -8301,7 +8301,7 @@ body.landing-page {
   padding-top: 80px;
   padding-bottom: 90px;
   background-color: #1ab394;
-  background-image: url('../webhtml/director/img/landing/avatar_all.png');
+  background-image: url('../webhtml/manager/img/landing/avatar_all.png');
 }
 .landing-page .big-icon {
   font-size: 56px !important;
@@ -8310,7 +8310,7 @@ body.landing-page {
   color: #1ab394 !important;
 }
 .landing-page .contact {
-  background-image: url('../webhtml/director/img/landing/word_map.png');
+  background-image: url('../webhtml/manager/img/landing/word_map.png');
   background-position: 50% 50%;
   background-repeat: no-repeat;
   margin-top: 60px;
