@@ -13,7 +13,7 @@
 <script src="../../js/bootstrap.js"></script> 
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
 <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
-
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- Flot --> 
 <script src="../../js/plugins/flot/jquery.flot.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
@@ -47,17 +47,21 @@
 <body>
 <div id="wrapper" class="gray-bg">
   <div id="page-wrapper" class="gray-bg" style="margin: 0;">
-    <div class="wrapper wrapper-content animated fadeInRight">
-      <div class="row m-b-lg m-t-lg" style="height: 140px">
+    <div class="wrapper wrapper-content animated fadeInRight" id="app1">
+      <div class="row m-b-lg m-t-lg" style="height: 160px">
         <div class="col-md-6">
           <div class="profile-image"> <img src="../employee/img/a4.jpg" class="rounded-circle circle-border m-b-md" alt="profile"> </div>
           <div class="profile-info">
             <div class="">
               <div>
-                <h2 class="no-margins"> Alex Smith </h2>
+                <h2 class="no-margins"> {{userInfo.name}}</h2>
                 <h4>Founder of Groupeq</h4>
+				  <small>员工编号：{{userInfo.employeeId}}</small><br>
+				  <small>部门编号：{{userInfo.sectorId}}</small><br>
                 <small> There are many variations of passages of Lorem Ipsum available, but the majority
-                have suffered alteration in some form Ipsum available. </small> </div>
+                have suffered alteration in some form Ipsum available. </small><br>
+				<small>手机号：{{userInfo.phoneNumber}}</small>
+				</div>
             </div>
           </div>
         </div>
@@ -269,5 +273,39 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+new Vue({
+  el: '#app1',
+  data: {
+	  userInfo:{},
+	  UID:0
+  },
+	created:function(){
+		var params=location.search;
+		var arr = params.substring(1).split("&"); 
+		this.UID = arr[0].replace("UID=","");
+		console.log("ajax beging \n")
+		var that = this;
+		jQuery.ajax({
+			type:"GET",
+            url:"http://39.105.38.34:8080/api/v1/employees/"+that.UID,
+			contentType:"application/json",
+			xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+			success:function(data){
+				var userArray=JSON.parse(data)
+				that.userInfo=userArray[0];
+            },
+			error:function(data){
+				console.log("fail");
+				
+			}
+		})
+	}
+})
+	
+</script>
 </body>
 </html>
