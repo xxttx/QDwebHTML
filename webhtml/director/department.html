@@ -43,6 +43,7 @@
 <div id="wrapper" class="gray-bg">
   <div id="page-wrapper" class="gray-bg" style="margin: 0;">
     <div class="wrapper wrapper-content animated fadeInRight" >
+
       <div id="app1">
         <div class="row" >
           <div v-for="n in departmentsRowNum" class="col-lg-6">
@@ -53,7 +54,7 @@
                 </div>
                 <div class="ibox-content">
                   <div class="team-members"> <a href="#"><img alt="member" class="rounded-circle" src="img/a1.jpg"></a> <a href="#"><img alt="member" class="rounded-circle" src="img/a2.jpg"></a> <a href="#"><img alt="member" class="rounded-circle" src="img/a3.jpg"></a> <a href="#"><img alt="member" class="rounded-circle" src="img/a5.jpg"></a> <a :href="'../common/mystaff.html?departmentId='+department.sectorId" class="float-right" ><img alt="member" class="rounded-circle" src="../../img/more.png"></a> </div>
-                  <h4>Info about Design Team</h4>
+                  <h4>Info about Sector</h4>
                   <p> {{department.description}} </p>
                   <div> <span>Status of current project:</span>
                     <div class="stat-percent">48%</div>
@@ -69,15 +70,16 @@
                       <div class="font-bold">部门人数</div>
                       {{department.sectorPeopleNumber}} </div>
                     <div class="col-sm-4 text-right">
-                      <div class="font-bold">BUDGET</div>
-                      $200,913 <i class="fa fa-level-up text-navy"></i> </div>
+                      <div class="font-bold">主管ID</div>
+                      待开发 <i class="fa fa-level-up text-navy"></i> </div>
                   </div>
-                  <span class="btn btn-primary block full-width m-b" style="margin-top:15px;">设置部门主管</span> </div>
+                  <span class="btn btn-primary block full-width m-b" style="margin-top:15px;">编辑部门信息</span> </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </div>
@@ -96,7 +98,7 @@ method:{
 		var that = this;
 		jQuery.ajax({
 			type:"POST",
-            url:"http://39.105.38.34:8080/manager/sectorAll",
+            url:"http://39.105.38.34:8080/api/v1/sectors",
 			contentType:"application/json",
 			xhrFields: {
                 withCredentials: true
@@ -113,6 +115,6 @@ method:{
 		})
 	}
 })
-	</script>
+</script>
 </body>
 </html>

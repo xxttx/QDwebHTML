@@ -88,7 +88,7 @@ new Vue({
 		var that = this;
 		jQuery.ajax({
 			type:"GET",
-            url:"http://39.105.38.34:8080/manager/list/"+this.departmentId,
+            url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+this.departmentId,
 			contentType:"application/json",
 			xhrFields: {
                 withCredentials: true
