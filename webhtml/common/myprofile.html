@@ -49,22 +49,33 @@
   <div id="page-wrapper" class="gray-bg" style="margin: 0;">
     <div class="wrapper wrapper-content animated fadeInRight" id="app1">
       <div class="row m-b-lg m-t-lg" style="height: 160px">
+
         <div class="col-md-6">
-          <div class="profile-image"> <img src="../employee/img/a4.jpg" class="rounded-circle circle-border m-b-md" alt="profile"> </div>
+          <div class="profile-image"> 
+            <img src="../employee/img/a4.jpg" class="rounded-circle circle-border m-b-md" alt="profile"> 
+          </div>
+
           <div class="profile-info">
+
             <div class="">
               <div>
                 <h2 class="no-margins"> {{userInfo.name}}</h2>
-                <h4>Founder of Groupeq</h4>
-				  <small>员工编号：{{userInfo.employeeId}}</small><br>
-				  <small>部门编号：{{userInfo.sectorId}}</small><br>
-                <small> There are many variations of passages of Lorem Ipsum available, but the majority
-                have suffered alteration in some form Ipsum available. </small><br>
-				<small>手机号：{{userInfo.phoneNumber}}</small>
-				</div>
+      				  <small>员工编号：{{userInfo.employeeId}}</small><br>
+      				  <small>部门编号：{{userInfo.sectorId}}</small><br>
+                <small>年龄：{{userInfo.age}}</small><br>
+                <small>工资：{{userInfo.salary}}</small><br>
+                <small v-if="userInfo.sex">性别：男</small>
+                <small v-else>性别：女</small><br>
+                <small>手机号：{{userInfo.phoneNumber}}</small><br>
+                <small>入职时间：{{userInfo.enrollTime}}</small><br>
+                <small>账户编号：{{userInfo.userId}}</small><br>
+              </div>
+
             </div>
+
           </div>
         </div>
+
         <div class="col-md-3">
           <table class="table small m-b-xs">
             <tbody>
