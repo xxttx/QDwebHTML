@@ -134,6 +134,14 @@
           var userArray = JSON.parse(data)
           userInfo = userArray[0];
           this.sectorId=userInfo.sectorId;
+          if (typeof(Storage)!=="undefined")
+          {
+            localStorage.master=data;
+          }
+          else
+          {
+            console.log("不支持Storage");
+          }
         },
         error: function (data) {
           console.log("fail");

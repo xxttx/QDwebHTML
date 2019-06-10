@@ -1,93 +1,93 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>审批</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
-<link href="../../css/animate.css" rel="stylesheet">
-<link href="../../css/style.css" rel="stylesheet">
-	<!-- Mainly scripts --> 
-<script src="../../js/jquery-3.1.1.min.js"></script> 
-<script src="../../js/popper.min.js"></script> 
-<script src="../../js/bootstrap.js"></script> 
-<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+  <meta charset="utf-8">
+  <title>审批</title>
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="../../css/animate.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <!-- Mainly scripts -->
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/popper.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+  <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
   <script type="text/javascript" src="../../js/jquery.cookie.js"></script>
   <script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
-<!-- Flot --> 
-<script src="../../js/plugins/flot/jquery.flot.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.spline.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.resize.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.pie.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.symbol.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.time.js"></script> 
+  <!-- Flot -->
+  <script src="../../js/plugins/flot/jquery.flot.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.spline.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.resize.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.pie.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.symbol.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.time.js"></script>
 
-<!-- Peity --> 
-<script src="../../js/plugins/peity/jquery.peity.min.js"></script> 
-<script src="../../js/demo/peity-demo.js"></script> 
+  <!-- Peity -->
+  <script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+  <script src="../../js/demo/peity-demo.js"></script>
 
-<!-- Custom and plugin javascript --> 
-<script src="../../js/inspinia.js"></script> 
-<script src="../../js/plugins/pace/pace.min.js"></script> 
+  <!-- Custom and plugin javascript -->
+  <script src="../../js/inspinia.js"></script>
+  <script src="../../js/plugins/pace/pace.min.js"></script>
 
-<!-- jQuery UI --> 
-<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script> 
+  <!-- jQuery UI -->
+  <script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-<!-- EayPIE --> 
-<script src="../../js/plugins/easypiechart/jquery.easypiechart.js"></script> 
+  <!-- EayPIE -->
+  <script src="../../js/plugins/easypiechart/jquery.easypiechart.js"></script>
 
-<!-- Sparkline --> 
-<script src="../../js/plugins/sparkline/jquery.sparkline.min.js"></script> 
+  <!-- Sparkline -->
+  <script src="../../js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
-<!-- Sparkline demo data  --> 
-<script src="../../js/demo/sparkline-demo.js"></script> 
+  <!-- Sparkline demo data  -->
+  <script src="../../js/demo/sparkline-demo.js"></script>
 </head>
 
 <body>
 <div id="wrapper" class="gray-bg">
-  <div id="page-wrapper" class="gray-bg" style="margin: 0;" id="app1">
+  <div id="page-wrapper" class="gray-bg" style="margin: 0;">
     <div class="wrapper wrapper-content">
       <div class="row">
-<!--         <div class="col-lg-3">
-          <div class="ibox ">
-            <div class="ibox-content mailbox-content">
-              <div class="file-manager"> <a class="btn btn-block btn-primary compose-mail" href="../manager/mail_compose.html">Compose</a>
-                <div class="space-25"></div>
-                <h5>Folders</h5>
-                <ul class="folder-list m-b-md" style="padding: 0">
-                  <li><a href="../manager/mailbox.html"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning float-right">16</span> </a></li>
-                  <li><a href="../manager/mailbox.html"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
-                  <li><a href="../manager/mailbox.html"> <i class="fa fa-certificate"></i> Important</a></li>
-                  <li><a href="../manager/mailbox.html"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger float-right">2</span></a></li>
-                  <li><a href="../manager/mailbox.html"> <i class="fa fa-trash-o"></i> Trash</a></li>
-                </ul>
-                <h5>Categories</h5>
-                <ul class="category-list" style="padding: 0">
-                  <li><a href="#"> <i class="fa fa-circle text-navy"></i> Work </a></li>
-                  <li><a href="#"> <i class="fa fa-circle text-danger"></i> Documents</a></li>
-                  <li><a href="#"> <i class="fa fa-circle text-primary"></i> Social</a></li>
-                  <li><a href="#"> <i class="fa fa-circle text-info"></i> Advertising</a></li>
-                  <li><a href="#"> <i class="fa fa-circle text-warning"></i> Clients</a></li>
-                </ul>
-                <h5 class="tag-title">Labels</h5>
-                <ul class="tag-list" style="padding: 0">
-                  <li><a href=""><i class="fa fa-tag"></i> Family</a></li>
-                  <li><a href=""><i class="fa fa-tag"></i> Work</a></li>
-                  <li><a href=""><i class="fa fa-tag"></i> Home</a></li>
-                  <li><a href=""><i class="fa fa-tag"></i> Children</a></li>
-                  <li><a href=""><i class="fa fa-tag"></i> Holidays</a></li>
-                  <li><a href=""><i class="fa fa-tag"></i> Music</a></li>
-                  <li><a href=""><i class="fa fa-tag"></i> Photography</a></li>
-                  <li><a href=""><i class="fa fa-tag"></i> Film</a></li>
-                </ul>
-                <div class="clearfix"></div>
-              </div>
-            </div>
-          </div>
-        </div> -->
+        <!--         <div class="col-lg-3">
+                  <div class="ibox ">
+                    <div class="ibox-content mailbox-content">
+                      <div class="file-manager"> <a class="btn btn-block btn-primary compose-mail" href="../manager/mail_compose.html">Compose</a>
+                        <div class="space-25"></div>
+                        <h5>Folders</h5>
+                        <ul class="folder-list m-b-md" style="padding: 0">
+                          <li><a href="../manager/mailbox.html"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning float-right">16</span> </a></li>
+                          <li><a href="../manager/mailbox.html"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
+                          <li><a href="../manager/mailbox.html"> <i class="fa fa-certificate"></i> Important</a></li>
+                          <li><a href="../manager/mailbox.html"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger float-right">2</span></a></li>
+                          <li><a href="../manager/mailbox.html"> <i class="fa fa-trash-o"></i> Trash</a></li>
+                        </ul>
+                        <h5>Categories</h5>
+                        <ul class="category-list" style="padding: 0">
+                          <li><a href="#"> <i class="fa fa-circle text-navy"></i> Work </a></li>
+                          <li><a href="#"> <i class="fa fa-circle text-danger"></i> Documents</a></li>
+                          <li><a href="#"> <i class="fa fa-circle text-primary"></i> Social</a></li>
+                          <li><a href="#"> <i class="fa fa-circle text-info"></i> Advertising</a></li>
+                          <li><a href="#"> <i class="fa fa-circle text-warning"></i> Clients</a></li>
+                        </ul>
+                        <h5 class="tag-title">Labels</h5>
+                        <ul class="tag-list" style="padding: 0">
+                          <li><a href=""><i class="fa fa-tag"></i> Family</a></li>
+                          <li><a href=""><i class="fa fa-tag"></i> Work</a></li>
+                          <li><a href=""><i class="fa fa-tag"></i> Home</a></li>
+                          <li><a href=""><i class="fa fa-tag"></i> Children</a></li>
+                          <li><a href=""><i class="fa fa-tag"></i> Holidays</a></li>
+                          <li><a href=""><i class="fa fa-tag"></i> Music</a></li>
+                          <li><a href=""><i class="fa fa-tag"></i> Photography</a></li>
+                          <li><a href=""><i class="fa fa-tag"></i> Film</a></li>
+                        </ul>
+                        <div class="clearfix"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
         <div class="col-lg-12">
           <div class="mail-box-header">
 
@@ -102,21 +102,21 @@
           <div class="mail-box">
             <table class="table table-hover table-mail">
               <tbody>
-                <tr class="title">
-                  <td class="check-mail"></td>
-                  <td class="mail-ontact">员工姓名</td>
-                  <td class="mail-ontact">员工编号</td>
-                  <td class="mail-ontact">开始时间</td>
-                  <td class="mail-ontact">结束时间</td>
-                </tr>
+              <tr class="title">
+                <td class="check-mail"></td>
+                <td class="mail-ontact">员工姓名</td>
+                <td class="mail-ontact">员工编号</td>
+                <td class="mail-ontact">开始时间</td>
+                <td class="mail-ontact">结束时间</td>
+              </tr>
 
-                <tr class="read">
-                  <td class="check-mail"><input type="checkbox" class="i-checks"></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">王鑫雨</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{m.name}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/9 上</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/11 上</a></td>
-                </tr>
+              <tr class="read">
+                <td class="check-mail"><input type="checkbox" class="i-checks"></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">王鑫雨</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">{{m.sectorId}}</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/9 上</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/11 上</a></td>
+              </tr>
 
               </tbody>
             </table>
@@ -138,19 +138,19 @@
           <div class="mail-box">
             <table class="table table-hover table-mail">
               <tbody>
-                <tr class="title">
-                  <td class="check-mail"></td>
-                  <td class="mail-ontact">员工姓名</td>
-                  <td class="mail-ontact">员工编号</td>
-                  <td class="mail-ontact">时间</td>
-                </tr>
+              <tr class="title">
+                <td class="check-mail"></td>
+                <td class="mail-ontact">员工姓名</td>
+                <td class="mail-ontact">员工编号</td>
+                <td class="mail-ontact">时间</td>
+              </tr>
 
-                <tr class="read">
-                  <td class="check-mail"><input type="checkbox" class="i-checks"></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">王鑫雨</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">123</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/9 上</a></td>
-                </tr>
+              <tr class="read">
+                <td class="check-mail"><input type="checkbox" class="i-checks"></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">王鑫雨</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">123</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/9 上</a></td>
+              </tr>
 
               </tbody>
             </table>
@@ -165,13 +165,19 @@
 
 <script type="text/javascript">
   new Vue({
-    el:"#app1",
+    el:"#page-wrapper",
     data:{
-      m:$.cookie('master')
+      m:{},
+      UID:4
     },
     created:function () {
+      var that = this;
+      var userArray = JSON.parse(localStorage.getItem('master'));
+
+      that.m = userArray[0];
       console.log(m);
     }
+
   })
 </script>
 
