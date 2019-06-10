@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webhtml/master/sectorEmployees.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/common/mystaff.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/common/mystaff.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webhtml/manager/department.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/department.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/manager.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webhtml/master/approval.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/master/approval.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/webhtml/master/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/master/master.html" afterDir="false" />
     </list>
@@ -16,34 +14,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DefaultGradleProjectSettings">
-    <option name="testRunner" value="GRADLE" />
-    <option name="delegatedBuild" value="true" />
+    <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/webhtml/common/mystaff.html">
+        <entry file="file://$PROJECT_DIR$/webhtml/master/master.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="67" column="28" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webhtml/common/myprofile.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="69" column="51" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webhtml/manager/department.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="356">
-              <caret line="106" column="33" lean-forward="true" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="50" />
+            <state relative-caret-position="700">
+              <caret line="71" column="88" selection-start-line="71" selection-start-column="80" selection-end-line="71" selection-end-column="88" />
             </state>
           </provider>
         </entry>
@@ -70,11 +49,12 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/webhtml/manager/manager.html" />
-        <option value="$PROJECT_DIR$/webhtml/manager/department.html" />
         <option value="$PROJECT_DIR$/webhtml/master/img/sectorEmployees.html" />
         <option value="$PROJECT_DIR$/webhtml/master/sectorEmployees.html" />
-        <option value="$PROJECT_DIR$/webhtml/master/master.html" />
         <option value="$PROJECT_DIR$/webhtml/common/mystaff.html" />
+        <option value="$PROJECT_DIR$/webhtml/master/approval.html" />
+        <option value="$PROJECT_DIR$/webhtml/master/master.html" />
+        <option value="$PROJECT_DIR$/webhtml/manager/department.html" />
       </list>
     </option>
   </component>
@@ -115,24 +95,19 @@
               <item name="QDwebHTML" type="b2602c69:ProjectViewProjectNode" />
               <item name="QDwebHTML" type="462c0819:PsiDirectoryNode" />
               <item name="webhtml" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QDwebHTML" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QDwebHTML" type="462c0819:PsiDirectoryNode" />
-              <item name="webhtml" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -166,15 +141,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1560125707386</updated>
-      <workItem from="1560125709046" duration="6651000" />
+      <workItem from="1560125709046" duration="8730000" />
+      <workItem from="1560143642053" duration="7317000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6651000" />
+    <option name="totallyTimeSpent" value="16047000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="925" extended-state="6" />
+    <frame x="-6" y="-6" width="1381" height="925" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
@@ -182,7 +158,7 @@
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.17411052" />
+      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.17713854" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -212,51 +188,58 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webhtml/master/approval.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/master/img/a1.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/master/sectorEmployees.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
+        <state relative-caret-position="700">
           <caret line="54" column="39" lean-forward="true" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webhtml/manager/manager.html">
+    <entry file="file://$PROJECT_DIR$/webhtml/master/approval.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webhtml/master/master.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="70" column="154" selection-start-line="70" selection-start-column="154" selection-end-line="70" selection-end-column="154" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webhtml/manager/department.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="106" column="33" lean-forward="true" selection-start-line="106" selection-start-column="33" selection-end-line="106" selection-end-column="50" />
+        <state relative-caret-position="120">
+          <caret line="4" column="7" lean-forward="true" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/common/myprofile.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
-          <caret line="69" column="51" lean-forward="true" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="51" />
+          <caret line="69" column="51" selection-start-line="69" selection-start-column="23" selection-end-line="69" selection-end-column="51" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/common/mystaff.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="67" column="28" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
+        <state relative-caret-position="181">
+          <caret line="94" column="54" selection-start-line="94" selection-start-column="42" selection-end-line="94" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webhtml/manager/department.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="46" column="16" lean-forward="true" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webhtml/manager/manager.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="27" column="49" lean-forward="true" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webhtml/master/master.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="71" column="88" selection-start-line="71" selection-start-column="80" selection-end-line="71" selection-end-column="88" />
         </state>
       </provider>
     </entry>
