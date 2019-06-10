@@ -12,8 +12,10 @@
 <script src="../../js/popper.min.js"></script> 
 <script src="../../js/bootstrap.js"></script> 
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
-
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script type="text/javascript" src="../../js/jquery.cookie.js"></script>
+  <script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
 <!-- Flot --> 
 <script src="../../js/plugins/flot/jquery.flot.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
@@ -46,7 +48,7 @@
 
 <body>
 <div id="wrapper" class="gray-bg">
-  <div id="page-wrapper" class="gray-bg" style="margin: 0;">
+  <div id="page-wrapper" class="gray-bg" style="margin: 0;" id="app1">
     <div class="wrapper wrapper-content">
       <div class="row">
 <!--         <div class="col-lg-3">
@@ -111,7 +113,7 @@
                 <tr class="read">
                   <td class="check-mail"><input type="checkbox" class="i-checks"></td>
                   <td class="mail-ontact"><a href="../manager/mail_detail.html">王鑫雨</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">123</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{m.name}}</a></td>
                   <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/9 上</a></td>
                   <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/11 上</a></td>
                 </tr>
@@ -160,5 +162,18 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  new Vue({
+    el:"#app1",
+    data:{
+      m:$.cookie('master')
+    },
+    created:function () {
+      console.log(m);
+    }
+  })
+</script>
+
 </body>
 </html>
