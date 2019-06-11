@@ -1,0 +1,234 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>加班申请</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+    <link href="../../css/plugins/summernote/summernote-bs4.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="../../css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="../../css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+    <link href="../../css/plugins/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print'>
+    <link href="../../css/animate.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
+
+    <!-- Mainly scripts -->
+    <script src="../../js/jquery-3.1.1.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.js"></script>
+    <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="../../js/plugins/summernote/summernote-bs4.js"></script>
+    <script src="../../js/plugins/fullcalendar/moment.min.js"></script>
+    <script src="../../js/plugins/iCheck/icheck.min.js"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="../../js/inspinia.js"></script>
+    <script src="../../js/plugins/pace/pace.min.js"></script>
+    <script src="../../js/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.summernote').summernote();
+       });
+    </script>
+    </head>
+
+    <body>
+    <div id="wrapper" class="gray-bg">
+      <div id="page-wrapper" class="gray-bg" style="margin: 0;">
+        <div class="wrapper wrapper-content animated fadeInRight">
+          <div class="row">
+			  <div class="col-lg-12">
+              <div class="ibox ">
+                <div class="ibox-title">
+                  <h5>加班申请表 <small>请在此处填报加班请假</small></h5>
+                  <div class="ibox-tools"> <a class="col7lapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
+                    <ul class="dropdown-menu dropdown-user">
+                      <li><a href="#" class="dropdown-item">Config option 1</a> </li>
+                      <li><a href="#" class="dropdown-item">Config option 2</a> </li>
+                    </ul>
+                    <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
+                </div>
+                <div class="ibox-content">
+                  <div class="row">
+                    <div class="col-sm-4 b-r">
+                      <h3 class="m-t-none m-b">加班申请</h3>
+                      <p>Sign in today for more expirience.</p>
+                      <form role="form">
+                        <div class="form-group">
+                          <label>请假类型</label>
+                          <input type="email" placeholder="简要的说明请假类型" class="form-control">
+                        </div>
+                        <div class="form-group" >
+                          <label>Data</label>
+                          <div class="summernote">
+                            <h3>Lorem Ipsum is simply</h3>
+                            dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
+                            when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                            typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with <br/>
+                            <br/>
+                            <ul>
+                              <li>Remaining essentially unchanged</li>
+                              <li>Make a type specimen book</li>
+                              <li>Unknown printer</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <button class="btn btn-sm btn-primary float-right m-t-n-xs" style="margin-right: 20px;" type="button"><strong> 暂存 </strong></button>
+                      </form>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="ibox-content no-padding">
+                          <h3 class="m-t-none m-b">加班说明</h3>
+                          <div id="calendar"></div>
+                          <div style="margin-top: 20px;margin-right: 20px;">
+                            <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><strong> 提交申请 </strong></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+					<div class="col-lg-2">
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <div id='external-events'>
+                        <p>Drag a event and drop into callendar.</p>
+                        <div class='external-event navy-bg'>Go to shop and buy some products.</div>
+                        <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
+                        <div class='external-event navy-bg'>Send documents to John.</div>
+                        <div class='external-event navy-bg'>Phone to Sandra.</div>
+                        <div class='external-event navy-bg'>Chat with Michael.</div>
+                        <p class="m-t">
+                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>remove after drop</label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox ">
+                <div class="ibox-content">
+                    <h2>FullCalendar</h2> is a jQuery plugin that provides a full-sized, drag & drop calendar like the one below. It uses AJAX to fetch events on-the-fly for each month and is
+                    easily configured to use your own feed format (an extension is provided for Google Calendar).
+                </div>
+            </div>
+        </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+    <script>
+
+    $(document).ready(function() {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green'
+            });
+
+        /* initialize the external events
+         -----------------------------------------------------------------*/
+
+
+        $('#external-events div.external-event').each(function() {
+
+            // store data so the calendar knows to render an event upon drop
+            $(this).data('event', {
+                title: $.trim($(this).text()), // use the element's text as the event title
+                stick: true // maintain when user navigates (see docs on the renderEvent method)
+            });
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 1111999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
+        });
+
+
+        /* initialize the calendar
+         -----------------------------------------------------------------*/
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            droppable: true, // this allows things to be dropped onto the calendar
+            drop: function() {
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-r9move').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+            },
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: new Date(y, m, 1)
+                },
+                {
+                    title: 'Long Event',
+                    start: new Date(y, m, d-5),
+                    end: new Date(y, m, d-2)
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d-3, 16, 0),
+                    allDay: false
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d+4, 16, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Meeting',
+                    start: new Date(y, m, d, 10, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Lunch',
+                    start: new Date(y, m, d, 12, 0),
+                    end: new Date(y, m, d, 14, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Birthday Party',
+                    start: new Date(y, m, d+1, 19, 0),
+                    end: new Date(y, m, d+1, 22, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Click for Google',
+                    start: new Date(y, m, 28),
+                    end: new Date(y, m, 29),
+                    url: 'http://google.com/'
+                }
+            ]
+        });
+
+
+    });
+
+</script>
+</html>
