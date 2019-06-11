@@ -14,8 +14,6 @@
   <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
   <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script type="text/javascript" src="../../js/jquery.cookie.js"></script>
-  <script type="text/javascript" src="../../js/jquery-3.1.1.min.js"></script>
   <!-- Flot -->
   <script src="../../js/plugins/flot/jquery.flot.js"></script>
   <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
@@ -113,7 +111,7 @@
               <tr class="read">
                 <td class="check-mail"><input type="checkbox" class="i-checks"></td>
                 <td class="mail-ontact"><a href="../manager/mail_detail.html">王鑫雨</a></td>
-                <td class="mail-ontact"><a href="../manager/mail_detail.html">{{m.sectorId}}</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">126</a></td>
                 <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/9 上</a></td>
                 <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/11 上</a></td>
               </tr>
@@ -139,46 +137,107 @@
             <table class="table table-hover table-mail">
               <tbody>
               <tr class="title">
-                <td class="check-mail"></td>
-                <td class="mail-ontact">员工姓名</td>
+                <td class="mail-ontact">申请编号</td>
                 <td class="mail-ontact">员工编号</td>
+                <td class="mail-ontact">员工姓名</td>
                 <td class="mail-ontact">时间</td>
               </tr>
 
-              <tr class="read">
-                <td class="check-mail"><input type="checkbox" class="i-checks"></td>
-                <td class="mail-ontact"><a href="../manager/mail_detail.html">王鑫雨</a></td>
-                <td class="mail-ontact"><a href="../manager/mail_detail.html">123</a></td>
-                <td class="mail-ontact"><a href="../manager/mail_detail.html">2019/6/9 上</a></td>
+              <tr id="app2" class="read" v-for="EW in EWs">
+                <td class="check-mail"><input type="checkbox" class="i-checks">{{EW.applicatedId}}</td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EW.applicatedPerson}}</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EW.state}}</a></td>
+                <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EW.date}}</a></td>
               </tr>
 
               </tbody>
             </table>
           </div>
         </div>
-
-
       </div>
     </div>
   </div>
 </div>
 
 <script type="text/javascript">
-  new Vue({
-    el:"#page-wrapper",
-    data:{
-      m:{},
-      UID:4
-    },
-    created:function () {
-      var that = this;
-      var userArray = JSON.parse(localStorage.getItem('master'));
+  //请假部分
 
-      that.m = userArray[0];
-      console.log(m);
+
+  //加班部分
+  new Vue({
+    el:"#app2",
+    data:{
+      EWs:[],
+      employeeNames:[],
+      selected:[],
+      num:0
+    },
+    method:{
+    },
+    created:function(){
+      console.log("ajax beging \n")
+      var that = this;
+      //var sectorId=localStorage.getItem("sectorId");
+      jQuery.ajax({
+        type:"GET",
+        url:"http://39.105.38.34:8080/api/v1/EWs/uncheck/sectors/123",
+        contentType:"application/json",
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success:function(data) {
+          that.EWs = JSON.parse(data);
+          that.num = that.EWs.length;
+          //根据employeeId获取员工名
+          for (i = 0; i < that.num; i++) {
+            jQuery.ajax({
+              type: "GET",
+              url: "http://39.105.38.34:8080/api/v1/employees/" + that.EWs[i].applicatedPerson,
+              contentType: "application/json",
+              xhrFields: {
+                withCredentials: true
+              },
+              crossDomain: true,
+              async: false,
+              success: function (result) {
+                var tname = JSON.parse(result);
+                that.EWs[i]['state']=tname[0].name;
+                console.log(i);
+
+              },
+              error: function (result) {
+                console.log("fail");
+              }
+            });
+          }
+        },
+        error:function(data){
+          console.log("fail");
+        }
+      });
+      //根据employeeId获取员工名
+      // for(var i=0;i<num;i++){
+      //   jQuery.ajax({
+      //     type:"GET",
+      //     url:"http://39.105.38.34:8080/api/v1/employees/"+this.EWs[i].applicatedPerson,
+      //     contentType:"application/json",
+      //     xhrFields: {
+      //       withCredentials: true
+      //     },
+      //     crossDomain: true,
+      //     success:function(data){
+      //       var t=JSON.parse(data);
+      //       that.employeeNames[i]=t[0].name;
+      //     },
+      //     error:function(data){
+      //       console.log("fail");
+      //     }
+      //   });
     }
 
   })
+
 </script>
 
 </body>
