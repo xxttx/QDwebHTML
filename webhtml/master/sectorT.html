@@ -13,8 +13,8 @@
 <script src="../../js/popper.min.js"></script> 
 <script src="../../js/bootstrap.js"></script> 
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
-
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- Flot --> 
 <script src="../../js/plugins/flot/jquery.flot.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
@@ -68,16 +68,15 @@
         <div class="col-lg-12">
           <div class="ibox ">
             <div class="ibox-title"> 
-              <span class="label label-success float-right"  style="font-size:18px">#阿里巴巴</span>
+              <span class="label label-success float-right"  style="font-size:18px">{{s.sectorName}}</span>
               <h3>部门</h3>
             </div>
             <div class="ibox-content">  
 <!--               <h1 class="no-margins">40 886,200</h1> -->
 <!--               <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div> -->
-              <big>部门编号：{{}}</big><br></br>
-              <big>部门名：#sectorName</big> <br></br>
-              <big>部门主管：#根据masterId获取主管名</big> <br></br>
-              <big>部门描述：#description水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水水你看他可以自适应，棒不棒！</big> 
+              <big>部门编号：{{m.sectorId}}</big><br></br>
+              <big>部门主管：{{m.name}}</big> <br></br>
+              <big>部门描述：{{s.sectorDescription}}</big>
             </div>
           </div>
         </div>
@@ -88,7 +87,7 @@
               <h5>部门总人数</h5>
             </div>
             <div class="ibox-content">	
-              <h1 class="no-margins">#sectorPeopleNumber</h1>
+              <h1 class="no-margins">{{s.sectorPeopleNumber}}</h1>
               <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
               <middle>人</middle> 
             </div>
@@ -321,11 +320,39 @@
             var previousPoint = null, previousLabel = null;
 
             $.plot($("#flot-dashboard-chart"), dataset, options);
-
-            
-
            
         });
+        new Vue({
+            el:"#page-wrapper",
+            data:{
+                m:{},
+                s:{}
+            },
+            created:function(){
+                var that = this;
+                var userArray = JSON.parse(localStorage.getItem('master'));
+                that.m = userArray[0];
+                console.log("ajax beging \n")
+                var that = this;
+                jQuery.ajax({
+                    type:"GET",
+                    url:"http://39.105.38.34:8080/api/v1/sectors/"+m.sectorId,
+                    contentType:"application/json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    success:function(data){
+                        var t=JSON.parse(data);
+                        that.s=t[0];
+                    },
+                    error:function(data){
+                        console.log("fail");
+                    }
+                })
+            }
+
+        })
     </script>
 </body>
 </html>
