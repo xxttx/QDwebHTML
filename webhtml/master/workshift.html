@@ -30,18 +30,10 @@
                 <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
             </div>
             <div class="ibox-content">
-              <div id='external-events'>
-                <p>拖动至日历快捷添加☞</p>
-                <div class='external-event navy-bg'>Go to shop and buy some products.</div>
-                <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
-                <div class='external-event navy-bg'>Send documents to John.</div>
-                <div class='external-event navy-bg'>Phone to Sandra.</div>
-                <div class='external-event navy-bg'>Chat with Michael.</div>
-                <p class="m-t">
-                  <input type='checkbox' id='drop-remove' class="i-checks" checked />
-                  <label for='drop-remove'>remove after drop</label>
-                </p>
-              </div>
+              <p class="m-t">
+                <input type='checkbox' id='drop-remove' class="i-checks" checked />
+                <label for='drop-remove'>点击删除</label>
+              </p>
               <div class="hr-line-dashed"></div>
               <div>
                 <p>输入员工ID并选择日期</p>
@@ -133,6 +125,7 @@
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
 <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
 <!-- import Vue before Element --> 
 <script src="https://unpkg.com/vue/dist/vue.js"></script> 
 <!-- import JavaScript --> 
@@ -157,29 +150,6 @@
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'
             });
-
-        /* initialize the external events
-         -----------------------------------------------------------------*/
-
-
-        $('#external-events div.external-event').each(function() {
-
-            // store data so the calendar knows to render an event upon drop
-            $(this).data('event', {
-                title: $.trim($(this).text()), // use the element's text as the event title
-                stick: true // maintain when user navigates (see docs on the renderEvent method)
-            });
-
-            // make the event draggable using jQuery UI
-            $(this).draggable({
-                zIndex: 1111999,
-                revert: true,      // will cause the event to go back to its
-                revertDuration: 0  //  original position after the drag
-            });
-
-        });
-
-
         /* initialize the calendar
          -----------------------------------------------------------------*/
         var date = new Date();
@@ -202,6 +172,32 @@
                     $(this).remove();
                 }
             },
+			eventDrop: function(info) {
+ 				alert(info.title + " was dropped on " + info.start.toISOString());
+				console.dir(info)
+    if (!confirm("Are you sure about this change?")) {
+      info.reverse();
+    }
+
+
+  },
+			eventResize: function(info) {
+    alert(info.title + " end is now " + info.end.toISOString());
+
+    if (!confirm("is this okay?")) {
+      info.revert();
+    }
+  },
+			eventClick: function(info) {
+				 if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+					  if (confirm("Are you sure about this change?")) {
+							$(this).remove();
+						}
+                }
+
+   
+  },
             events: [
                 {
                     title: 'All Day Event',

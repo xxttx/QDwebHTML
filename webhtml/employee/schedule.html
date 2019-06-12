@@ -102,11 +102,10 @@ var app = new Vue({
 		
 	],
     event:{
-          title: '',
-          start: {},
+          title:" ''",
+          start:"",
 			end:{},
-		allDay: true
-	
+		allDay: false
 	}
   },
     created:function(){
@@ -116,25 +115,22 @@ var app = new Vue({
             type:"GET",
             url:"http://39.105.38.34:8080/api/v1/workA/employees/1",
             contentType:"application/json",
-            // xhrFields: {
-            //     withCredentials: true
-            // },
-            // crossDomain:true,
+             xhrFields: {
+              withCredentials: true
+             },
+            crossDomain:true,
+			async:false,
             success:function(data){
                 that.workshifts=JSON.parse(data);
                 console.log(" workshifts is",that.workshifts)
                 console.log("success");
         for(var i=0;i<that.workshifts.length;i++){
             that.event.title=that.workshifts[i].employeeId;
-            //that.event.start = new //Date(that.workshifts[i].startTime.substring(0,4),that.workshifts[i].startTime.substring(5,7),that.workshifts[i].startTime.substring(8,10),that.workshifts[i].startTime.substring(11,13),that.workshifts[i].startTime.substring(14,16))
-
-			//that.event.end = new Date(that.workshifts[i].endTime.substring(0,4),that.workshifts[i].endTime.substring(5,7),that.workshifts[i].endTime.substring(8,10),that.workshifts[i].endTime.substring(11,13),that.workshifts[i].endTime.substring(14,16))
-            //console.log("that.event "+that.event.start)
-			
 			that.event.start=that.workshifts[i].startTime;
 			that.event.end=that.workshifts[i].endTime;
             that.events.push(that.event)
         }
+				console.log("JSON STR"+JSON.stringify(that.events))
 $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next,today',

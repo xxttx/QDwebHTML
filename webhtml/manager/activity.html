@@ -9,47 +9,51 @@
 <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="../../css/animate.css" rel="stylesheet">
 <link href="../../css/style.css" rel="stylesheet">
-	<!-- Mainly scripts --> 
-<script src="../../js/jquery-3.1.1.min.js"></script> 
-<script src="../../js/popper.min.js"></script> 
-<script src="../../js/bootstrap.js"></script> 
-<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+<!-- Mainly scripts -->
+<script src="../../js/jquery-3.1.1.min.js"></script>
+<script src="../../js/popper.min.js"></script>
+<script src="../../js/bootstrap.js"></script>
+<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- import Vue before Element --> 
+<script src="https://unpkg.com/vue/dist/vue.js"></script> 
+<!-- import JavaScript --> 
+<script src="https://unpkg.com/element-ui/lib/index.js"></script> 
+<!-- Flot -->
+<script src="../../js/plugins/flot/jquery.flot.js"></script>
+<script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+<script src="../../js/plugins/flot/jquery.flot.spline.js"></script>
+<script src="../../js/plugins/flot/jquery.flot.resize.js"></script>
+<script src="../../js/plugins/flot/jquery.flot.pie.js"></script>
+<script src="../../js/plugins/flot/jquery.flot.symbol.js"></script>
+<script src="../../js/plugins/flot/jquery.flot.time.js"></script>
 
-<!-- Flot --> 
-<script src="../../js/plugins/flot/jquery.flot.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.spline.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.resize.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.pie.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.symbol.js"></script> 
-<script src="../../js/plugins/flot/jquery.flot.time.js"></script> 
+<!-- Peity -->
+<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+<script src="../../js/demo/peity-demo.js"></script>
 
-<!-- Peity --> 
-<script src="../../js/plugins/peity/jquery.peity.min.js"></script> 
-<script src="../../js/demo/peity-demo.js"></script> 
+<!-- Custom and plugin javascript -->
+<script src="../../js/inspinia.js"></script>
+<script src="../../js/plugins/pace/pace.min.js"></script>
 
-<!-- Custom and plugin javascript --> 
-<script src="../../js/inspinia.js"></script> 
-<script src="../../js/plugins/pace/pace.min.js"></script> 
+<!-- jQuery UI -->
+<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-<!-- jQuery UI --> 
-<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script> 
+<!-- EayPIE -->
+<script src="../../js/plugins/easypiechart/jquery.easypiechart.js"></script>
 
-<!-- EayPIE --> 
-<script src="../../js/plugins/easypiechart/jquery.easypiechart.js"></script> 
+<!-- Sparkline -->
+<script src="../../js/plugins/sparkline/jquery.sparkline.min.js"></script>
 
-<!-- Sparkline --> 
-<script src="../../js/plugins/sparkline/jquery.sparkline.min.js"></script> 
-
-<!-- Sparkline demo data  --> 
-<script src="../../js/demo/sparkline-demo.js"></script> 
+<!-- Sparkline demo data  -->
+<script src="../../js/demo/sparkline-demo.js"></script>
 </head>
 
 <body>
 <div id="wrapper" class="gray-bg">
   <div id="page-wrapper" class="gray-bg" style="margin: 0;">
-    <div class="wrapper wrapper-content animated fadeInUp">
+    <div class="wrapper wrapper-content animated fadeInUp" id="app">
       <div class="row">
         <div class="col-lg-12">
           <div class="ibox">
@@ -201,8 +205,82 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="ibox ">
+            <div class="ibox-title">
+              <h5> 新增临时活动 <small> With custom checbox and radion elements.</small></h5>
+              <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
+                <ul class="dropdown-menu dropdown-user">
+                  <li><a href="#" class="dropdown-item">Config option 1</a> </li>
+                  <li><a href="#" class="dropdown-item">Config option 2</a> </li>
+                </ul>
+                <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
+            </div>
+            <div class="ibox-content">
+              <div class="form-group  row">
+                <label class="col-sm-2 col-form-label">时间段</label>
+                <div class="col-sm-10">
+                                      <div class="input-group m-b">
+                      <div class="input-group-prepend"> <el-date-picker
+	style="width:100%"
+      v-model="value1"
+      type="datetimerange"
+      range-separator="-"
+      start-placeholder="开始日期"
+	format="yyyy-MM-dd HH:mm:ss"
+	value-format="yyyy-MM-dd HH:mm:ss"
+      end-placeholder="结束日期"> </el-date-picker></div>
+
+						<button class="btn btn-sm btn-primary m-t-n-xs" type="button"> 提交申请</button>
+                    </div>
+                </div>
+              </div>
+				
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+	<script type="text/JavaScript">
+    new Vue({
+      el: '#app',
+	data: {
+        value1: ''
+         },
+		methods:{
+			addToWorkShift:function(event){
+			console.log("ajax beging \n")
+			var that = this;
+			console.log("value1 is "+that.value1+"  value2 is ",that.value2);
+			var jsono={};
+			jsono["startTime"]=that.value1[0];
+			jsono["endTime"]=that.value1[1];
+			jsono["arrangePerson"]="1";
+			jsono["employeeId"]="1";
+			jQuery.ajax({
+            type:"POST",
+            url:"http://39.105.38.34:8080/api/v1/workA/employees/1",
+            contentType:"application/json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain:true,
+			dataType:"json",
+			data:JSON.stringify(jsono),
+            success:function(data){
+                console.log("success");
+			},
+            error:function(data){
+                console.log("fail");
+            }
+        });
+				
+			}
+		}
+    })
+  </script>
 </body>
 </html>
