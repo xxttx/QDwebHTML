@@ -16,6 +16,9 @@
     <link href="../../css/animate.css" rel="stylesheet">
     <link href="../../css/style.css" rel="stylesheet">
 
+
+
+
     <!-- Mainly scripts -->
     <script src="../../js/jquery-3.1.1.min.js"></script>
     <script src="../../js/popper.min.js"></script>
@@ -25,6 +28,14 @@
     <script src="../../js/plugins/summernote/summernote-bs4.js"></script>
     <script src="../../js/plugins/fullcalendar/moment.min.js"></script>
     <script src="../../js/plugins/iCheck/icheck.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- import Vue before Element -->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 
     <!-- Custom and plugin javascript -->
     <script src="../../js/inspinia.js"></script>
@@ -42,7 +53,7 @@
     <body>
     <div id="wrapper" class="gray-bg">
       <div id="page-wrapper" class="gray-bg" style="margin: 0;">
-        <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="wrapper wrapper-content animated fadeInRight"  id="app">
           <div class="row">
 			  <div class="col-lg-12">
               <div class="ibox ">
@@ -57,7 +68,7 @@
                 </div>
                 <div class="ibox-content">
                   <div class="row">
-                    <div class="col-sm-4 b-r">
+                    <div class="col-sm-5 b-r">
                       <h3 class="m-t-none m-b">加班申请</h3>
                       <p>Sign in today for more expirience.</p>
                       <form role="form">
@@ -65,8 +76,22 @@
                           <label>请假类型</label>
                           <input type="email" placeholder="简要的说明请假类型" class="form-control">
                         </div>
+ <div class="form-group" >
+    <label>申请加班日期</label>
+ <el-date-picker
+  style="width:100%"
+      v-model="value1"
+      type="datetimerange"
+      range-separator="-"
+      start-placeholder="开始日期"
+  format="yyyy-MM-dd HH:mm:ss"
+  value-format="yyyy-MM-dd HH:mm:ss"
+      end-placeholder="结束日期"> </el-date-picker>
+</div>
+
+
                         <div class="form-group" >
-                          <label>Data</label>
+                          <label>加班说明</label>
                           <div class="summernote">
                             <h3>Lorem Ipsum is simply</h3>
                             dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
@@ -80,43 +105,26 @@
                             </ul>
                           </div>
                         </div>
+
+
+
+
+
                         <button class="btn btn-sm btn-primary float-right m-t-n-xs" style="margin-right: 20px;" type="button"><strong> 暂存 </strong></button>
                       </form>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-7">
                       <div class="row">
                         <div class="ibox-content no-padding">
                           <h3 class="m-t-none m-b">加班说明</h3>
                           <div id="calendar"></div>
                           <div style="margin-top: 20px;margin-right: 20px;">
-                            <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><strong> 提交申请 </strong></button>
+                            <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"  v-on:click="newExworkApp" ><strong> 提交申请 </strong></button>
                           </div>
                         </div>
                       </div>
                     </div>
-					<div class="col-lg-2">
-            <div class="ibox ">
-                <div class="ibox-content">
-                    <div id='external-events'>
-                        <p>Drag a event and drop into callendar.</p>
-                        <div class='external-event navy-bg'>Go to shop and buy some products.</div>
-                        <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
-                        <div class='external-event navy-bg'>Send documents to John.</div>
-                        <div class='external-event navy-bg'>Phone to Sandra.</div>
-                        <div class='external-event navy-bg'>Chat with Michael.</div>
-                        <p class="m-t">
-                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>remove after drop</label>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="ibox ">
-                <div class="ibox-content">
-                    <h2>FullCalendar</h2> is a jQuery plugin that provides a full-sized, drag & drop calendar like the one below. It uses AJAX to fetch events on-the-fly for each month and is
-                    easily configured to use your own feed format (an extension is provided for Google Calendar).
-                </div>
-            </div>
-        </div>
+
                   </div>
                 </div>
               </div>
@@ -231,4 +239,73 @@
     });
 
 </script>
+
+ <script type="text/JavaScript">
+    new Vue({
+      el: '#app',
+      data:{
+      pickerOptions: {
+          shortcuts: [{
+            text: '最近一周',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近一个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30);
+              picker.$emit('pick', [start, end]);
+            }
+          }, {
+            text: '最近三个月',
+            onClick(picker) {
+              const end = new Date();
+              const start = new Date();
+              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90);
+              picker.$emit('pick', [start, end]);
+            }
+          }]
+        },
+        value1: ''
+      },
+    methods:{
+        ///新建一个加班申请
+        newExworkApp:function(){
+            var jsono={};       
+            jsono["startTime"]=this.value1[0];
+            jsono["endTime"]=this.value1[1];
+            jsono["applicatedId"]="1";////这个值未来要改
+            jsono["ewReason"]="我就是想加班";
+            jQuery.ajax({
+            type:"POST",
+            url:"http://39.105.38.34:8080/api/v1/EWs/employees/1",
+            contentType:"application/json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain:true,
+            dataType:"json",
+            data:JSON.stringify(jsono),
+            success:function(data){
+                console.log("success");
+            },
+            error:function(data){
+                console.log("fail");
+            }
+        });
+        }
+    },
+        created:function(){
+
+        }
+
+    })
+  </script>
+
+
 </html>

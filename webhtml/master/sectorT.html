@@ -8,13 +8,14 @@
 <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
 <link href="../../css/animate.css" rel="stylesheet">
 <link href="../../css/style.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 	<!-- Mainly scripts --> 
 <script src="../../js/jquery-3.1.1.min.js"></script> 
 <script src="../../js/popper.min.js"></script> 
 <script src="../../js/bootstrap.js"></script> 
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+
 <!-- Flot --> 
 <script src="../../js/plugins/flot/jquery.flot.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
@@ -325,31 +326,11 @@
         new Vue({
             el:"#page-wrapper",
             data:{
-                m:{},
-                s:{}
+                m:[],
+                s:[]
             },
             created:function(){
-                var that = this;
-                var userArray = JSON.parse(localStorage.getItem('master'));
-                that.m = userArray[0];
-                console.log("ajax beging \n")
-                var that = this;
-                jQuery.ajax({
-                    type:"GET",
-                    url:"http://39.105.38.34:8080/api/v1/sectors/"+m.sectorId,
-                    contentType:"application/json",
-                    xhrFields: {
-                        withCredentials: true
-                    },
-                    crossDomain: true,
-                    success:function(data){
-                        var t=JSON.parse(data);
-                        that.s=t[0];
-                    },
-                    error:function(data){
-                        console.log("fail");
-                    }
-                })
+               
             }
 
         })
