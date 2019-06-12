@@ -123,7 +123,7 @@
                       <a id="img_a"></a>+ <img id="show" alt="" /><br>
                       <div class="form-group  row">
                           <label class="col-sm-2 col-form-label">员工编号</label>
-                          <div class="col-lg-10"><input readonly type="text" id="employeeId" name="employeeId" class="form-control"  :value="UID"></div>
+                          <div class="col-lg-10"><input readonly type="text" id="employeeId" name="employeeId" class="form-control"  :value="userInfo.employeeId"></div>
                       </div>
                       <input class="btn btn-primary btn-sm" type="submit" value="submit" />
                   </div>
@@ -162,6 +162,9 @@
                     alert(res.msg);
                     $("html").trigger('click');
                 }
+				error:function(){
+				alert(无法识别图片或已有图片);
+			}
             });
             return false;
         });
@@ -169,31 +172,12 @@
 new Vue({
   el: '#app1',
   data: {
-	  userInfo:{},
-	  UID:2
+	  userInfo:{}
   },
 	created:function(){
-		var params=location.search;
-		var arr = params.substring(1).split("&");
-		this.UID = arr[0].replace("UID=","");
-		console.log("ajax beging \n")
-		var that = this;
-		jQuery.ajax({
-			type:"GET",
-            url:"http://39.105.38.34:8080/api/v1/employees/"+that.UID,
-			contentType:"application/json",
-			xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-			success:function(data){
-				var userArray=JSON.parse(data)
-				that.userInfo=userArray[0];
-            },
-			error:function(data){
-				console.log("fail");
-			}
-		})
+		var userArray = JSON.parse(localStorage.getItem('employee'));
+        this.userInfo = userArray[0];
+		console.log(this.userInfo)
 	}
 })
 	

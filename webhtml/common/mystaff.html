@@ -104,38 +104,7 @@
             <!--            :href="'changeuser.html?employeeId='+staff.employeeId"-->
           </div>
         </div>
-        <div class="col-lg-3">
-          <div class="contact-box">
-            <div class="row">
-              <div class="col-12">
-                <div class="ibox" >
-                  <div class="ibox-title">
-                    <h5>添加员工</h5>
-                  </div>
-
-                  <div class="ibox-tools">
-                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                      <i class="fa fa-wrench"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                      <li><a href="#" class="dropdown-item">修改信息</a> </li>
-                      <li><a href="#" class="dropdown-item">删除员工</a> </li>
-                    </ul>
-                    <a class="close-link"> <i class="fa fa-times"></i> </a>
-                  </div>
-
-                  <div class="ibox-content">
-                    <a :href="'../manager/adduser.html?sectorId='+sectorId">
-                      <span class="btn btn-primary block full-width m-b" style="margin-top:30px;">添加员工</span>
-                    </a>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+       
       </div>
     </div>
   </div>
@@ -147,7 +116,7 @@
     data: {
       name: 'Hello Vue.js!',
       staffs:[],
-      sectorId:0
+      sectorId:123
     },
     methods:{
       deleteEmployee:function(id){
@@ -161,24 +130,22 @@
           crossDomain: true,
           success:function(){
             alert("success!");
-            window.location.assign("mystaff.html?sectorId="+that.sectorId);
+            window.location.assign("mystaff.html");
           },
           error:function(data){
             alert("fail!");
-            window.location.assign("mystaff.html?sectorId="+that.sectorId);
+            window.location.assign("mystaff.html");
           }
         });
       }
     },
     created:function(){
-      var params=location.search;
-      var arr = params.substring(1).split("&");
-      this.sectorId = arr[0].replace("sectorId=","");
+      
       console.log("ajax beging \n")
       var that = this;
       jQuery.ajax({
         type:"GET",
-        url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+that.sectorId,
+        url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+localStorage.sectorId,
         contentType:"application/json",
         xhrFields: {
           withCredentials: true

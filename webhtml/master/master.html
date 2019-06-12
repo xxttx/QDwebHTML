@@ -11,6 +11,7 @@
 	    <link href="../../css/plugins/toastr/toastr.min.css" rel="stylesheet">
   <!-- Mainly scripts -->
    <script src="../../js/plugins/toastr/toastr.min.js"></script>
+	<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
   <script src="../../js/popper.min.js"></script>
   <script src="../../js/bootstrap.js"></script>
   <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
@@ -54,7 +55,7 @@
     <div class="sidebar-collapse">
       <ul class="nav metismenu" id="side-menu">
         <li class="nav-header">
-          <div class="dropdown profile-element"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="block m-t-xs font-bold">员工名</span> <span class="text-muted text-xs block">menu <b class="caret"></b> </span> </a>
+          <div class="dropdown profile-element"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="block m-t-xs font-bold">{{userInfo.name}}</span> <span class="text-muted text-xs block">menu <b class="caret"></b> </span> </a>
             <ul class="dropdown-menu animated fadeInRight m-t-xs">
               <li> <a class="dropdown-item" href="../../index.html">Logout</a> </li>
             </ul>
@@ -62,9 +63,9 @@
           <div class="logo-element"> IN+ </div>
         </li>
         <li class="active"> <a class="J_menuItem" href="sectorT.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">部门今日</span></a> </li>
-        <li> <a class="J_menuItem"  :href="'../common/myprofile.html?UID='+UID" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的账户信息</span> </a> </li>
+        <li> <a class="J_menuItem"  :href="'../common/myprofile.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的账户信息</span> </a> </li>
         <li> <a class="J_menuItem" href="workshift.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的工作班次</span> </a> </li>
-        <li> <a class="J_menuItem" :href="'../common/mystaff.html?departmentId='+sectorId" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">部门员工概览</span> </a> </li>
+        <li> <a class="J_menuItem" :href="'../common/mystaff.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">部门员工概览</span> </a> </li>
         <!--        "'../common/mystaff.html?departmentId='+department.sectorId"-->
         <li> <a class="J_menuItem" href="workshift.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">安排工作</span> </a> </li>
 
@@ -122,9 +123,8 @@
       sectorId:123
     },
     el: '#app1',
-    created: function () { toastr.success('Without any options','Simple notification!')
-						   toastr.success('Without any options','Simple notification!')
-						   toastr.success('Without any options','Simple notification!')
+    created: function () { 
+		this.UID=localStorage.getItem('employeeId');
       jQuery.ajax({
         type: "GET",
         url: "http://39.105.38.34:8080/api/v1/employees/" + this.UID,
@@ -139,7 +139,7 @@
           this.sectorId=userInfo.sectorId;
           if (typeof(Storage)!=="undefined")
           {
-            localStorage.master=data;
+            localStorage.employee=data;
             localStorage.sectorId=userInfo.sectorId;
           }
           else

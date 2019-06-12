@@ -38,8 +38,8 @@
               <div class="hr-line-dashed"></div>
               <div>
                 <p>输入员工ID并选择日期</p>
-                <select class="form-control m-b" name="account">
-                  <option>1</option>
+                <select class="form-control m-b" name="account" id="staffSelc">
+                  <option v-for="(staff,index) in staffs"  :id='staff.employeeId'>{{staff.name}}</option>
                 </select>
                 <div class="block"> <span class="demonstration" style="height: 30px;">选择日期</span><br>
                   <el-date-picker
@@ -207,127 +207,155 @@ var myvue = new Vue({
       el: '#app',
 	data: {
         value1: '',
-		events: [
-            ],
+		events: [],
 		workshifts:[],
-		workshift:[]
-         },
+		workshift:[],
+		staffs:[],
+		options:[]
+	},
 		methods:{
-			///新增一条工作班次(可用)
-			newToWorkShift:function(employeeId){
-			console.log("ajax beging \n")
-			var that = this;
-			console.log("value1 is "+that.value1+"  value2 is ",that.value2);
-			var jsono={};
-			jsono["startTime"]=that.value1[0];
-			jsono["endTime"]=that.value1[1];
-			jsono["arrangePerson"]="1";
-			jsono["employeeId"]=2;
-			jQuery.ajax({
-            type:"POST",
-            url:"http://39.105.38.34:8080/api/v1/workA/employees/2",
-            contentType:"application/json",
-            // xhrFields: {
-            //     withCredentials: true
-            // },
-            // crossDomain:true,
-			dataType:"json",
-			data:JSON.stringify(jsono),
-            success:function(data){
-                console.log("success");
-				//UiUpdate;
-						window.location.reload()
-			},
-            error:function(data){
-                console.log("fail");
-            }
-        });
-				
-			},
-			///从数据库拉取某员工的工作班次(可用)
-			calendarUiUpdate:function(employeesId){
+				///新增一条工作班次(可用)
+				newToWorkShift:function(employeeId){
+				console.log("ajax beging \n")
 				var that = this;
-			        jQuery.ajax({
-            type:"GET",
-            url:"http://39.105.38.34:8080/api/v1/workA/employees/"+employeesId,
-            contentType:"application/json",
-             xhrFields: {
-              withCredentials: true
-             },
-            crossDomain:true,
-			async:false,
-            success:function(data){
-				             console.log("success");
-                that.workshifts=JSON.parse(data);
-                console.log(" workshifts is",that.workshifts)
-        for(var i=0;i<that.workshifts.length;i++){
-			var event={allDay: false}
-            event["title"]=that.workshifts[i].employeeId;
-			event["start"]=that.workshifts[i].startTime;
-			event["end"]=that.workshifts[i].endTime;
-			event["id"]=that.workshifts[i].workArrangeId;
-            that.events.push(event)
-        }
-				console.log("JSON STR"+JSON.stringify(that.events))
-            },
-            error:function(data){
-                console.log("fail");
-                
-            }
-        });
-				
-			},
-			///删除某条工作安排 
-			deleteWorkShift:function(workShiftId){
-				jQuery.ajax({
-			type:"GET",
-            url:"http://39.105.38.34:8080/api/v1/workA/delete/"+workShiftId,
-			contentType:"application/json",
-			xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-			success:function(data){
-				console.log("ajax succ");
-            },
-			error:function(data){
-				console.log("fail");
-				
-			}
-		});
-			},
-			///更新某条工作安排(可用)
-			updateWorkShift:function(employeeId,workShiftId,begin,end){
+				console.log("value1 is "+that.value1+"  value2 is ",that.value2);
 				var jsono={};
-				jsono["startTime"]=begin;
-				jsono["endTime"]=end;
+				jsono["startTime"]=that.value1[0];
+				jsono["endTime"]=that.value1[1];
 				jsono["arrangePerson"]="1";
-				jsono["employeeId"]=employeeId;
-				jsono["workArrangeId"]=workShiftId;
+				jsono["employeeId"]= $("#staffSelc option:selected").attr("id");/////这个是错的
 				jQuery.ajax({
-			type:"PUT",
-            url:"http://39.105.38.34:8080/api/v1/workA/"+1,
-			contentType:"application/json",
-			xhrFields: {
-                withCredentials: true
-            },
-			dataType:"json",
-			data:JSON.stringify(jsono),
-            crossDomain: true,
-			success:function(data){
-				console.log("succ");
-            },
-			error:function(data){
-				console.log("fail");
+				type:"POST",
+				url:"http://39.105.38.34:8080/api/v1/workA/employees/2",
+				contentType:"application/json",
+				// xhrFields: {
+				//     withCredentials: true
+				// },
+				// crossDomain:true,
+				dataType:"json",
+				data:JSON.stringify(jsono),
+				success:function(data){
+					console.log("success");
+					//UiUpdate;
+							window.location.reload()
+				},
+				error:function(data){
+					console.log("fail");
+				}
+			});
+
+				},
+				///从数据库拉取某员工的工作班次(可用)
+				calendarUiUpdate:function(employeesId){
+					var that = this;
+						jQuery.ajax({
+				type:"GET",
+				url:"http://39.105.38.34:8080/api/v1/workA/employees/"+employeesId,
+				contentType:"application/json",
+				 xhrFields: {
+				  withCredentials: true
+				 },
+				crossDomain:true,
+				async:false,
+				success:function(data){
+					console.log("success");
+					that.workshifts=JSON.parse(data);
+					console.log(" workshifts is",that.workshifts)
+			for(var i=0;i<that.workshifts.length;i++){
+				var event={allDay: false}
+				event["title"]=that.workshifts[i].employeeId;
+				event["start"]=that.workshifts[i].startTime;
+				event["end"]=that.workshifts[i].endTime;
 				
+				event["id"]=that.workshifts[i].workArrangeId;
+				that.events.push(event)
 			}
-		});}
-		},
+				
+				},
+				error:function(data){
+					console.log("fail");
+
+				}
+			});
+
+				},
+				///删除某条工作安排 (可用)
+				deleteWorkShift:function(workShiftId){
+					jQuery.ajax({
+				type:"GET",
+				url:"http://39.105.38.34:8080/api/v1/workA/delete/"+workShiftId,
+				contentType:"application/json",
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success:function(data){
+					console.log("ajax succ");
+				},
+				error:function(data){
+					console.log("fail");
+
+				}
+			});
+				},
+				///更新某条工作安排(可用)
+				updateWorkShift:function(employeeId,workShiftId,begin,end){
+					var jsono={};
+					jsono["startTime"]=begin;
+					jsono["endTime"]=end;
+					jsono["arrangePerson"]="1";
+					jsono["employeeId"]=employeeId;
+					jsono["workArrangeId"]=workShiftId;
+					jQuery.ajax({
+				type:"PUT",
+				url:"http://39.105.38.34:8080/api/v1/workA/"+1,
+				contentType:"application/json",
+				xhrFields: {
+					withCredentials: true
+				},
+				dataType:"json",
+				data:JSON.stringify(jsono),
+				crossDomain: true,
+				success:function(data){
+					console.log("succ");
+				},
+				error:function(data){
+					console.log("fail");
+
+				}
+			});},
+				///查询某部门所有员工
+				getAllStaffByDepartId:function(departmentId){
+				  var that = this;
+				  jQuery.ajax({
+					type:"GET",
+					url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+departmentId,
+					contentType:"application/json",
+					xhrFields: {
+					  withCredentials: true
+					},
+					crossDomain: true,
+					  async:false,
+					success:function(data){
+					  that.staffs=JSON.parse(data);
+					},
+					error:function(data){
+					  console.log("fail");
+
+					}
+				  })
+					},
+				///init options
+				
+			},
 	created:function(){
 		var that =this
 		console.log("refresh")
-		this.calendarUiUpdate(2);
-		
+		this.getAllStaffByDepartId(localStorage.sectorId)
+		console.dir(this.staffs)
+		for(var i=0;i<this.staffs.length;i++){
+			this.calendarUiUpdate(this.staffs[i].employeeId);
+		}
 	}
     })
   </script>

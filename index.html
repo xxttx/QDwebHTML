@@ -59,7 +59,7 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
 		if($('#username').val()!=''){
         $.ajax({
             type:"POST",
-            url:"http://39.105.38.34:8080/login/login",
+            url:"http://39.105.38.34:8080/api/v1/login",
 			contentType:"application/json",
 			data:JSON.stringify(getjson()),
             dataType:'json',
@@ -68,9 +68,26 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
             },
             crossDomain: true,
             success:function(data){
-                $("#myDiv").html(data);
-				console.log("succ: "+data);
-            }
+				
+				console.dir(data)
+				localStorage.employeeId=data.employeeId;
+				if(data.degree=='2'){
+					//主管
+					window.location= ("webhtml/master/master.html");
+				}
+				else if(data.degree=='1'){
+					//员工
+					window.location=("webhtml/employee/employee.html");
+				}
+				else{
+					//经理
+					window.location=("webhtml/manager/manager.html");
+				}
+				
+            },
+			error:function(){
+				alert("请检查用户密码！！！");
+			}
            
         });
 			}
