@@ -1,51 +1,53 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="Expires" content="0">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Cache-control" content="no-cache">
-<meta http-equiv="Cache" content="no-cache">
-<title>新增用户</title>
-<link href="../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
-<link href="../../css/animate.css" rel="stylesheet">
-<link href="../../css/style.css" rel="stylesheet">
-<!-- Mainly scripts -->
-<script src="../../js/jquery-3.1.1.min.js"></script>
-<script src="../../js/popper.min.js"></script>
-<script src="../../js/bootstrap.js"></script>
-<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="Expires" content="0">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-control" content="no-cache">
+  <meta http-equiv="Cache" content="no-cache">
+  <title>修改用户信息</title>
 
-<!-- Flot -->
-<script src="../../js/plugins/flot/jquery.flot.js"></script>
-<script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="../../js/plugins/flot/jquery.flot.spline.js"></script>
-<script src="../../js/plugins/flot/jquery.flot.resize.js"></script>
-<script src="../../js/plugins/flot/jquery.flot.pie.js"></script>
-<script src="../../js/plugins/flot/jquery.flot.symbol.js"></script>
-<script src="../../js/plugins/flot/jquery.flot.time.js"></script>
 
-<!-- Peity -->
-<script src="../../js/plugins/peity/jquery.peity.min.js"></script>
-<script src="../../js/demo/peity-demo.js"></script>
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="../../css/animate.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <!-- Mainly scripts -->
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/popper.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+  <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- Flot -->
+  <script src="../../js/plugins/flot/jquery.flot.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.spline.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.resize.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.pie.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.symbol.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.time.js"></script>
 
-<!-- Custom and plugin javascript -->
-<script src="../../js/inspinia.js"></script>
-<script src="../../js/plugins/pace/pace.min.js"></script>
+  <!-- Peity -->
+  <script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+  <script src="../../js/demo/peity-demo.js"></script>
 
-<!-- jQuery UI -->
-<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Custom and plugin javascript -->
+  <script src="../../js/inspinia.js"></script>
+  <script src="../../js/plugins/pace/pace.min.js"></script>
 
-<!-- EayPIE -->
-<script src="../../js/plugins/easypiechart/jquery.easypiechart.js"></script>
+  <!-- jQuery UI -->
+  <script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
 
-<!-- Sparkline -->
-<script src="../../js/plugins/sparkline/jquery.sparkline.min.js"></script>
+  <!-- EayPIE -->
+  <script src="../../js/plugins/easypiechart/jquery.easypiechart.js"></script>
 
-<!-- Sparkline demo data  -->
-<script src="../../js/demo/sparkline-demo.js"></script>
+  <!-- Sparkline -->
+  <script src="../../js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+  <!-- Sparkline demo data  -->
+  <script src="../../js/demo/sparkline-demo.js"></script>
 </head>
 
 <body>
@@ -56,249 +58,155 @@
         <div class="col-lg-12">
           <div class="ibox ">
             <div class="ibox-title">
-              <h5> 新增用户 <small> 填写下列表单新增用户 </small></h5>
-              <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
-                <ul class="dropdown-menu dropdown-user">
-                  <li><a href="#" class="dropdown-item">Config option 1</a> </li>
-                  <li><a href="#" class="dropdown-item">Config option 2</a> </li>
-                </ul>
-                <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
+              <h5>基本信息</h5>
+              <div class="ibox-tools">
+                <a class="collapse-link">
+                  <i class="fa fa-chevron-up"></i>
+                </a>
+                <a class="close-link">
+                  <i class="fa fa-times"></i>
+                </a>
+              </div>
             </div>
             <div class="ibox-content">
-              <form method="get">
+              <form name="form1" id="form1">
                 <div class="form-group  row">
-                  <label class="col-sm-2 col-form-label">用户名</label>
+                  <label class="col-sm-2 col-form-label">员工编号</label>
+                  <div class="col-lg-10"><input type="text" id="employeeId" name="employeeId" readonly class="form-control"></div>
+                </div>
+                <div class="form-group row"><label class="col-lg-2 col-form-label">入职时间</label>
+                  <div class="col-sm-10"><input type="text" readonly id="enrollTime" name="enrollTime" class="form-control"></div>
+                </div>
+                <div class="form-group  row">
+                  <label class="col-sm-2 col-form-label">姓名</label>
+                  <div class="col-lg-10"><input type="text" id="name" name="name" class="form-control"></div>
+                </div>
+                <div class="hr-line-dashed"></div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">所在部门</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control">
+                    <select class="form-control m-b" id="sectorId" name="sectorId">
+                      <option v-for="department in departments" :value="department.sectorId">{{department.sectorName}}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">是否为部门主管</label>
+                  <div class="col-sm-10">
+                    <select class="form-control m-b" id="isManager" name="isManager">
+                      <option value="false">否</option>
+                    </select>
                   </div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">账号</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control">
-                    <span class="form-text m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> </div>
+                  <label class="col-sm-2 col-form-label">年龄</label>
+                  <div class="col-sm-10"><input type="text" id="age" class="form-control" name="age"></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Password</label>
-                  <div class="col-sm-10">
-                    <input type="password" class="form-control" name="password">
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                
-                <div class="hr-line-dashed"></div>
-             
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-lg-2 col-form-label">Static control</label>
-                  <div class="col-lg-10">
-                    <p class="form-control-static">email@example.com</p>
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Checkboxes and radios <br/>
-                    <small class="text-navy">Normal Bootstrap elements</small></label>
-                  <div class="col-sm-10">
-                    <div>
-                      <label>
-                        <input type="checkbox" value="">
-                        Option one is this and that&mdash;be sure to include why it's great </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" checked="" value="option1" id="optionsRadios1" name="optionsRadios">
-                        Option one is this and that&mdash;be sure to
-                        include why it's great </label>
-                    </div>
-                    <div>
-                      <label>
-                        <input type="radio" value="option2" id="optionsRadios2" name="optionsRadios">
-                        Option two can be something else and selecting it will
-                        deselect option one </label>
-                    </div>
-                  </div>
+                  <label class="col-sm-2 col-form-label">工资</label>
+                  <div class="col-sm-10"><input type="text" id="salary" name="salary"  class="form-control"></div>
                 </div>
                 <div class="hr-line-dashed"></div>
                 <div class="form-group row">
                   <label class="col-sm-2 col-form-label">性别</label>
                   <div class="col-sm-10">
-                    <label>
-                      <input type="checkbox" value="option1" id="inlineCheckbox1">
-                      男 </label>
-                    <label class="checkbox-inline">
-                      <input type="checkbox" value="option2" id="inlineCheckbox2">
-                      女 </label>
-                    
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Checkboxes &amp; radios <br/>
-                    <small class="text-navy">Custom elements</small></label>
-                  <div class="col-sm-10">
-                    <div class="i-checks">
-                      <label>
-                        <input type="checkbox" value="">
-                        <i></i> Option one </label>
-                    </div>
-                    <div class="i-checks">
-                      <label>
-                        <input type="checkbox" value="" checked="">
-                        <i></i> Option two checked </label>
-                    </div>
-                    <div class="i-checks">
-                      <label>
-                        <input type="checkbox" value="" disabled="" checked="">
-                        <i></i> Option three checked and disabled </label>
-                    </div>
-                    <div class="i-checks">
-                      <label>
-                        <input type="checkbox" value="" disabled="">
-                        <i></i> Option four disabled </label>
-                    </div>
-                    <div class="i-checks">
-                      <label>
-                        <input type="radio" value="option1" name="a">
-                        <i></i> Option one </label>
-                    </div>
-                    <div class="i-checks">
-                      <label>
-                        <input type="radio" checked="" value="option2" name="a">
-                        <i></i> Option two checked </label>
-                    </div>
-                    <div class="i-checks">
-                      <label>
-                        <input type="radio" disabled="" checked="" value="option2">
-                        <i></i> Option three checked and disabled </label>
-                    </div>
-                    <div class="i-checks">
-                      <label>
-                        <input type="radio" disabled="" name="a">
-                        <i></i> Option four disabled </label>
-                    </div>
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">职务</label>
-                  <div class="col-sm-10">
-                    <label class="checkbox-inline i-checks">
-                      <input type="checkbox" value="option1">
-                      a </label>
-                    <label class="i-checks">
-                      <input type="checkbox" value="option2">
-                      b </label>
-                    <label class="i-checks">
-                      <input type="checkbox" value="option3">
-                      c </label>
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">部门</label>
-                  <div class="col-sm-10">
-                    <select class="form-control m-b" name="account">
-                      <option>option 1</option>
-                      <option>option 2</option>
-                      <option>option 3</option>
-                      <option>option 4</option>
+                    <select class="form-control m-b" id="sex" name="sex">
+                      <option value="false">女</option>
+                      <option value="true">男</option>
                     </select>
-                    <div class="col-lg-4 m-l-n">
-                      <select class="form-control" multiple="">
-                        <option>option 1</option>
-                        <option>option 2</option>
-                        <option>option 3</option>
-                        <option>option 4</option>
-                      </select>
-                    </div>
                   </div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group row has-success">
-                  <label class="col-sm-2 col-form-label">Input with success</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control">
-                  </div>
+                <div class="form-group row"><label class="col-lg-2 col-form-label">电话号码</label>
+                  <div class="col-sm-10"><input type="text" id="phoneNumber" name="phoneNumber" class="form-control"></div>
                 </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group row has-warning">
-                  <label class="col-sm-2 col-form-label">Input with warning</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
                 <div class="hr-line-dashed"></div>
-                <div class="form-group  row has-error">
-                  <label class="col-sm-2 col-form-label">Input with error</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control">
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Control sizing</label>
-                  <div class="col-sm-10">
-                    <input type="text" placeholder=".form-control-lg" class="form-control form-control-lg m-b">
-                    <input type="text" placeholder="Default input" class="form-control m-b">
-                    <input type="text" placeholder=".form-control-sm" class="form-control form-control-sm">
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">工资</label>
-                  <div class="col-sm-10">
-                    <div class="row">
-                      <div class="col-md-2">
-                        <div class="input-group m-b">
-                      <div class="input-group-prepend"> <span class="input-group-addon">$</span> </div>
-                      <input type="text" class="form-control">
-                      <div class="input-group-append"> <span class="input-group-addon">.00</span> </div>
-                    </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">个人资料</label>
-                  <div class="col-sm-10">
-                    <div class="input-group m-b">
-                      <div class="input-group-prepend"> <span class="input-group-addon">@</span> </div>
-                      <input type="text" placeholder="Username" class="form-control">
-                    </div>
-                    <div class="input-group m-b">
-					  <div class="input-group-prepend"> <span class="input-group-addon">Add.</span> </div>
-                      <input type="text" class="form-control">
-                      <div class="input-group-append"> <span class="input-group-addon">.00</span> </div>
-                    </div>
-                   
-                    <div class="input-group m-b">
-                     <div class="input-group-prepend"> <span class="input-group-addon">Pho.</span> </div>
-					<div class="input-group-append"> <span class="input-group-addon">+86</span> </div>
-                      <input type="text" class="form-control">
 
-                    </div>
-                  +
-                  </div>
-                </div>
 
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <div class="col-sm-4 col-sm-offset-2">
-                    <button class="btn btn-white btn-sm" type="submit">Cancel</button>
-                    <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
-                  </div>
-                </div>
+
+                <a :href="'../common/mystaff.html?sectorId='+sectorIds" class="float-left" >
+                  <button class="btn btn-primary btn-sm" type="button">放弃修改</button>
+                </a>
+                <a :href="'../common/mystaff.html?sectorId='+sectorIds" class="float-right">
+                  <button class="btn btn-primary btn-sm" type="button" onclick="tosubmit('form1')">Save changes</button>
+                </a>
               </form>
+              <div class="form-group row">
+                <div class="col-sm-4 col-sm-offset-2">
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>
+
+<script>
+  function tosubmit(formId){
+    $.ajax({
+      type:"POST",
+      url:"http://39.105.38.34:8080/api/v1/employees",
+      contentType:"application/json;charset=utf-8",
+      xhrFields: {
+        withCredentials: true
+      },
+      crossDomain: true,
+      dataType: "json",
+      data:form2JsonString(formId),
+      success: function (data) {
+        alert(data);
+      }
+    });
+    console.log("form1提交");
+  }
+  function form2JsonString(formId) {
+    var paramArray = $('#' + formId).serializeArray();
+    /*请求参数转json对象*/
+    var jsonObj={};
+    $(paramArray).each(function(){
+      jsonObj[this.name]=this.value;
+    });
+    console.log(jsonObj);
+    // json对象再转换成json字符串
+    return JSON.stringify(jsonObj);
+  }
+  new Vue({
+    el: '#form1',
+    data: {
+      departments:[],
+      sectorIds:0
+    },
+    created:function(){
+      var params=location.search;
+      var arr = params.substring(1).split("&");
+      this.sectorIds = arr[0].replace("sectorId=","");
+      var that=this;
+      console.log("ajax beging \n")
+      jQuery.ajax({
+        type:"GET",
+        url:"http://39.105.38.34:8080/api/v1/sectors",
+        contentType:"application/json",
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success:function(data){
+          that.departments=JSON.parse(data);
+        },
+        error:function(data){
+          console.log("fail");
+        }
+      });
+
+    }
+  })
+</script>
+
 </body>
 </html>

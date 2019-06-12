@@ -49,31 +49,88 @@
   <div id="page-wrapper" class="gray-bg" style="margin: 0;" >
     <div class="wrapper wrapper-content animated fadeInRight">
       <div class="row">
-        <div class="col-lg-4" v-for="staff in staffs">
+        <div class="col-lg-6" v-for="staff in staffs">
+
           <div class="contact-box">
-            <a class="row" :href="'changeuser.html?employeeId='+staff.employeeId">
-            <div class="col-4">
-              <div class="text-center">
-                <img alt="image" class="rounded-circle m-t-xs img-fluid" src="../manager/img/a2.jpg">
-                <div class="m-t-xs font-bold">生活不止眼前的苟且</div>
+            <div class="row">
+              <div class="col-12">
+                <div class="ibox">
+                  <div class="ibox-title">
+                    <h5 v-if="staff.manager">主管</h5>
+                    <h5 v-else>员工</h5>
+                  </div>
+                  <div class="ibox-tools">
+                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                      <a :href="'changeuser.html?employeeId='+staff.employeeId">
+                        <li><button class="dropdown-item">修改信息</button> </li>
+                      </a>
+                      <a :href="'mystaff.html?sectorId='+staff.sectorId">
+                        <li><button v-on:click="deleteEmployee(staff.employeeId)" class="dropdown-item" >删除员工</button> </li>
+                      </a>
+                    </ul>
+                    <a class="close-link"> <i class="fa fa-times"></i> </a>
+                  </div>
+                  <div class="ibox-content">
+                    <div class="row" >
+                      <div class="col-4">
+                        <div class="text-center">
+                          <img alt="image" class="rounded-circle m-t-xs img-fluid" src="../manager/img/a2.jpg">
+                          <div class="m-t-xs font-bold">生活不止眼前的苟且</div>
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <h3 ><strong>{{staff.name}}</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
+                        <address>
+                          部门编号：{{staff.sectorId}}<br>
+                          员工编号：{{staff.employeeId}}<br>
+                          年龄：{{staff.age}}<br>
+                          <div v-if="staff.sex">性别：男<br></div>
+                          <div v-else>性别：女<br></div>
+                          工资：{{staff.salary}}￥/M<br>
+                          入职时间：{{staff.enrollTime}}<br>
+                          <abbr title="Phone"></abbr> 手机号：(+86) {{staff.phoneNumber}}
+                        </address>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+<!--            :href="'changeuser.html?employeeId='+staff.employeeId"-->
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="contact-box">
+            <div class="row">
+              <div class="col-12">
+                <div class="ibox" >
+                  <div class="ibox-title">
+                    <h5>添加员工</h5>
+                  </div>
 
-            <div class="col-8">
-              <h3 ><strong>{{staff.name}}</strong></h3>
-              <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
-              <address>
-                部门编号：{{staff.sectorId}}<br>
-                员工编号：{{staff.employeeId}}<br>
-                年龄：{{staff.age}}<br>
-                <div v-if="staff.sex">性别：男<br></div>
-                <div v-else>性别：女<br></div>
-                工资：{{staff.salary}}￥/M<br>
-                入职时间：{{staff.enrollTime}}<br>
-                <abbr title="Phone"></abbr> 手机号：(+86) {{staff.phoneNumber}}
-              </address>
+                  <div class="ibox-tools">
+                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                      <li><a href="#" class="dropdown-item">修改信息</a> </li>
+                      <li><a href="#" class="dropdown-item">删除员工</a> </li>
+                    </ul>
+                    <a class="close-link"> <i class="fa fa-times"></i> </a>
+                  </div>
+
+                  <div class="ibox-content">
+                    <span class="btn btn-primary block full-width m-b" style="margin-top:30px;">添加员工</span>
+                  </div>
+                </div>
+              </div>
             </div>
-          </a>
           </div>
         </div>
       </div>
@@ -81,22 +138,42 @@
   </div>
 </div>
 <script type="text/javascript">
+
   new Vue({
     el: '#wrapper',
     data: {
       name: 'Hello Vue.js!',
       staffs:[],
-      departmentId:0
+      sectorId:0
+    },
+    methods:{
+      deleteEmployee:function(id){
+        var that=this;
+        jQuery.ajax({
+          type:"DELETE",
+          url:"http://39.105.38.34:8080/api/v1/employees/"+that.id,
+          xhrFields: {
+            withCredentials: true
+          },
+          crossDomain: true,
+          success:function(){
+            alert("success!");
+          },
+          error:function(data){
+            alert("fail!");
+          }
+        });
+      }
     },
     created:function(){
       var params=location.search;
       var arr = params.substring(1).split("&");
-      this.departmentId = arr[0].replace("departmentId=","");
+      this.sectorId = arr[0].replace("sectorId=","");
       console.log("ajax beging \n")
       var that = this;
       jQuery.ajax({
         type:"GET",
-        url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+this.departmentId,
+        url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+that.sectorId,
         contentType:"application/json",
         xhrFields: {
           withCredentials: true
