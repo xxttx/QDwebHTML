@@ -61,7 +61,7 @@
     <body>
     <div id="wrapper" class="gray-bg">
       <div id="page-wrapper" class="gray-bg" style="margin: 0;">
-        <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="wrapper wrapper-content animated fadeInRight" id="app">
           <div class="row" >
             <div class="col-lg-12">
               <div class="ibox ">
@@ -82,21 +82,25 @@
                       <form role="form">
                         <div class="form-group">
                           <label>请假类型</label>
-                          <input type="email" placeholder="简要的说明请假类型" class="form-control">
+                          <select class="form-control m-b" name="account" id="leaveTypeSelc">
+                  <option>病假</option>
+				  <option>事假</option>
+                </select>
                         </div>
                         <div class="form-group" >
                           <label>Data</label>
                           <div >
-                            <div id="app">
+                            <div >
                               <el-date-picker 
 	  style="width:68%"		  
-      v-model="value2"
+      v-model="value1"
       type="daterange"
       align="right"
       unlink-panels
       range-separator="至"
       start-placeholder="开始日期"
       end-placeholder="结束日期"
+	  value-format="yyyy-MM-dd HH:mm:ss"
       :picker-options="pickerOptions"> </el-date-picker>
                             </div>
                           </div>
@@ -108,7 +112,7 @@
                       <div class="row">
                         <div class="ibox-content no-padding">
                           <h3 class="m-t-none m-b">请假说明</h3>
-                          <div class="summernote">
+                          <div class="summernote" id="summernoteContent">
                             <h3>尊敬的领导</h3>
                             dummy text of the printing and typesetting industry. <strong>Lorem Ipsum has been the industry's</strong> standard dummy text ever since the 1500s,
                             when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
@@ -125,7 +129,7 @@
                     </div>
                   </div>
 				 <div style="margin-top: 20px">
-                          <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><strong> 提交申请 </strong></button>
+                          <button class="btn btn-sm btn-primary float-right m-t-n-xs" v-on:click="newLeaveApp"> 提交申请 </button>
                           <label>
                             <input type="checkbox" class="i-checks">
                             Remember me </label>
@@ -364,8 +368,7 @@
     <script type="text/JavaScript">
     new Vue({
       el: '#app',
-      data: function() {
-        return {    
+      data:{
       pickerOptions: {
           shortcuts: [{
             text: '最近一周',
@@ -393,10 +396,41 @@
             }
           }]
         },
-        value1: '',
-        value2: ''
-         }
-      }
+        value1: ''
+      },
+	methods:{
+		///新建一个请假申请
+		newLeaveApp:function(){
+			var jsono={};		
+			jsono["startTime"]=this.value1[0];
+			jsono["endTime"]=this.value1[1];
+			jsono["applicatdPerson"]="1";////这个值未来要改
+			jsono["leaveReason"]="jQuery('#summernoteContent').html()";
+			jsono["leaveType"]=(jQuery('#leaveTypeSelc').val()=="病假"?1:2);
+			jQuery.ajax({
+            type:"POST",
+            url:"http://39.105.38.34:8080/api/v1/leaves",
+            contentType:"application/json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain:true,
+			dataType:"json",
+			data:JSON.stringify(jsono),
+            success:function(data){
+                console.log("success");
+			},
+            error:function(data){
+                console.log("fail");
+            }
+        });
+		}
+	},
+		created:function(){
+			
+			
+			
+		}
 
     })
   </script>

@@ -32,7 +32,7 @@
             </div>
             <div class="ibox-content">
               <p class="m-t">
-                <input type='checkbox' id='drop-remove' class="i-checks" checked />
+                <input type='checkbox' id='drop-remove' class="i-checks" />
                 <label for='drop-remove'>点击删除</label>
               </p>
               <div class="hr-line-dashed"></div>
@@ -52,7 +52,7 @@
 	value-format="yyyy-MM-dd HH:mm:ss"
       end-placeholder="结束日期"> </el-date-picker>
                 </div>
-                <button class="btn btn-outline btn-primary" style="margin-top: 20px" v-on:click="addToWorkShift"> 添加 </button>
+                <button class="btn btn-outline btn-primary" style="margin-top: 20px" v-on:click="newToWorkShift"> 添加 </button>
               </div>
             </div>
           </div>
@@ -169,9 +169,11 @@ $('#calendar').fullCalendar({
 					console.log("event.start_d",event.start._d)
 					console.log(" event.end_d ",event.end._d)
 					var d = new Date(event.start._d)
-					var startTime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+					var f = new Date(event.start._i)
+					var startTime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + f.getHours() + ':' + f.getMinutes() + ':' + f.getSeconds();
 					d = new Date(event.end._d)
-					var endTime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+					f = new Date(event.end._i)
+					var endTime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + f.getHours() + ':' + f.getMinutes() + ':' + f.getSeconds();
 					myvue.updateWorkShift(event.title,event.id,startTime,endTime)
 				}
 			},
@@ -185,7 +187,7 @@ $('#calendar').fullCalendar({
 			eventClick: function(event) {
 				 if ($('#drop-remove').is(':checked')) {
 					  if (confirm("Are you sure about this change?")) {
-						  myvue.deleteWorkShift(17);
+						  myvue.deleteWorkShift(event.id);
 						//UiUpdate;
 						window.location.reload()
 						}
@@ -206,25 +208,13 @@ var myvue = new Vue({
 	data: {
         value1: '',
 		events: [
-               
-                {
-                    title: 'Long Event',
-                    start: new Date(2019, 6, 2),
-                    end: new Date(2019, 6, 8)
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: new Date(2019, 6, 12, 16, 0),
-                    allDay: false
-                }
             ],
 		workshifts:[],
 		workshift:[]
          },
 		methods:{
 			///新增一条工作班次(可用)
-			addToWorkShift:function(employeeId){
+			newToWorkShift:function(employeeId){
 			console.log("ajax beging \n")
 			var that = this;
 			console.log("value1 is "+that.value1+"  value2 is ",that.value2);
@@ -245,6 +235,8 @@ var myvue = new Vue({
 			data:JSON.stringify(jsono),
             success:function(data){
                 console.log("success");
+				//UiUpdate;
+						window.location.reload()
 			},
             error:function(data){
                 console.log("fail");
@@ -289,14 +281,14 @@ var myvue = new Vue({
 			deleteWorkShift:function(workShiftId){
 				jQuery.ajax({
 			type:"GET",
-            url:"http://39.105.38.34:8080/api/v1/workA/employees/"+workShiftId,
+            url:"http://39.105.38.34:8080/api/v1/workA/delete/"+workShiftId,
 			contentType:"application/json",
 			xhrFields: {
                 withCredentials: true
             },
             crossDomain: true,
 			success:function(data){
-				console.log("succ");
+				console.log("ajax succ");
             },
 			error:function(data){
 				console.log("fail");
