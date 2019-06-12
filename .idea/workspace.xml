@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webhtml/manager/addsector.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/common/changeuser.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/common/changeuser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/common/mystaff.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/common/mystaff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/adduser.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/adduser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/manager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webhtml/common/myprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/common/myprofile.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +21,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webhtml/manager/manager.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="420">
+              <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
               <folding>
                 <element signature="n#head#0;n#html#0;n#!!top" />
               </folding>
@@ -36,10 +31,40 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webhtml/common/myprofile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="148" column="8" selection-start-line="148" selection-start-column="8" selection-end-line="150" selection-end-column="45" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+                <element signature="e#4779#5097#0" />
+                <element signature="e#5129#5560#0" />
+                <element signature="e#7604#7999#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/form_file_upload.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="445" lean-forward="true" selection-start-line="445" selection-end-line="445" />
+              <folding>
+                <element signature="n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webhtml/manager/addsector.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1280">
-              <caret line="153" column="25" lean-forward="true" selection-start-line="153" selection-start-column="25" selection-end-line="153" selection-end-column="25" />
+            <state relative-caret-position="470">
+              <caret line="98" column="56" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="56" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
                 <element signature="n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
@@ -52,11 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webhtml/manager/adduser.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="53" selection-start-line="53" selection-end-line="147" selection-end-column="6" />
-              <folding>
-                <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-              </folding>
+            <state relative-caret-position="368">
+              <caret line="72" column="16" selection-start-line="72" selection-start-column="16" selection-end-line="75" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -122,6 +144,8 @@
       <find>v-</find>
       <find>tosubmit</find>
       <find>v-on</find>
+      <find>logo</find>
+      <find>file</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,7 +158,6 @@
         <option value="$PROJECT_DIR$/webhtml/master/sectorEmployees.html" />
         <option value="$PROJECT_DIR$/webhtml/master/sectorT.html" />
         <option value="$PROJECT_DIR$/webhtml/master/master.html" />
-        <option value="$PROJECT_DIR$/webhtml/common/myprofile.html" />
         <option value="$PROJECT_DIR$/webhtml/manager/changeuser.html" />
         <option value="$PROJECT_DIR$/webhtml/manager/department.html" />
         <option value="$PROJECT_DIR$/webhtml/master/approval.html" />
@@ -144,10 +167,12 @@
         <option value="$PROJECT_DIR$/webhtml/manager/adduser.html" />
         <option value="$PROJECT_DIR$/webhtml/manager/manager.html" />
         <option value="$PROJECT_DIR$/webhtml/manager/addsector.html" />
+        <option value="$PROJECT_DIR$/form_file_upload.html" />
+        <option value="$PROJECT_DIR$/webhtml/common/myprofile.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="20" />
     <option name="y" value="40" />
     <option name="width" value="2696" />
@@ -176,13 +201,7 @@
               <item name="QDwebHTML" type="b2602c69:ProjectViewProjectNode" />
               <item name="QDwebHTML" type="462c0819:PsiDirectoryNode" />
               <item name="webhtml" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QDwebHTML" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QDwebHTML" type="462c0819:PsiDirectoryNode" />
-              <item name="webhtml" type="462c0819:PsiDirectoryNode" />
-              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -236,12 +255,12 @@
       <workItem from="1560218717071" duration="47946000" />
       <workItem from="1560336880931" duration="4142000" />
       <workItem from="1560343818821" duration="5598000" />
-      <workItem from="1560353379278" duration="1586000" />
+      <workItem from="1560353379278" duration="8913000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89342000" />
+    <option name="totallyTimeSpent" value="96669000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="925" extended-state="6" />
@@ -338,17 +357,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/manager/changeuser.html" />
-    <entry file="file://$PROJECT_DIR$/webhtml/common/myprofile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2760">
-          <caret line="92" column="40" lean-forward="true" selection-start-line="92" selection-start-column="40" selection-end-line="92" selection-end-column="40" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/master/approval.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="236">
@@ -416,32 +424,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/manager/manager.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="28" column="50" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+        <state relative-caret-position="420">
+          <caret line="34" column="8" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="8" />
           <folding>
             <element signature="n#head#0;n#html#0;n#!!top" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webhtml/manager/adduser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="53" selection-start-line="53" selection-end-line="147" selection-end-column="6" />
-          <folding>
-            <element signature="n#div#0;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/manager/addsector.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1280">
-          <caret line="153" column="25" lean-forward="true" selection-start-line="153" selection-start-column="25" selection-end-line="153" selection-end-column="25" />
+        <state relative-caret-position="470">
+          <caret line="98" column="56" selection-start-line="98" selection-start-column="26" selection-end-line="98" selection-end-column="56" />
           <folding>
             <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
             <element signature="e#6654#7321#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/form_file_upload.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="445" lean-forward="true" selection-start-line="445" selection-end-line="445" />
+          <folding>
+            <element signature="n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webhtml/manager/adduser.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="72" column="16" selection-start-line="72" selection-start-column="16" selection-end-line="75" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webhtml/common/myprofile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="148" column="8" selection-start-line="148" selection-start-column="8" selection-end-line="150" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="e#4779#5097#0" />
+            <element signature="e#5129#5560#0" />
+            <element signature="e#7604#7999#0" />
           </folding>
         </state>
       </provider>

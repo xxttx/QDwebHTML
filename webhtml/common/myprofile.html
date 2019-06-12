@@ -49,8 +49,6 @@
   <div id="page-wrapper" class="gray-bg" style="margin: 0;">
     <div class="wrapper wrapper-content animated fadeInRight" id="app1">
       <div class="row m-b-lg m-t-lg" style="height: 160px">
-
-
         <div class="col-lg-6">
                         <div class="widget-head-color-box navy-bg p-lg text-center">
                             <div class="m-b-md">
@@ -68,7 +66,7 @@
                         </div>
                         <div class="widget-text-box">
                             <h4 class="media-heading">Alex Smith</h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            <p>我们的软工作业一定可以做成！</p>
                             <div class="text-right">
                                 <a href=""  class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Like </a>
                                 <a href="" class="btn btn-xs btn-primary"><i class="fa fa-heart"></i> Love</a>
@@ -80,84 +78,67 @@
             <ul class="list-unstyled m-t-md col-sm-5">
               <li> <span class="fa fa-envelope m-r-xs"></span>
                 <label>Email:</label>
-                mike@mail.com </li>
+                pidanself@mail.com </li>
               <li> <span class="fa fa-home m-r-xs"></span>
                 <label>Address:</label>
-                Street 200, Avenue 10 </li>
+                学院路30号 北京科技大学 </li>
               <li> <span class="fa fa-phone m-r-xs"></span>
                 <label>Contact:</label>
-                (+121) 678 3462 </li>
+                18727392137</li>
             </ul>
           </div>
         </div>
-		          <div class="col-lg-4">
-          <div class="widget style1 yellow-bg">
-                               <div class="ibox-content">
-
-                        <div>
-                <div class="chat-activity-list">
-
-                    <div class="chat-element">
-                        <a href="#" class="float-left">
-                            <img alt="image" class="rounded-circle" src="../../img/profile_small.jpg">
-                        </a>
-                        <div class="media-body ">
-                            <small class="float-right text-navy">1m ago</small>
-                            <strong>Mike Smith</strong>
-                            <p class="m-b-xs">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                            </p>
-                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                        </div>
-                    </div>
-
-                    <div class="chat-element right">
-                        <a href="#" class="float-right">
-                            <img alt="image" class="rounded-circle" src="../../img/profile_small.jpg">
-                        </a>
-                        <div class="media-body text-right ">
-                            <small class="float-left">5m ago</small>
-                            <strong>John Smith</strong>
-                            <p class="m-b-xs">
-                                Lorem Ipsum is simply dummy text of the printing.
-                            </p>
-                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                        </div>
-                    </div>
-
-                    <div class="chat-element ">
-                        <a href="#" class="float-left">
-                            <img alt="image" class="rounded-circle" src="../../img/profile_small.jpg">
-                        </a>
-                        <div class="media-body ">
-                            <small class="float-right">2h ago</small>
-                            <strong>Mike Smith</strong>
-                            <p class="m-b-xs">
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                            </p>
-                            <small class="text-muted">Today 4:21 pm - 12.06.2014</small>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                        <div class="chat-form">
-                            <form role="form">
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Message"></textarea>
-                                </div>
-                                <div class="text-right">
-                                    <button type="submit" class="btn btn-sm btn-primary m-t-n-xs"><strong>Send message</strong></button>
-                                </div>
-                            </form>
-                        </div>
-                </div>
+          <div class="col-lg-4">
+          <div class="widget style1">
+              <form action="http://localhost:8080/api/v1/ai/photos/employees" method="post" enctype="multipart/form-data">
+                  <div class="custom-file">
+                      <input id="file" class="topsub-file" type="file" name="image" onchange="c()" />
+                      <a id="img_a"></a>+ <img id="show" alt="" /><br>
+                      <div class="form-group  row">
+                          <label class="col-sm-2 col-form-label">员工编号</label>
+                          <div class="col-lg-10"><input readonly type="text" id="employeeId" name="employeeId" class="form-control"  :value="UID"></div>
+                      </div>
+                      <input class="btn btn-primary btn-sm" type="submit" value="submit" />
+                  </div>
+              </form>
           </div>
+
         </div>
-        - </div>
+
+      </div>
     </div>
   </div>
 </div>
 <script type="text/javascript">
+
+        function c() {
+            $("#img_a").remove();
+            $("#show").show();
+            var r= new FileReader();
+            f=document.getElementById('file').files[0];
+            r.readAsDataURL(f);
+            r.onload=function  (e) {
+                document.getElementById('show').src=this.result;
+            };
+        }
+        $("form").submit(function(){
+            event.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                url:"xxx.html",
+                data:formData,
+                dataType:'json',
+                type:'post',
+                processData: false,
+                contentType: false,
+                success:function(res){
+                    alert(res.msg);
+                    $("html").trigger('click');
+                }
+            });
+            return false;
+        });
+
 new Vue({
   el: '#app1',
   data: {
@@ -166,7 +147,7 @@ new Vue({
   },
 	created:function(){
 		var params=location.search;
-		var arr = params.substring(1).split("&"); 
+		var arr = params.substring(1).split("&");
 		this.UID = arr[0].replace("UID=","");
 		console.log("ajax beging \n")
 		var that = this;
@@ -184,7 +165,6 @@ new Vue({
             },
 			error:function(data){
 				console.log("fail");
-				
 			}
 		})
 	}
