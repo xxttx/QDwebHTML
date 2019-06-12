@@ -18,8 +18,8 @@
 <script src="../../js/popper.min.js"></script> 
 <script src="../../js/bootstrap.js"></script> 
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
-
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- Flot --> 
 <script src="../../js/plugins/flot/jquery.flot.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script> 
@@ -69,68 +69,98 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-                            <form method="get" enctype="application/x-www-form-urlencoded">
+                            <form name="form1" id="form1">
                                 <div class="form-group  row">
                                     <label class="col-sm-2 col-form-label">员工编号</label>
-                                    <div class="col-lg-10"><input type="text" name="employeeId" disabled="" value="1234" class="form-control"></div>
-
-                                    <!--                                    <div class="col-sm-10"><input type="text" class="form-control"></div>-->
+                                    <div class="col-lg-10"><input type="text" id="employeeId" name="employeeId" readonly :value="userInfo.employeeId" class="form-control"></div>
+                                </div>
+                                <div class="form-group row"><label class="col-lg-2 col-form-label">入职时间</label>
+                                    <div class="col-sm-10"><input type="text" readonly id="enrollTime" name="enrollTime" :value="userInfo.enrollTime" class="form-control"></div>
+                                </div>
+                                <div class="form-group  row">
+                                    <label class="col-sm-2 col-form-label">姓名</label>
+                                    <div class="col-lg-10"><input type="text" id="name" name="name" :value="userInfo.name" class="form-control"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
-                                    <label class="col-sm-2 col-form-label">部门编号</label>
-
-<!--                                        <span class="form-text m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span>-->
-                                        <div class="col-sm-10">
-                                            <select class="form-control m-b" name="account">
-                                            <option>123</option>
-                                            <option>1234</option>
-                                            <option>234</option>
-                                            <option>345</option>
-                                            </select>
-                                        </div>
+                                <label class="col-sm-2 col-form-label">部门编号</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control m-b" v-model="msectorId" id="sectorId" name="sectorId">
+                                        <option v-for="department in departments" :value="department.sectorId">{{department.sectorName}}</option>
+                                    </select>
                                 </div>
-
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">是否为部门主管</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b" v-model="ismaster" id="isManager" name="isManager">
+                                            <option value="false">否</option>
+                                            <option value="true">是</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">年龄</label>
-                                    <div class="col-sm-10"><input type="text" value="12" class="form-control" name="age"></div>
+                                    <div class="col-sm-10"><input type="text" :value="userInfo.age" id="age" class="form-control" name="age"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row">
                                     <label class="col-sm-2 col-form-label">工资</label>
-                                    <div class="col-sm-10"><input type="text" value="骚骚默认值" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" id="salary" name="salary" :value="userInfo.salary" class="form-control"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-lg-2 col-form-label">性别</label>
-
-                                    <div class="col-sm-10"><input type="text" value="骚骚默认值" class="form-control"></div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 col-form-label">性别</label>
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b" v-model="isman" id="sex" name="sex">
+                                            <option value="false">女</option>
+                                            <option value="true">男</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="form-group row"><label class="col-lg-2 col-form-label">电话号码</label>
-                                    <div class="col-sm-10"><input type="text" value="骚骚默认值" class="form-control"></div>
-                                </div>
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group row"><label class="col-lg-2 col-form-label">入职时间</label>
-                                    <div class="col-sm-10"><input type="text" disabled="" value="骚骚默认值" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" id="phoneNumber" name="phoneNumber" :value="userInfo.phoneNumber" class="form-control"></div>
                                 </div>
                                 <div class="hr-line-dashed"></div>
                                 <div class="hr-line-dashed"></div>
+
+                            </form>
+                            <div class="form-group row">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-white btn-sm" type="submit">Cancel</button>
+                                    <button class="btn btn-primary btn-sm" type="submit" onclick="tosubmit('form1')">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ibox-title">
+                            <h5>用户密码</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="close-link">
+                                    <i class="fa fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <form name="form2" id="form2">
                                 <div class="form-group row"><label class="col-lg-2 col-form-label">用户名</label>
-                                    <div class="col-sm-10"><input type="text" disabled="" value="pidanself" class="form-control"></div>
+                                    <div class="col-sm-10"><input type="text" readonly id="userId" name="userId" value="pidanself" class="form-control"></div>
                                 </div>
                                 <div class="form-group row"><label class="col-lg-2 col-form-label">密码</label>
-                                    <div class="col-sm-10"><input type="text" value="123654" class="form-control"></div>
-                                </div>
-
-                                <div class="hr-line-dashed"></div>
-                                <div class="form-group row">
-                                    <div class="col-sm-4 col-sm-offset-2">
-                                        <button class="btn btn-white btn-sm" type="submit">Cancel</button>
-                                        <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
-                                    </div>
+                                    <div class="col-sm-10"><input type="text" id="password" name="password" value="123654" class="form-control"></div>
                                 </div>
                             </form>
+                            <div class="form-group row">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-white btn-sm" type="submit">Cancel</button>
+                                    <button class="btn btn-primary btn-sm" type="submit" onclick="tosubmit('form2')">Save changes</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -140,7 +170,91 @@
 		
 	</div>
 	
-	
+	<script>
+        function tosubmit(formId){
+            $.ajax({
+                type:"POST",
+                url:"http://39.105.38.34:8080/api/v1/employees/changes",
+                contentType:"application/json;charset=utf-8",
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "json",
+                data:form2JsonString(formId),
+                success: function () {
+                    alert("success");
+                }
+            });
+        }
+        function form2JsonString(formId) {
+            var paramArray = $('#' + formId).serializeArray();
+            /*请求参数转json对象*/
+            var jsonObj={};
+            $(paramArray).each(function(){
+                jsonObj[this.name]=this.value;
+            });
+            console.log(jsonObj);
+            // json对象再转换成json字符串
+            return JSON.stringify(jsonObj);
+        }
+        new Vue({
+            el: '#form1',
+            data: {
+                userInfo:{},
+                employeeId:0,
+                ismaster:false,
+                isman:false,
+                msectorId:0,
+                departments:[]
+            },
+            created:function(){
+                var params=location.search;
+                var arr = params.substring(1).split("&");
+                this.UID = arr[0].replace("employeeId=","");
+                console.log("ajax beging \n")
+                var that = this;
+                jQuery.ajax({
+                    type:"GET",
+                    url:"http://39.105.38.34:8080/api/v1/employees/"+that.employeeId,
+                    contentType:"application/json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    success:function(data){
+                        var userArray=JSON.parse(data)
+                        that.userInfo=userArray[0];
+                        that.ismaster=that.userInfo.manager;
+                        that.ismaster=that.userInfo.sex;
+                        that.msectorId=that.userInfo.sectorId;
+                    },
+                    error:function(data){
+                        console.log("fail");
+                    }
+                })
+                jQuery.ajax({
+                    type:"GET",
+                    url:"http://39.105.38.34:8080/api/v1/sectors",
+                    contentType:"application/json",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    success:function(data){
+                        that.departments=JSON.parse(data);
+                        //that.departmentsRowNum = Math.floor(JSON.parse(data).length/4)+1;
+                        //console.log("depart num is",that.departmentsRowNum)
+                    },
+                    error:function(data){
+                        console.log("fail");
+
+                    }
+                });
+
+            }
+        })
+    </script>
 	
 </body>
 </html>
