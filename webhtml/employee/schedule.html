@@ -100,13 +100,7 @@ var app = new Vue({
                     allDay: false
                 }
 		
-	],
-    event:{
-          title:" ''",
-          start:"",
-			end:{},
-		allDay: false
-	}
+	]
   },
     created:function(){
         console.log("ajax beging \n")
@@ -125,10 +119,11 @@ var app = new Vue({
                 console.log(" workshifts is",that.workshifts)
                 console.log("success");
         for(var i=0;i<that.workshifts.length;i++){
-            that.event.title=that.workshifts[i].employeeId;
-			that.event.start=that.workshifts[i].startTime;
-			that.event.end=that.workshifts[i].endTime;
-            that.events.push(that.event)
+			var event={allDay: false}
+            event["title"]=that.workshifts[i].employeeId;
+			event["start"]=that.workshifts[i].startTime;
+			event["end"]=that.workshifts[i].endTime;
+            that.events.push(event)
         }
 				console.log("JSON STR"+JSON.stringify(that.events))
 $('#calendar').fullCalendar({
