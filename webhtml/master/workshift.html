@@ -1,153 +1,131 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | Calendar</title>
-
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="../../css/plugins/iCheck/custom.css" rel="stylesheet">
-
-    <link href="../../css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-    <link href="../../css/plugins/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print'>
-
-    <link href="../../css/animate.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INSPINIA | Calendar</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="../../css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="../../css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+<link href="../../css/plugins/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print'>
+<link href="../../css/animate.css" rel="stylesheet">
+<link href="../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
-
 <div id="wrapper">
-
-
-
-<div id="page-wrapper" class="gray-bg" style="margin-left: 0;height: auto;">
-
-<div class="row wrapper border-bottom white-bg page-heading">
-    <div class="col-lg-8">
-        <h2>Calendar</h2>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-                <a href="../manager/index.html">Home</a>
-            </li>
-            <li class="breadcrumb-item">
-                Extra pages
-            </li>
-            <li class="breadcrumb-item active">
-                <strong>Calendar</strong>
-            </li>
-        </ol>
-    </div>
-</div>
-<div class="wrapper wrapper-content">
-    <div class="row animated fadeInDown">
+  <div id="page-wrapper" class="gray-bg" style="margin-left: 0;height: auto;">
+    <div class="wrapper wrapper-content">
+      <div class="row animated fadeInDown">
         <div class="col-lg-3">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>Draggable Events</h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div id='external-events'>
-                        <p>Drag a event and drop into callendar.</p>
-                        <div class='external-event navy-bg'>Go to shop and buy some products.</div>
-                        <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
-                        <div class='external-event navy-bg'>Send documents to John.</div>
-                        <div class='external-event navy-bg'>Phone to Sandra.</div>
-                        <div class='external-event navy-bg'>Chat with Michael.</div>
-                        <p class="m-t">
-                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'>remove after drop</label>
-                        </p>
-                    </div>
-                </div>
+          <div class="ibox ">
+            <div class="ibox-title">
+              <h5>Draggable Events</h5>
+              <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
+                <ul class="dropdown-menu dropdown-user">
+                  <li><a href="#" class="dropdown-item">Config option 1</a> </li>
+                  <li><a href="#" class="dropdown-item">Config option 2</a> </li>
+                </ul>
+                <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
             </div>
-            <div class="ibox ">
-                <div class="ibox-content">
-                    <h2>FullCalendar</h2> is a jQuery plugin that provides a full-sized, drag & drop calendar like the one below. It uses AJAX to fetch events on-the-fly for each month and is
-                    easily configured to use your own feed format (an extension is provided for Google Calendar).
-                    <p>
-                        <a href="http://arshaw.com/fullcalendar/" target="_blank">FullCalendar documentation</a>
-                    </p>
-                </div>
+            <div class="ibox-content">
+              <div id='external-events'>
+                <p>Drag a event and drop into callendar.</p>
+                <div class='external-event navy-bg'>Go to shop and buy some products.</div>
+                <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
+                <div class='external-event navy-bg'>Send documents to John.</div>
+                <div class='external-event navy-bg'>Phone to Sandra.</div>
+                <div class='external-event navy-bg'>Chat with Michael.</div>
+                <p class="m-t">
+                  <input type='checkbox' id='drop-remove' class="i-checks" checked />
+                  <label for='drop-remove'>remove after drop</label>
+                </p>
+              </div>
             </div>
+          </div>
+          <div class="ibox ">
+            <div class="ibox-content">
+              <h2>FullCalendar</h2>
+              <h2>TODO Small version</h2>
+              <small>This is example of small version of todo list</small>
+              <div class="tabs-container">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li><a class="nav-link active" data-toggle="tab" href="#tab-1"> This is tab</a></li>
+                  <li><a class="nav-link" data-toggle="tab" href="#tab-2">This is second tab</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div role="tabpanel" id="tab-1" class="tab-pane active">
+                    <div class="panel-body">
+                      <ul class="todo-list m-t small-list">
+                        <li> <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a> <span class="m-l-xs todo-completed">Buy a milk</span> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a> <span class="m-l-xs  todo-completed">Go to shop and find some products.</span> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a> <span class="m-l-xs">Send documents to Mike</span> <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 mins</small> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a> <span class="m-l-xs">Go to the doctor dr Smith</span> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a> <span class="m-l-xs">Plan vacation</span> </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div role="tabpanel" id="tab-2" class="tab-pane">
+                    <div class="panel-body">
+                      <ul class="todo-list m-t small-list">
+                        <li> <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a> <span class="m-l-xs todo-completed">Buy a milk</span> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-check-square"></i> </a> <span class="m-l-xs  todo-completed">Go to shop and find some products.</span> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a> <span class="m-l-xs">Send documents to Mike</span> <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 mins</small> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a> <span class="m-l-xs">Go to the doctor dr Smith</span> </li>
+                        <li> <a href="#" class="check-link"><i class="fa fa-square-o"></i> </a> <span class="m-l-xs">Plan vacation</span> </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="col-lg-9">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>Striped Table </h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div id="calendar"></div>
-                </div>
+          <div class="ibox ">
+            <div class="ibox-title">
+              <h5>Striped Table </h5>
+              <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
+                <ul class="dropdown-menu dropdown-user">
+                  <li><a href="#" class="dropdown-item">Config option 1</a> </li>
+                  <li><a href="#" class="dropdown-item">Config option 2</a> </li>
+                </ul>
+                <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
             </div>
+            <div class="ibox-content">
+              <div id="calendar"></div>
+              <div style="margin-top: 20px;padding-bottom:20px;margin-right: 20px;">
+                <button class="btn btn-sm btn-primary float-right m-t-n-xs" type="submit"><strong> 提交申请 </strong></button>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
+<!-- Mainly scripts --> 
+<script src="../../js/plugins/fullcalendar/moment.min.js"></script> 
+<script src="../../js/jquery-3.1.1.min.js"></script> 
+<script src="../../js/popper.min.js"></script> 
+<script src="../manager/js/bootstrap.js"></script> 
+<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
 
-</div>
-</div>
+<!-- Custom and plugin javascript --> 
+<script src="../../js/inspinia.js"></script> 
+<script src="../../js/plugins/pace/pace.min.js"></script> 
 
-<!-- Mainly scripts -->
-<script src="../../js/plugins/fullcalendar/moment.min.js"></script>
-<script src="../../js/jquery-3.1.1.min.js"></script>
-<script src="../../js/popper.min.js"></script>
-    <script src="../manager/js/bootstrap.js"></script>
-<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- jQuery UI  --> 
+<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script> 
 
-<!-- Custom and plugin javascript -->
-<script src="../../js/inspinia.js"></script>
-<script src="../../js/plugins/pace/pace.min.js"></script>
+<!-- iCheck --> 
+<script src="../../js/plugins/iCheck/icheck.min.js"></script> 
 
-<!-- jQuery UI  -->
-<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- iCheck -->
-<script src="../../js/plugins/iCheck/icheck.min.js"></script>
-
-<!-- Full Calendar -->
-<script src="../../js/plugins/fullcalendar/fullcalendar.min.js"></script>
-
+<!-- Full Calendar --> 
+<script src="../../js/plugins/fullcalendar/fullcalendar.min.js"></script> 
 <script>
 
     $(document).ready(function() {
@@ -254,5 +232,4 @@
 
 </script>
 </body>
-
 </html>

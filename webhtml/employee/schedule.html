@@ -1,109 +1,72 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INSPINIA | Calendar</title>
-
-    <link href="../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
-
-    <link href="../../css/plugins/iCheck/custom.css" rel="stylesheet">
-
-    <link href="../../css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
-    <link href="../../css/plugins/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print'>
-
-    <link href="../../css/animate.css" rel="stylesheet">
-    <link href="../../css/style.css" rel="stylesheet">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>INSPINIA | Calendar</title>
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+<link href="../../css/plugins/iCheck/custom.css" rel="stylesheet">
+<link href="../../css/plugins/fullcalendar/fullcalendar.css" rel="stylesheet">
+<link href="../../css/plugins/fullcalendar/fullcalendar.print.css" rel='stylesheet' media='print'>
+<link href="../../css/animate.css" rel="stylesheet">
+<link href="../../css/style.css" rel="stylesheet">
 </head>
 
 <body>
-
 <div id="wrapper">
-
-
-
-<div id="page-wrapper" class="gray-bg" style="margin-left: 0;height: auto;">
-
-<div class="row wrapper border-bottom white-bg page-heading">
-
-</div>
-<div class="wrapper wrapper-content">
-    <div class="row animated fadeInDown">
-       
-        <div class="col-lg-12>
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>Striped Table </h5>
-                    <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="#" class="dropdown-item">Config option 1</a>
-                            </li>
-                            <li><a href="#" class="dropdown-item">Config option 2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="ibox-content">
-                    <div id="calendar"></div>
-                </div>
+  <div id="page-wrapper" class="gray-bg" style="margin-left: 0;height: auto;">
+    <div class="row wrapper border-bottom white-bg page-heading"> </div>
+    <div class="wrapper wrapper-content"  id="app1" >
+      <div class="row animated fadeInDown">
+        <div class="col-lg-12">
+          <div class="ibox ">
+            <div class="ibox-title">
+              <h5>Striped Table </h5>
+              <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
+                <ul class="dropdown-menu dropdown-user">
+                  <li><a href="#" class="dropdown-item">Config option 1</a> </li>
+                  <li><a href="#" class="dropdown-item">Config option 2</a> </li>
+                </ul>
+                <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
             </div>
+            <div class="ibox-content">
+              <div id="calendar"></div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
 
+<!-- Mainly scripts --> 
+<script src="../../js/plugins/fullcalendar/moment.min.js"></script> 
+<script src="../../js/jquery-3.1.1.min.js"></script> 
+<script src="../../js/popper.min.js"></script> 
+<script src="../../js/bootstrap.js"></script> 
+<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+<!-- Custom and plugin javascript --> 
+<script src="../../js/inspinia.js"></script> 
+<script src="../../js/plugins/pace/pace.min.js"></script> 
 
-</div>
-</div>
+<!-- jQuery UI  --> 
+<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script> 
 
-<!-- Mainly scripts -->
-<script src="../../js/plugins/fullcalendar/moment.min.js"></script>
-<script src="../../js/jquery-3.1.1.min.js"></script>
-<script src="../../js/popper.min.js"></script>
-    <script src="../../js/bootstrap.js"></script>
-<script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<!-- iCheck --> 
+<script src="../../js/plugins/iCheck/icheck.min.js"></script> 
 
-<!-- Custom and plugin javascript -->
-<script src="../../js/inspinia.js"></script>
-<script src="../../js/plugins/pace/pace.min.js"></script>
-
-<!-- jQuery UI  -->
-<script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
-
-<!-- iCheck -->
-<script src="../../js/plugins/iCheck/icheck.min.js"></script>
-
-<!-- Full Calendar -->
-<script src="../../js/plugins/fullcalendar/fullcalendar.min.js"></script>
-
+<!-- Full Calendar --> 
+<script src="../../js/plugins/fullcalendar/fullcalendar.min.js"></script> 
 <script>
-
     $(document).ready(function() {
-
-            $('.i-checks').iCheck({
+    $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'
             });
-
-        /* initialize the external events
-         -----------------------------------------------------------------*/
-
-
-        $('#external-events div.external-event').each(function() {
+    $('#external-events div.external-event').each(function() {
 
             // store data so the calendar knows to render an event upon drop
             $(this).data('event', {
@@ -119,18 +82,58 @@
             });
 
         });
+	});
+       
 
 
-        /* initialize the calendar
-         -----------------------------------------------------------------*/
-        var date = new Date();
-        var d = date.getDate();
-        var m = date.getMonth();
-        var y = date.getFullYear();
+</script> 
+<script type="text/javascript">
+var app = new Vue({
+  el: '#app1',
+  data: {
+    workshifts:[],
+    events:[
+		{
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(2019, 6, 6, 16, 0),
+                    allDay: false
+                }
+		
+	],
+    event:{
+          title: '',
+          start: {},
+			end:{}
+	
+	}
+  },
+    created:function(){
+        console.log("ajax beging \n")
+        var that = this;
+        jQuery.ajax({
+            type:"GET",
+            url:"http://39.105.38.34:8080/api/v1/workA/employees/1",
+            contentType:"application/json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain:true,
+            success:function(data){
+                that.workshifts=JSON.parse(data);
+                console.log(" workshifts is",that.workshifts)
+                console.log("success");
+        for(var i=0;i<that.workshifts.length;i++){
+            that.event.title=that.workshifts[i].employeeId;
+            that.event.start = new Date(that.workshifts[i].startTime.substring(0,4),that.workshifts[i].startTime.substring(5,7),that.workshifts[i].startTime.substring(8,10));
 
-        $('#calendar').fullCalendar({
+			that.event.end = new Date(that.workshifts[i].endTime.substring(0,4),that.workshifts[i].endTime.substring(5,7),that.workshifts[i].endTime.substring(8,10))
+            //console.log("that.event "+that.event.start)
+            that.events.push(that.event)
+        }
+$('#calendar').fullCalendar({
             header: {
-                left: 'prev,next today',
+                left: 'prev,next,today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
@@ -143,58 +146,24 @@
                     $(this).remove();
                 }
             },
-            events: [
-                {
-                    title: 'All Day Event',
-                    start: new Date(y, m, 1)
-                },
-                {
-                    title: 'Long Event',
-                    start: new Date(y, m, d-5),
-                    end: new Date(y, m, d-2)
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d-3, 16, 0),
-                    allDay: false
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: new Date(y, m, d+4, 16, 0),
-                    allDay: false
-                },
-                {
-                    title: 'Meeting',
-                    start: new Date(y, m, d, 10, 10),
-                    allDay: false
-                },
-                {
-                    title: 'Lunch',
-                    start: new Date(y, m, d, 12, 0),
-                    end: new Date(y, m, d, 14, 0),
-                    allDay: false
-                },
-                {
-                    title: 'Birthday Party',
-                    start: new Date(y, m, d+1, 19, 0),
-                    end: new Date(y, m, d+1, 22, 30),
-                    allDay: false
-                },
-                {
-                    title: 'Click for Google',
-                    start: new Date(y, m, 28),
-                    end: new Date(y, m, 29),
-                    url: 'http://google.com/'
-                }
-            ]
+            events: that.events
         });
 
+            },
+            error:function(data){
+                console.log("fail");
+                
+            }
+        });
 
-    });
+    }
+})
+
+
+
+
+
 
 </script>
 </body>
-
 </html>
