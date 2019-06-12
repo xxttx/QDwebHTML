@@ -126,7 +126,6 @@
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
 <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-
 <!-- import Vue before Element --> 
 <script src="https://unpkg.com/vue/dist/vue.js"></script> 
 <!-- import JavaScript --> 
@@ -134,60 +133,20 @@
 <!-- Custom and plugin javascript --> 
 <script src="../../js/inspinia.js"></script> 
 <script src="../../js/plugins/pace/pace.min.js"></script> 
-
 <!-- jQuery UI  --> 
 <script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script> 
-
 <!-- iCheck --> 
 <script src="../../js/plugins/iCheck/icheck.min.js"></script> 
  <script src="../../js/plugins/toastr/toastr.min.js"></script>
 <!-- Full Calendar --> 
 <script src="../../js/plugins/fullcalendar/fullcalendar.min.js"></script> 
 <script>
-
     $(document).ready(function() {
-
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'
             });
-		
-		
-		$('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: true,
-            droppable: true,
-            drop: function() {
-                if ($('#drop-remove').is(':checked')) {
-                    $(this).remove();
-                }
-            },
-			eventDrop: function(info) {},
-			eventResize: function(info) {
-    alert(info.title + " end is now " + info.end.toISOString());
-
-    if (!confirm("is this okay?")) {
-      info.revert();
-    }
-  },
-			eventClick: function(event) {
-				 if ($('#drop-remove').is(':checked')) {
-					  if (confirm("Are you sure about this change?")) {
-						  	
-						//that.calendarUiUpdate();
-						window.location.reload()
-						  //that.calendarUiUpdate();
-						}
-                }
-  },
-            events:myvue.events
-        });
     });
-
 </script> 
 <script type="text/JavaScript">
 var myvue = new Vue({
@@ -208,9 +167,11 @@ var myvue = new Vue({
                     allDay: false
                 }
             ],
-		eventss:[]
+		workshifts:[],
+		workshift:[]
          },
 		methods:{
+			///新增一条工作班次
 			addToWorkShift:function(event){
 			console.log("ajax beging \n")
 			var that = this;
@@ -239,18 +200,98 @@ var myvue = new Vue({
         });
 				
 			},
-			calendarUiUpdate:function(){
+			///从数据库拉取某员工的工作班次
+			calendarUiUpdate:function(employeesId){
 				var that = this;
-		
+			        jQuery.ajax({
+            type:"GET",
+            url:"http://39.105.38.34:8080/api/v1/workA/employees/"+employeesId,
+            contentType:"application/json",
+             xhrFields: {
+              withCredentials: true
+             },
+            crossDomain:true,
+			async:false,
+            success:function(data){
+				             console.log("success");
+                that.workshifts=JSON.parse(data);
+                console.log(" workshifts is",that.workshifts)
+        for(var i=0;i<that.workshifts.length;i++){
+			var event={allDay: false}
+            event["title"]=that.workshifts[i].employeeId;
+			event["start"]=that.workshifts[i].startTime;
+			event["end"]=that.workshifts[i].endTime;
+            that.events.push(event)
+        }
+				console.log("JSON STR"+JSON.stringify(that.events))
+            },
+            error:function(data){
+                console.log("fail");
+                
+            }
+        });
 				
+			},
+			//Init calendar
+			calendarInit:function(){
+			$('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            droppable: true,
+            drop: function() {
+                if ($('#drop-remove').is(':checked')) {
+                    $(this).remove();
+                }
+            },
+			eventDrop: function(info) {},
+			eventResize: function(info) {
+    alert(info.title + " end is now " + info.end.toISOString());
+
+    if (!confirm("is this okay?")) {
+      info.revert();
+    }
+  },
+			eventClick: function(event) {
+				 if ($('#drop-remove').is(':checked')) {
+					  if (confirm("Are you sure about this change?")) {
+						//UiUpdate;
+						window.location.reload()
+						}
+                }
+  },
+            events:this.events
+        });
+			
+		},
+			//删除某条工作安排
+			deleteWorkShift:function(workShiftId){
+		jQuery.ajax({
+			type:"GET",
+            url:"http://39.105.38.34:8080/api/v1/workA/employees/"+workShiftId,
+			contentType:"application/json",
+			xhrFields: {
+                withCredentials: true
+            },
+            crossDomain: true,
+			success:function(data){
+				console.log("succ");
+            },
+			error:function(data){
+				console.log("fail");
+				
+			}
+		});
 			}
 		},
 	created:function(){
 		var that =this
 		console.log("refresh")
-		
-		
-		this.calendarUiUpdate();
+		//this.calendarUiUpdate(2);
+		this.calendarInit();
 	}
     })
   </script>

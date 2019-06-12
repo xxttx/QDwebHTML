@@ -100,10 +100,9 @@ var app = new Vue({
 	departments:[],
 	departmentsRowNum:0
   },
-method:{
-},
-	created:function(){
-		console.log("ajax beging \n")
+methods:{
+	///拉取所有部门
+	pullAllDepartments:function(){
 		var that = this;
 		jQuery.ajax({
 			type:"GET",
@@ -122,7 +121,12 @@ method:{
 				console.log("fail");
 				
 			}
-		});
+		});}
+},
+created:function(){
+		console.log("ajax beging \n")
+		var that = this;
+		this.pullAllDepartments();
 
 	}
 })

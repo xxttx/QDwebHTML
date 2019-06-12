@@ -88,26 +88,32 @@
 
 </script> 
 <script type="text/javascript">
-var app = new Vue({
-  el: '#app1',
-  data: {
-    workshifts:[],
-    events:[
-		{
+var myvue = new Vue({
+      el: '#app1',
+	data: {
+		events: [
+                {
+                    title: 'Long Event',
+                    start: new Date(2019, 6, 2),
+                    end: new Date(2019, 6, 8)
+                },
+                {
                     id: 999,
                     title: 'Repeating Event',
-                    start: new Date(2019, 6, 6, 16, 0),
+                    start: new Date(2019, 6, 12, 16, 0),
                     allDay: false
                 }
-		
-	]
-  },
-    created:function(){
-        console.log("ajax beging \n")
-        var that = this;
-        jQuery.ajax({
+            ],
+		workshifts:[],
+		workshift:[]
+         },
+		methods:{
+			///从数据库拉取某员工的工作班次
+			pullWorkShiftByEmpId:function(employeesId){
+				var that = this;
+			        jQuery.ajax({
             type:"GET",
-            url:"http://39.105.38.34:8080/api/v1/workA/employees/1",
+            url:"http://39.105.38.34:8080/api/v1/workA/employees/"+employeesId,
             contentType:"application/json",
              xhrFields: {
               withCredentials: true
@@ -115,9 +121,9 @@ var app = new Vue({
             crossDomain:true,
 			async:false,
             success:function(data){
+				             console.log("success");
                 that.workshifts=JSON.parse(data);
                 console.log(" workshifts is",that.workshifts)
-                console.log("success");
         for(var i=0;i<that.workshifts.length;i++){
 			var event={allDay: false}
             event["title"]=that.workshifts[i].employeeId;
@@ -126,35 +132,56 @@ var app = new Vue({
             that.events.push(event)
         }
 				console.log("JSON STR"+JSON.stringify(that.events))
-$('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next,today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: false,
-            droppable: false, // this allows things to be dropped onto the calendar
-            drop: function() {
-                // is the "remove after drop" checkbox checked?
-                if ($('#drop-remove').is(':checked')) {
-                    // if so, remove the element from the "Draggable Events" list
-                    $(this).remove();
-                }
-            },
-            events: that.events
-        });
-
             },
             error:function(data){
                 console.log("fail");
                 
             }
         });
+				
+			},
+			//Init calendar
+			calendarInit:function(){
+			$('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            droppable: true,
+            drop: function() {
+                if ($('#drop-remove').is(':checked')) {
+                    $(this).remove();
+                }
+            },
+			eventDrop: function(info) {},
+			eventResize: function(info) {
+    alert(info.title + " end is now " + info.end.toISOString());
 
+    if (!confirm("is this okay?")) {
+      info.revert();
     }
-})
-
-
+  },
+			eventClick: function(event) {
+				 if ($('#drop-remove').is(':checked')) {
+					  if (confirm("Are you sure about this change?")) {
+						//UiUpdate;
+						window.location.reload()
+						}
+                }
+  },
+            events:this.events
+        });
+			
+		}
+		},
+	created:function(){
+		var that =this
+		this.pullWorkShiftByEmpId(2);
+		this.calendarInit();
+	}
+    })
 
 
 
