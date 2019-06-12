@@ -51,8 +51,7 @@
       <div class="row">
         <div class="col-lg-4" v-for="staff in staffs">
           <div class="contact-box">
-            <a class="row" href="../director/othersProfile.html">
-
+            <a class="row" :href="'changeuser.html?employeeId='+staff.employeeId">
             <div class="col-4">
               <div class="text-center">
                 <img alt="image" class="rounded-circle m-t-xs img-fluid" src="../manager/img/a2.jpg">
