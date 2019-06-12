@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Cache-control" content="no-cache">
   <meta http-equiv="Cache" content="no-cache">
-  <title>修改用户信息</title>
+  <title>增加部门</title>
 
 
   <link href="../../css/bootstrap.min.css" rel="stylesheet">
@@ -71,67 +71,32 @@
             <div class="ibox-content">
               <form name="form1" id="form1">
                 <div class="form-group  row">
-                  <label class="col-sm-2 col-form-label">员工编号</label>
-                  <div class="col-lg-10"><input type="text" id="employeeId" name="employeeId" class="form-control"></div>
-                </div>
-                <div class="form-group row"><label class="col-lg-2 col-form-label">入职时间</label>
-                  <div class="col-sm-10"><input type="text" readonly id="enrollTime" name="enrollTime" class="form-control"></div>
+                  <label class="col-sm-2 col-form-label">部门编号</label>
+                  <div class="col-lg-10"><input type="text" readonly id="sectorId" name="sectorId" class="form-control"></div>
                 </div>
                 <div class="form-group  row">
-                  <label class="col-sm-2 col-form-label">姓名</label>
-                  <div class="col-lg-10"><input type="text" id="name" name="name" class="form-control"></div>
+                  <label class="col-sm-2 col-form-label">部门人数</label>
+                  <div class="col-lg-10"><input value="0" type="text" readonly id="sectorPeopleNumber" name="sectorPeopleNumber" class="form-control"></div>
                 </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">所在部门</label>
-                  <div class="col-sm-10">
-                    <select class="form-control m-b" id="sectorId" name="sectorId">
-                      <option v-for="department in departments" :value="department.sectorId">{{department.sectorName}}</option>
-                    </select>
-                  </div>
+                <div class="form-group row"><label class="col-lg-2 col-form-label">部门名</label>
+                  <div class="col-sm-10"><input type="text" id="sectorName" name="sectorName" class="form-control"></div>
                 </div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">是否为部门主管</label>
-                  <div class="col-sm-10">
-                    <select class="form-control m-b" id="isManager" name="isManager">
-                      <option value="false">否</option>
-                    </select>
-                  </div>
+
+                <div class="hr-line-dashed"></div>
+                <div class="form-group row"><label class="col-lg-2 col-form-label">部门描述</label>
+                  <div class="col-sm-10"><input type="text" id="description" name="description" class="form-control"></div>
                 </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">年龄</label>
-                  <div class="col-sm-10"><input type="text" id="age" class="form-control" name="age"></div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">工资</label>
-                  <div class="col-sm-10"><input type="text" id="salary" name="salary"  class="form-control"></div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">性别</label>
-                  <div class="col-sm-10">
-                    <select class="form-control m-b" id="sex" name="sex">
-                      <option value="false">女</option>
-                      <option value="true">男</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="form-group row"><label class="col-lg-2 col-form-label">电话号码</label>
-                  <div class="col-sm-10"><input type="text" id="phoneNumber" name="phoneNumber" class="form-control"></div>
-                </div>
-                <div class="hr-line-dashed"></div>
-                <div class="hr-line-dashed"></div>
 
 
 
-                <a :href="'../common/mystaff.html?sectorId='+sectorIds" class="float-left" >
-                  <button class="btn btn-primary btn-sm" type="button">放弃修改</button>
-                </a>
+
+
+                  <button class="btn btn-primary btn-sm" type="button" v-on:click="refresh()">放弃修改</button>
+
+
+
                 <div class="float-right">
-                  <button class="btn btn-primary btn-sm" type="button" v-on:click="tosubmit()">Save changes</button>
+                  <button class="btn btn-primary btn-sm" type="button" v-on:click="tosubmit()">提交</button>
                 </div>
               </form>
               <div class="form-group row">
@@ -159,7 +124,7 @@
         var that=this;
         $.ajax({
           type:"POST",
-          url:"http://39.105.38.34:8080/api/v1/employees",
+          url:"http://39.105.38.34:8080/api/v1/sectors",
           contentType:"application/json;charset=utf-8",
           xhrFields: {
             withCredentials: true
@@ -169,7 +134,7 @@
           data:this.form2JsonString('form1'),
           success: function () {
             alert("success");
-            window.location.assign("mystaff.html?sectorId="+that.sectorIds);
+            window.location.assign("#");
           },
           error:function () {
             alert("fail");
@@ -188,29 +153,13 @@
         console.log(jsonObj);
         // json对象再转换成json字符串
         return JSON.stringify(jsonObj);
+      },
+      refresh:function(){
+        location.reload(["true"]);
       }
     },
     created:function(){
-      var params=location.search;
-      var arr = params.substring(1).split("&");
-      this.sectorIds = arr[0].replace("sectorId=","");
-      var that=this;
-      console.log("ajax beging \n")
-      jQuery.ajax({
-        type:"GET",
-        url:"http://39.105.38.34:8080/api/v1/sectors",
-        contentType:"application/json",
-        xhrFields: {
-          withCredentials: true
-        },
-        crossDomain: true,
-        success:function(data){
-          that.departments=JSON.parse(data);
-        },
-        error:function(data){
-          console.log("fail");
-        }
-      });
+
 
     }
   })
