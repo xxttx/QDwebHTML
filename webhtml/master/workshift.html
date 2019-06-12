@@ -16,12 +16,12 @@
 <body>
 <div id="wrapper">
   <div id="page-wrapper" class="gray-bg" style="margin-left: 0;height: auto;">
-    <div class="wrapper wrapper-content">
+    <div class="wrapper wrapper-content" id="app">
       <div class="row animated fadeInDown">
         <div class="col-lg-3">
           <div class="ibox ">
             <div class="ibox-title">
-              <h5>Draggable Events</h5>
+              <h5>添加工作班次</h5>
               <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
                 <ul class="dropdown-menu dropdown-user">
                   <li><a href="#" class="dropdown-item">Config option 1</a> </li>
@@ -31,7 +31,7 @@
             </div>
             <div class="ibox-content">
               <div id='external-events'>
-                <p>Drag a event and drop into callendar.</p>
+                <p>拖动至日历快捷添加☞</p>
                 <div class='external-event navy-bg'>Go to shop and buy some products.</div>
                 <div class='external-event navy-bg'>Check the new CI from Corporation.</div>
                 <div class='external-event navy-bg'>Send documents to John.</div>
@@ -41,6 +41,25 @@
                   <input type='checkbox' id='drop-remove' class="i-checks" checked />
                   <label for='drop-remove'>remove after drop</label>
                 </p>
+              </div>
+              <div class="hr-line-dashed"></div>
+              <div>
+                <p>输入员工ID并选择日期</p>
+                <select class="form-control m-b" name="account">
+                  <option>1</option>
+                </select>
+                <div class="block"> <span class="demonstration" style="height: 30px;">选择日期</span><br>
+                  <el-date-picker
+	style="width:100%"
+      v-model="value1"
+      type="datetimerange"
+      range-separator="-"
+      start-placeholder="开始日期"
+	format="yyyy-MM-dd HH:mm:ss"
+	value-format="yyyy-MM-dd HH:mm:ss"
+      end-placeholder="结束日期"> </el-date-picker>
+                </div>
+                <button class="btn btn-outline btn-primary" style="margin-top: 20px" v-on:click="addToWorkShift"> 添加 </button>
               </div>
             </div>
           </div>
@@ -110,10 +129,14 @@
 <script src="../../js/plugins/fullcalendar/moment.min.js"></script> 
 <script src="../../js/jquery-3.1.1.min.js"></script> 
 <script src="../../js/popper.min.js"></script> 
-<script src="../manager/js/bootstrap.js"></script> 
+<script src="../../js/bootstrap.js"></script> 
 <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script> 
-<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script> 
-
+<script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- import Vue before Element --> 
+<script src="https://unpkg.com/vue/dist/vue.js"></script> 
+<!-- import JavaScript --> 
+<script src="https://unpkg.com/element-ui/lib/index.js"></script> 
 <!-- Custom and plugin javascript --> 
 <script src="../../js/inspinia.js"></script> 
 <script src="../../js/plugins/pace/pace.min.js"></script> 
@@ -230,6 +253,44 @@
 
     });
 
-</script>
+</script> 
+<script type="text/JavaScript">
+    new Vue({
+      el: '#app',
+	data: {
+        value1: ''
+         },
+		methods:{
+			addToWorkShift:function(event){
+			console.log("ajax beging \n")
+			var that = this;
+			console.log("value1 is "+that.value1+"  value2 is ",that.value2);
+			var jsono={};
+			jsono["startTime"]=that.value1[0];
+			jsono["endTime"]=that.value1[1];
+			jsono["arrangePerson"]="1";
+			jsono["employeeId"]="1";
+			jQuery.ajax({
+            type:"POST",
+            url:"http://39.105.38.34:8080/api/v1/workA/employees/1",
+            contentType:"application/json",
+            // xhrFields: {
+            //     withCredentials: true
+            // },
+            // crossDomain:true,
+			dataType:"json",
+			data:JSON.stringify(jsono),
+            success:function(data){
+                console.log("success");
+			},
+            error:function(data){
+                console.log("fail");
+            }
+        });
+				
+			}
+		}
+    })
+  </script>
 </body>
 </html>
