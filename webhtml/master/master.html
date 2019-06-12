@@ -8,8 +8,9 @@
   <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
   <link href="../../css/animate.css" rel="stylesheet">
   <link href="../../css/style.css" rel="stylesheet">
+	    <link href="../../css/plugins/toastr/toastr.min.css" rel="stylesheet">
   <!-- Mainly scripts -->
-
+   <script src="../../js/plugins/toastr/toastr.min.js"></script>
   <script src="../../js/popper.min.js"></script>
   <script src="../../js/bootstrap.js"></script>
   <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
@@ -121,7 +122,9 @@
       sectorId:123
     },
     el: '#app1',
-    created: function () {
+    created: function () { toastr.success('Without any options','Simple notification!')
+						   toastr.success('Without any options','Simple notification!')
+						   toastr.success('Without any options','Simple notification!')
       jQuery.ajax({
         type: "GET",
         url: "http://39.105.38.34:8080/api/v1/employees/" + this.UID,
@@ -158,6 +161,7 @@
     // },
   });
 </script>
+
 </body>
 
 </html>
