@@ -134,9 +134,10 @@
                                 <a :href="'../common/mystaff.html?sectorId='+userInfo.sectorId" class="float-left" >
                                     <button class="btn btn-primary btn-sm" type="button">放弃修改</button>
                                 </a>
-                                <a :href="'../common/mystaff.html?sectorId='+userInfo.sectorId" class="float-right">
-                                    <button class="btn btn-primary btn-sm" type="button" onclick="tosubmit('form1')">Save changes</button>
-                                </a>
+                                <div class="float-right">
+                                    <button class="btn btn-primary btn-sm" type="button" v-on:click="tosubmit()">Save changes</button>
+                                </div>
+
                             </form>
                             <div class="form-group row">
                                 <div class="col-sm-4 col-sm-offset-2">
@@ -154,34 +155,6 @@
 </div>
 
 <script>
-    function tosubmit(formId){
-        $.ajax({
-            type:"PUT",
-            url:"http://39.105.38.34:8080/api/v1/employees",
-            contentType:"application/json;charset=utf-8",
-            xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-            dataType: "json",
-            data:form2JsonString(formId),
-            success: function () {
-                alert("success");
-            }
-        });
-        console.log("form1提交");
-    }
-    function form2JsonString(formId) {
-        var paramArray = $('#' + formId).serializeArray();
-        /*请求参数转json对象*/
-        var jsonObj={};
-        $(paramArray).each(function(){
-            jsonObj[this.name]=this.value;
-        });
-        console.log(jsonObj);
-        // json对象再转换成json字符串
-        return JSON.stringify(jsonObj);
-    }
     new Vue({
         el: '#form1',
         data: {
@@ -192,52 +165,88 @@
             msectorId:0,
             departments:[]
         },
+        methods:{
+            tosubmit:function(){
+                var that=this;
+                $.ajax({
+                    type:"PUT",
+                    url:"http://39.105.38.34:8080/api/v1/employees",
+                    contentType:"application/json;charset=utf-8",
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    dataType: "json",
+                    data:this.form2JsonString('form1'),
+                    success: function () {
+                        alert("success");
+                        window.location.assign("mystaff.html?sectorId="+that.msectorId);
+                    },
+                    error:function () {
+                        alert("fail");
+                        window.location.assign("mystaff.html?sectorId="+that.msectorId);
+                    }
+                });
+                console.log("form1提交");
+            },
+            form2JsonString:function(formId) {
+                var paramArray = $('#' + formId).serializeArray();
+                /*请求参数转json对象*/
+                var jsonObj={};
+                $(paramArray).each(function(){
+                    jsonObj[this.name]=this.value;
+                });
+                console.log(jsonObj);
+                // json对象再转换成json字符串
+                return JSON.stringify(jsonObj);
+            }
+                },
         created:function(){
-            var params=location.search;
-            var arr = params.substring(1).split("&");
-            this.employeeId = arr[0].replace("employeeId=","");
-            console.log("ajax beging \n")
-            var that = this;
-            jQuery.ajax({
-                type:"GET",
-                url:"http://39.105.38.34:8080/api/v1/employees/"+that.employeeId,
-                contentType:"application/json",
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
-                success:function(data){
-                    var userArray=JSON.parse(data)
-                    that.userInfo=userArray[0];
-                    that.ismaster=that.userInfo.manager;
-                    that.isman=that.userInfo.sex;
-                    that.msectorId=that.userInfo.sectorId;
-                },
-                error:function(data){
-                    console.log("fail");
+                    var params=location.search;
+                    var arr = params.substring(1).split("&");
+                    this.employeeId = arr[0].replace("employeeId=","");
+                    console.log("ajax beging \n")
+                    var that = this;
+                    jQuery.ajax({
+                        type:"GET",
+                        url:"http://39.105.38.34:8080/api/v1/employees/"+that.employeeId,
+                        contentType:"application/json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        success:function(data){
+                            var userArray=JSON.parse(data)
+                            that.userInfo=userArray[0];
+                            that.ismaster=that.userInfo.manager;
+                            that.isman=that.userInfo.sex;
+                            that.msectorId=that.userInfo.sectorId;
+                        },
+                        error:function(data){
+                            console.log("fail");
+                        }
+                    })
+                    jQuery.ajax({
+                        type:"GET",
+                        url:"http://39.105.38.34:8080/api/v1/sectors",
+                        contentType:"application/json",
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        success:function(data){
+                            that.departments=JSON.parse(data);
+                            //that.departmentsRowNum = Math.floor(JSON.parse(data).length/4)+1;
+                            //console.log("depart num is",that.departmentsRowNum)
+                        },
+                        error:function(data){
+                            console.log("fail");
+
+                        }
+                    });
+
                 }
             })
-            jQuery.ajax({
-                type:"GET",
-                url:"http://39.105.38.34:8080/api/v1/sectors",
-                contentType:"application/json",
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
-                success:function(data){
-                    that.departments=JSON.parse(data);
-                    //that.departmentsRowNum = Math.floor(JSON.parse(data).length/4)+1;
-                    //console.log("depart num is",that.departmentsRowNum)
-                },
-                error:function(data){
-                    console.log("fail");
-
-                }
-            });
-
-        }
-    })
 </script>
 
 </body>
