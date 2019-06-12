@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/webhtml/common/myprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/common/myprofile.html" afterDir="false" />
-    </list>
+    <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,18 +41,6 @@
                 <element signature="e#4779#5097#0" />
                 <element signature="e#5129#5560#0" />
                 <element signature="e#7604#7999#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/form_file_upload.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="445" lean-forward="true" selection-start-line="445" selection-end-line="445" />
-              <folding>
-                <element signature="n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
               </folding>
             </state>
           </provider>
@@ -255,16 +241,15 @@
       <workItem from="1560218717071" duration="47946000" />
       <workItem from="1560336880931" duration="4142000" />
       <workItem from="1560343818821" duration="5598000" />
-      <workItem from="1560353379278" duration="8913000" />
+      <workItem from="1560353379278" duration="9306000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="96669000" />
+    <option name="totallyTimeSpent" value="97062000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="925" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
