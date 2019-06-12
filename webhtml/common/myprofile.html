@@ -173,9 +173,9 @@ new Vue({
 	  UID:2
   },
 	created:function(){
-		//var params=location.search;
-		//var arr = params.substring(1).split("&");
-		//this.UID = arr[0].replace("UID=","");
+		var params=location.search;
+		var arr = params.substring(1).split("&");
+		this.UID = arr[0].replace("UID=","");
 		console.log("ajax beging \n")
 		var that = this;
 		jQuery.ajax({
