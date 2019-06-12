@@ -141,12 +141,64 @@
 <!-- Full Calendar --> 
 <script src="../../js/plugins/fullcalendar/fullcalendar.min.js"></script> 
 <script>
-    $(document).ready(function() {
+    $(document).ready(function(){
             $('.i-checks').iCheck({
                 checkboxClass: 'icheckbox_square-green',
                 radioClass: 'iradio_square-green'
             });
+$('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            droppable: true,
+            drop: function() {
+                if ($('#drop-remove').is(':checked')) {
+                    $(this).remove();
+                }
+            },
+			eventDrop: function(event) {
+				if (!confirm("is this okay?")) {
+      			event.revert();
+				}
+				else {
+					console.dir(event)
+					///employeeId,workShiftId,begin,end
+					console.log("event.start_d",event.start._d)
+					console.log(" event.end_d ",event.end._d)
+					var d = new Date(event.start._d)
+					var startTime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+					d = new Date(event.end._d)
+					var endTime = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate() + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+					myvue.updateWorkShift(event.title,event.id,startTime,endTime)
+				}
+			},
+			eventResize: function(event) {
+    alert(event.title + " end is now " + event.end.toISOString());
+
+    if (!confirm("is this okay?")) {
+      event.revert();
+    }
+  },
+			eventClick: function(event) {
+				 if ($('#drop-remove').is(':checked')) {
+					  if (confirm("Are you sure about this change?")) {
+						  myvue.deleteWorkShift(17);
+						//UiUpdate;
+						window.location.reload()
+						}
+                }
+  },
+            events:myvue.events
+        });
     });
+
+	
+	//Init calendar
+			
+	
 </script> 
 <script type="text/JavaScript">
 var myvue = new Vue({
@@ -171,8 +223,8 @@ var myvue = new Vue({
 		workshift:[]
          },
 		methods:{
-			///新增一条工作班次
-			addToWorkShift:function(event){
+			///新增一条工作班次(可用)
+			addToWorkShift:function(employeeId){
 			console.log("ajax beging \n")
 			var that = this;
 			console.log("value1 is "+that.value1+"  value2 is ",that.value2);
@@ -180,10 +232,10 @@ var myvue = new Vue({
 			jsono["startTime"]=that.value1[0];
 			jsono["endTime"]=that.value1[1];
 			jsono["arrangePerson"]="1";
-			jsono["employeeId"]="1";
+			jsono["employeeId"]=2;
 			jQuery.ajax({
             type:"POST",
-            url:"http://39.105.38.34:8080/api/v1/workA/employees/1",
+            url:"http://39.105.38.34:8080/api/v1/workA/employees/2",
             contentType:"application/json",
             // xhrFields: {
             //     withCredentials: true
@@ -200,7 +252,7 @@ var myvue = new Vue({
         });
 				
 			},
-			///从数据库拉取某员工的工作班次
+			///从数据库拉取某员工的工作班次(可用)
 			calendarUiUpdate:function(employeesId){
 				var that = this;
 			        jQuery.ajax({
@@ -221,6 +273,7 @@ var myvue = new Vue({
             event["title"]=that.workshifts[i].employeeId;
 			event["start"]=that.workshifts[i].startTime;
 			event["end"]=that.workshifts[i].endTime;
+			event["id"]=that.workshifts[i].workArrangeId;
             that.events.push(event)
         }
 				console.log("JSON STR"+JSON.stringify(that.events))
@@ -232,44 +285,9 @@ var myvue = new Vue({
         });
 				
 			},
-			//Init calendar
-			calendarInit:function(){
-			$('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: true,
-            droppable: true,
-            drop: function() {
-                if ($('#drop-remove').is(':checked')) {
-                    $(this).remove();
-                }
-            },
-			eventDrop: function(info) {},
-			eventResize: function(info) {
-    alert(info.title + " end is now " + info.end.toISOString());
-
-    if (!confirm("is this okay?")) {
-      info.revert();
-    }
-  },
-			eventClick: function(event) {
-				 if ($('#drop-remove').is(':checked')) {
-					  if (confirm("Are you sure about this change?")) {
-						//UiUpdate;
-						window.location.reload()
-						}
-                }
-  },
-            events:this.events
-        });
-			
-		},
-			//删除某条工作安排
+			///删除某条工作安排 
 			deleteWorkShift:function(workShiftId){
-		jQuery.ajax({
+				jQuery.ajax({
 			type:"GET",
             url:"http://39.105.38.34:8080/api/v1/workA/employees/"+workShiftId,
 			contentType:"application/json",
@@ -285,13 +303,39 @@ var myvue = new Vue({
 				
 			}
 		});
+			},
+			///更新某条工作安排(可用)
+			updateWorkShift:function(employeeId,workShiftId,begin,end){
+				var jsono={};
+				jsono["startTime"]=begin;
+				jsono["endTime"]=end;
+				jsono["arrangePerson"]="1";
+				jsono["employeeId"]=employeeId;
+				jsono["workArrangeId"]=workShiftId;
+				jQuery.ajax({
+			type:"PUT",
+            url:"http://39.105.38.34:8080/api/v1/workA/"+1,
+			contentType:"application/json",
+			xhrFields: {
+                withCredentials: true
+            },
+			dataType:"json",
+			data:JSON.stringify(jsono),
+            crossDomain: true,
+			success:function(data){
+				console.log("succ");
+            },
+			error:function(data){
+				console.log("fail");
+				
 			}
+		});}
 		},
 	created:function(){
 		var that =this
 		console.log("refresh")
-		//this.calendarUiUpdate(2);
-		this.calendarInit();
+		this.calendarUiUpdate(2);
+		
 	}
     })
   </script>
