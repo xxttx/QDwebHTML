@@ -125,9 +125,10 @@
     el: '#app1',
     created: function () { 
 		this.UID=localStorage.getItem('employeeId');
+		var that=this;
       jQuery.ajax({
         type: "GET",
-        url: "http://39.105.38.34:8080/api/v1/employees/" + this.UID,
+        url: "http://39.105.38.34:8080/api/v1/employees/" + that.UID,
         contentType: "application/json",
         xhrFields: {
           withCredentials: true
@@ -135,8 +136,8 @@
         crossDomain: true,
         success: function (data) {
           var userArray = JSON.parse(data)
-          userInfo = userArray[0];
-          this.sectorId=userInfo.sectorId;
+          that.userInfo = userArray[0];
+          that.sectorId=userInfo.sectorId;
           if (typeof(Storage)!=="undefined")
           {
             localStorage.employee=data;

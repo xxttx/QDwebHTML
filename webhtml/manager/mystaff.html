@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>员工管理</title>
+  <link href="../../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
+  <link href="../../css/animate.css" rel="stylesheet">
+  <link href="../../css/style.css" rel="stylesheet">
+  <!-- Mainly scripts -->
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../js/popper.min.js"></script>
+  <script src="../../js/bootstrap.js"></script>
+  <script src="../../js/plugins/metisMenu/jquery.metisMenu.js"></script>
+  <script src="../../js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- Flot -->
+  <script src="../../js/plugins/flot/jquery.flot.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.tooltip.min.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.spline.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.resize.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.pie.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.symbol.js"></script>
+  <script src="../../js/plugins/flot/jquery.flot.time.js"></script>
+
+  <!-- Peity -->
+  <script src="../../js/plugins/peity/jquery.peity.min.js"></script>
+  <script src="../../js/demo/peity-demo.js"></script>
+
+  <!-- Custom and plugin javascript -->
+  <script src="../../js/inspinia.js"></script>
+  <script src="../../js/plugins/pace/pace.min.js"></script>
+
+  <!-- jQuery UI -->
+  <script src="../../js/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+  <!-- EayPIE -->
+  <script src="../../js/plugins/easypiechart/jquery.easypiechart.js"></script>
+
+  <!-- Sparkline -->
+  <script src="../../js/plugins/sparkline/jquery.sparkline.min.js"></script>
+
+  <!-- Sparkline demo data  -->
+  <script src="../../js/demo/sparkline-demo.js"></script>
+</head>
+
+<body>
+<div id="wrapper" class="gray-bg" >
+  <div id="page-wrapper" class="gray-bg" style="margin: 0;" >
+    <div class="wrapper wrapper-content animated fadeInRight">
+      <div class="row">
+        <div class="col-lg-6" v-for="staff in staffs">
+
+          <div class="contact-box">
+            <div class="row">
+              <div class="col-12">
+                <div class="ibox">
+                  <div class="ibox-title">
+                    <h5 v-if="staff.manager">主管</h5>
+                    <h5 v-else>员工</h5>
+                  </div>
+                  <div class="ibox-tools">
+                    <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                      <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                      <a :href="'..\common\changeuser.html?employeeId='+staff.employeeId">
+                        <li><button class="dropdown-item">修改信息</button> </li>
+                      </a>
+
+                        <li><button v-on:click="deleteEmployee(staff.employeeId)" class="dropdown-item" >删除员工</button> </li>
+
+                    </ul>
+                    <a class="close-link"> <i class="fa fa-times"></i> </a>
+                  </div>
+                  <div class="ibox-content">
+                    <div class="row" >
+                      <div class="col-4">
+                        <div class="text-center">
+                          <img alt="image" class="rounded-circle m-t-xs img-fluid" src="../manager/img/a2.jpg">
+                          <div class="m-t-xs font-bold">生活不止眼前的苟且</div>
+                        </div>
+                      </div>
+                      <div class="col-8">
+                        <h3 ><strong>{{staff.name}}</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
+                        <address>
+                          部门编号：{{staff.sectorId}}<br>
+                          员工编号：{{staff.employeeId}}<br>
+                          年龄：{{staff.age}}<br>
+                          <div v-if="staff.sex">性别：男<br></div>
+                          <div v-else>性别：女<br></div>
+                          工资：{{staff.salary}}￥/M<br>
+                          入职时间：{{staff.enrollTime}}<br>
+                          <abbr title="Phone"></abbr> 手机号：(+86) {{staff.phoneNumber}}
+                        </address>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+
+  new Vue({
+    el: '#wrapper',
+    data: {
+      name: 'Hello Vue.js!',
+      staffs:[],
+      sectorId:123
+    },
+    methods:{
+      deleteEmployee:function(id){
+        var that=this;
+        jQuery.ajax({
+          type:"GET",
+          url:"http://39.105.38.34:8080/api/v1/employees/delete/"+that.id,
+          xhrFields: {
+            withCredentials: true
+          },
+          crossDomain: true,
+          success:function(){
+            alert("success!");
+            window.location.assign("mystaff.html");
+          },
+          error:function(data){
+            alert("fail!");
+            window.location.assign("mystaff.html");
+          }
+        });
+      }
+    },
+    created:function(){
+      var params=location.search;
+      var arr = params.substring(1).split("&");
+      this.sectorId = arr[0].replace("sectorId=","");
+      console.log("ajax beging \n")
+      var that = this;
+      jQuery.ajax({
+        type:"GET",
+        url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+that.sectorId,
+        contentType:"application/json",
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success:function(data){
+          that.staffs=JSON.parse(data);
+        },
+        error:function(data){
+          console.log("fail");
+
+        }
+      })
+    }
+  })
+
+</script>
+</body>
+</html>

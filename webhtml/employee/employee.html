@@ -55,15 +55,14 @@
     <div class="sidebar-collapse">
       <ul class="nav metismenu" id="side-menu">
         <li class="nav-header">
-          <div class="dropdown profile-element"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="block m-t-xs font-bold">Example user</span> <span class="text-muted text-xs block">menu <b class="caret"></b> </span> </a>
+          <div class="dropdown profile-element"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span class="block m-t-xs font-bold">{{userInfo.name}}</span> <span class="text-muted text-xs block">menu <b class="caret"></b> </span> </a>
             <ul class="dropdown-menu animated fadeInRight m-t-xs">
               <li> <a class="dropdown-item" href="../../index.html">Logout</a> </li>
             </ul>
           </div>
           <div class="logo-element"> IN+ </div>
         </li>
-        <li class="active"> <a class="J_menuItem" href="dashboard_3.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">仪表台</span> </a> </li>
-        <li> <a class="J_menuItem" :href=" '../common/myprofile.html?UID=' + UID" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的账户信息</span> </a> </li>
+        <li> <a class="J_menuItem" href=" ../common/myprofile.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的账户信息</span> </a> </li>
         <li> <a class="J_menuItem" href="schedule.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的工作班次</span> </a> </li>
         <li> <a class="J_menuItem" href="leaveapp.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">请假/销假</span> </a> </li>
         <li> <a class="J_menuItem" href="exwork.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">申请加班</span> </a> </li>
@@ -89,7 +88,7 @@
     <div class="row content-tabs">
       <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i> </button>
       <nav class="page-tabs J_menuTabs">
-        <div class="page-tabs-content"> <a href="javascript:;" class="active J_menuTab" data-id="dashboard_3.html">首页</a> </div>
+        <div class="page-tabs-content"> <a href="javascript:;" class="active J_menuTab" data-id=" ../common/myprofile.html">首页</a> </div>
       </nav>
       <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i> </button>
       <div class="btn-group roll-nav roll-right">
@@ -103,7 +102,7 @@
       </div>
       <a href="../staff/login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a> </div>
     <div class="row J_mainContent" id="content-main">
-      <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="dashboard_3.html" frameborder="0" data-id="dashboard_3.html" seamless></iframe>
+      <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="../common/myprofile.html" frameborder="0" data-id="../common/myprofile.html" seamless></iframe>
     </div>
     <div class="footer">
       <div class="pull-right">  <strong>员工</strong> 页面 </div>
@@ -116,9 +115,39 @@ var app = new Vue({
   el: '#app1',
   data: {
 	UID:4,
+    sectorId:123,
+    userInfo:{}
   },
-method:{
-}
+  created:function () {
+    this.UID=localStorage.getItem('employeeId');
+    var that=this;
+    jQuery.ajax({
+      type: "GET",
+      url: "http://39.105.38.34:8080/api/v1/employees/" + that.UID,
+      contentType: "application/json",
+      xhrFields: {
+        withCredentials: true
+      },
+      crossDomain: true,
+      success: function (data) {
+        var userArray = JSON.parse(data)
+        that.userInfo = userArray[0];
+        that.sectorId=userInfo.sectorId;
+        if (typeof(Storage)!=="undefined")
+        {
+          localStorage.employee=data;
+          localStorage.sectorId=userInfo.sectorId;
+        }
+        else
+        {
+          console.log("不支持Storage");
+        }
+      },
+      error: function (data) {
+        console.log("fail");
+      }
+    })
+  }
 })
 </script>
 </body>
