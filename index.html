@@ -68,8 +68,6 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
             },
             crossDomain: true,
             success:function(data){
-				
-				console.dir(data)
 				localStorage.employeeId=data.employeeId;
 				if(data.degree=='2'){
 					//主管

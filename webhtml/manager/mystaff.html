@@ -65,7 +65,7 @@
                       <i class="fa fa-wrench"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                      <a :href="'..\common\changeuser.html?employeeId='+staff.employeeId">
+                      <a :href="'../common/changeuser.html?employeeId='+staff.employeeId">
                         <li><button class="dropdown-item">修改信息</button> </li>
                       </a>
 
@@ -120,21 +120,21 @@
     },
     methods:{
       deleteEmployee:function(id){
-        var that=this;
+
         jQuery.ajax({
           type:"GET",
-          url:"http://39.105.38.34:8080/api/v1/employees/delete/"+that.id,
+          url:"http://39.105.38.34:8080/api/v1/employees/delete/"+id,
           xhrFields: {
             withCredentials: true
           },
           crossDomain: true,
           success:function(){
             alert("success!");
-            window.location.assign("mystaff.html");
+            window.location.reload();
           },
           error:function(data){
             alert("fail!");
-            window.location.assign("mystaff.html");
+            window.location.reload();
           }
         });
       }

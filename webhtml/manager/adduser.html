@@ -127,7 +127,7 @@
 
 
 
-                <a :href="'../common/mystaff.html?sectorId='+sectorIds" class="float-left" >
+                <a :href="#" class="float-left" >
                   <button class="btn btn-primary btn-sm" type="button">放弃修改</button>
                 </a>
                 <div class="float-right">
@@ -169,11 +169,12 @@
           data:this.form2JsonString('form1'),
           success: function () {
             alert("success");
-            window.location.assign("mystaff.html?sectorId="+that.sectorIds);
+
+            window.location.reload();
           },
           error:function () {
             alert("fail");
-            window.location.assign("#");
+            window.location.reload();
           }
         });
         console.log("form1提交");
@@ -191,9 +192,6 @@
       }
     },
     created:function(){
-      var params=location.search;
-      var arr = params.substring(1).split("&");
-      this.sectorIds = arr[0].replace("sectorId=","");
       var that=this;
       console.log("ajax beging \n")
       jQuery.ajax({

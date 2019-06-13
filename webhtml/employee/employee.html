@@ -73,7 +73,7 @@
   <div id="page-wrapper" class="gray-bg">
     <div class="row border-bottom">
       <nav class="navbar navbar-static-top white-bg" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header"> <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"> <i class="fa fa-bars"></i> </a>
+        <div class="navbar-header"> <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href=""> <i class="fa fa-bars"></i> </a>
           <form role="search" class="navbar-form-custom" method="post" action="#">
             <div class="form-group">
               <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
@@ -100,7 +100,7 @@
           <li class="J_tabCloseOther"><a>关闭其他选项卡</a> </li>
         </ul>
       </div>
-      <a href="../staff/login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a> </div>
+      <a href="../../index.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a> </div>
     <div class="row J_mainContent" id="content-main">
       <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="../common/myprofile.html" frameborder="0" data-id="../common/myprofile.html" seamless></iframe>
     </div>
@@ -135,6 +135,7 @@ var app = new Vue({
         that.sectorId=userInfo.sectorId;
         if (typeof(Storage)!=="undefined")
         {
+          console.log(data);
           localStorage.employee=data;
           localStorage.sectorId=userInfo.sectorId;
         }
