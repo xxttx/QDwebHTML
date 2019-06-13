@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webhtml/manager/mystaff.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/employee/employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/employee/employee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/changeuser.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/changesector.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/dashboard_2.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/dashboard_2.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/department.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/department.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/master/master.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/master/master.html" afterDir="false" />
-    </list>
+    <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webhtml/manager/mystaff.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+            <state relative-caret-position="90">
+              <caret line="60" column="24" lean-forward="true" selection-end-line="168" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -102,7 +94,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="20" />
     <option name="y" value="40" />
     <option name="width" value="2696" />
@@ -192,16 +184,15 @@
       <workItem from="1560336880931" duration="4142000" />
       <workItem from="1560343818821" duration="5598000" />
       <workItem from="1560353379278" duration="9306000" />
-      <workItem from="1560385895573" duration="5243000" />
+      <workItem from="1560385895573" duration="5638000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102305000" />
+    <option name="totallyTimeSpent" value="102700000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="925" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
@@ -422,8 +413,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/manager/mystaff.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+        <state relative-caret-position="90">
+          <caret line="60" column="24" lean-forward="true" selection-end-line="168" selection-end-column="7" />
         </state>
       </provider>
     </entry>
