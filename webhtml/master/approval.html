@@ -109,6 +109,40 @@
           </div>
         </div>
        
+		  
+		  
+		  <div class="col-lg-12">
+          <div class="mail-box-header">
+            <h2> 部门员工加班申请 </h2>
+            <div class="mail-tools tooltip-demo m-t-md">
+              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> 刷新 </button>
+              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="agree"  v-on:click="approvalEXApp"><i class="fa fa-exclamation"></i> 同意 </button>
+              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="disagree"  v-on:click="approvalEXApp"><i class="fa fa-trash-o" ></i> 驳回 </button>
+            </div>
+          </div>
+          <div class="mail-box">
+            <table class="table table-hover table-mail">
+              <tbody>
+                <tr class="title">
+                  <td class="check-mail"></td>
+                  <td class="mail-ontact">员工姓名</td>
+                  <td class="mail-ontact">员工编号</td>
+                  <td class="mail-ontact">开始时间</td>
+                  <td class="mail-ontact">结束时间</td>
+                </tr> 
+                <tr class="read" v-for="(leaveApp,index) in leaveApps">
+                  <td class="check-mail"><input type="checkbox" class="i-checks" :id='"drop-remove_"+index'></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.applicatdPersonName}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.applicatdPerson}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.startTime}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.endTime}}</a></td>
+                </tr>
+				  
+				  
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -126,7 +160,9 @@ $(document).ready(function(){
       selected:[],
 	  leaveApps:[],
 	  ajaxFlag:0,
-		person:[]
+		person:[],
+		staffs:[],
+		EXworks:[]
     },
     methods:{
 		///page init
@@ -170,7 +206,6 @@ $(document).ready(function(){
 					   crossDomain: true,
 						async:false,
 					   success:function(data){
-						 that.ajaxFlag = 1;
 						 that.leaveApps = JSON.parse(data);
 					   },
 					   error:function(data){
@@ -178,7 +213,7 @@ $(document).ready(function(){
 					   }
          			});
 		},
-		///管理员批准某申请
+		///管理员批准某请假申请 (可用)
 		approvalApp:function(){
 			var that=this;
 			for(var i=0;i<this.leaveApps.length;i++){
@@ -211,7 +246,7 @@ $(document).ready(function(){
 			
 			
 		},
-		///管理员拒绝某申请 
+		///管理员拒绝某请假申请 （不可用）
 		disApprovalApp:function(){
 			var that=this;
 			for(var i=0;i<this.leaveApps.length;i++){
@@ -243,16 +278,125 @@ $(document).ready(function(){
 			}
 			
 			
+		},
+		
+		///查询加班申请
+		getExworkByStaffId:function(StaffId){
+			var that=this;
+			jQuery.ajax({
+					   type:"GET",
+					   url:"http://39.105.38.34:8080/api/v1/EWs/employees/"+StaffId,
+					   contentType:"application/json",
+					   xhrFields: {
+						 withCredentials: true
+					   },
+					   crossDomain: true,
+						async:false,
+					   success:function(data){
+						 that.EXworks.push( JSON.parse(data));
+					   },
+					   error:function(data){
+						 console.log("fail");
+					   }
+         			});
+			
+		},
+		///查某部门所有员工(可用)
+        getAllStaffByLocal:function(){
+			var that = this;
+      		jQuery.ajax({
+			type:"GET",
+			url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+localStorage.sectorId,
+			contentType:"application/json",
+			xhrFields: {
+			  withCredentials: true
+			},
+			async:false,
+			crossDomain: true,
+			success:function(data){
+			  that.staffs=JSON.parse(data);
+			},
+			error:function(data){
+			  console.log("fail");
+
+			}
+		  })
+		},
+
+		///批准加班申请
+		approvalEXApp:function(EXId){
+			var that=this;
+			var jsono={};
+			jsono["ewId"]=EXId;
+			jsono["ratifyId"]=1;
+			jsono["ewState"]=1;
+			jQuery.ajax({
+			type:"POST",
+			url:"http://39.105.38.34:8080/api/v1/EWs/ratify",
+			contentType:"application/json",
+			xhrFields: {
+			  withCredentials: true
+			},
+			dataType:"json",
+			data:JSON.stringify(jsono),
+			async:false,
+			crossDomain: true,
+			success:function(data){
+			  console.log("succ")
+			},
+			error:function(data){
+			  console.log("fail");
+
+			}
+		  })
+		},
+		///不批准某条加班申请
+		disApprovalEXApp:function(EXId){
+			var that=this;
+			var jsono={};
+			jsono["ewId"]=EXId;
+			jsono["ratifyId"]=1;
+			jsono["ewState"]=2;
+			jQuery.ajax({
+			type:"POST",
+			url:"http://39.105.38.34:8080/api/v1/EWs/ratify",
+			contentType:"application/json",
+			xhrFields: {
+			  withCredentials: true
+			},
+			dataType:"json",
+			data:JSON.stringify(jsono),
+			async:false,
+			crossDomain: true,
+			success:function(data){
+			  console.log("succ")
+			},
+			error:function(data){
+			  console.log("fail");
+
+			}
+		  })
 		}
     },
     created:function(){
 		console.log("page begin ")
 		this.getLeaveAppByDepId(123);///这个地方的值是静态的
+		
 			for(var i=0;i<this.leaveApps.length;i++){
 				console.log("for"+i)
 				this.getEmployeeById(this.leaveApps[i].applicatdPerson)
 				this.leaveApps[i]["applicatdPersonName"] = this.person.name
 				}
+		
+		////以上代码没问题
+		this.getAllStaffByLocal();
+			for(var i=0;i<this.staffs.length;i++){
+				this.getExworkByStaffId(this.staffs[i].employeeId)
+			}
+		console.log("fin")
+		console.dir(this.EXworks)
+		
+		
     }
 
   })
