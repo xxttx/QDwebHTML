@@ -7,8 +7,6 @@
   <meta http-equiv="Cache-control" content="no-cache">
   <meta http-equiv="Cache" content="no-cache">
   <title>修改用户信息</title>
-
-
   <link href="../../css/bootstrap.min.css" rel="stylesheet">
   <link href="../../font-awesome/css/font-awesome.css" rel="stylesheet">
   <link href="../../css/animate.css" rel="stylesheet">
@@ -127,11 +125,11 @@
 
 
 
-                <a :href="#" class="float-left" >
+                <a href="#" class="float-left" >
                   <button class="btn btn-primary btn-sm" type="button">放弃修改</button>
                 </a>
                 <div class="float-right">
-                  <button class="btn btn-primary btn-sm" type="button" v-on:click="tosubmit()">Save changes</button>
+                  <button class="btn btn-primary btn-sm" type="button" v-on:click="tosubmit">Save changes</button>
                 </div>
               </form>
               <div class="form-group row">
@@ -204,6 +202,8 @@
         crossDomain: true,
         success:function(data){
           that.departments=JSON.parse(data);
+			console.log("dep")
+			console.dir(that.departments)
         },
         error:function(data){
           console.log("fail");
