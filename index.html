@@ -54,9 +54,8 @@ $(document).ready(function(){
 $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
 	console.log(document.cookie)
     $("#logBtn").click(function(){
-		
 		$("#myDiv").html(getjson());
-		if($('#username').val()!=''){
+		if($('#username').val()!=''  && $('#password').val()!=''){
         $.ajax({
             type:"POST",
             url:"http://39.105.38.34:8080/api/v1/login",
@@ -68,7 +67,7 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
             },
             crossDomain: true,
             success:function(data){
-				localStorage.employeeId=data.employeeId;
+				getUserInfo(data.employeeId)
 				if(data.degree=='2'){
 					//主管
 					window.location= ("webhtml/master/master.html");
@@ -94,8 +93,6 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
 		}
     });
 });
-	
-	
 	function getjson(){
 		var json = {
 			id:$("#username").val(),
@@ -103,6 +100,40 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
 		}
 		return json;
 	}
+	function getUserInfo(UID){
+		var that=this;
+        jQuery.ajax({
+        type: "GET",
+        url: "http://39.105.38.34:8080/api/v1/employees/" + UID,
+        contentType: "application/json",
+        xhrFields: {
+          withCredentials: true
+        },
+		async:false,
+        crossDomain: true,
+        success: function (data) {
+          var userArray = JSON.parse(data)
+			///[{"sectorId":127,"enrollTime":"1970-01-01","phoneNumber":1234567,"manager":true,"sex":true,"name":"张和","employeeId":5,"salary":3000,"userId":1003,"age":26}]
+          if (typeof(Storage)!=="undefined")
+          {
+            sessionStorage.userInfo=JSON.stringify(userArray[0]);
+          }
+          else
+          {
+            alert("不支持Storage,即将跳转到登录页");
+			window.location= ("../../index.html");
+          }
+        },
+        error: function (data) {
+			 alert("网络失败,即将跳转到登录页");
+			//window.location= ("../../index.html");
+        }
+      })
+		 }
+	
+	
+	
+	
 </script>
 </body>
 </html>

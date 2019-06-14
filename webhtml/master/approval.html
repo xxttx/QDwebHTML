@@ -39,43 +39,7 @@
   <div id="page-wrapper" class="gray-bg" style="margin: 0;">
     <div class="wrapper wrapper-content"  id="app2">
       <div class="row"> 
-        <!--         <div class="col-lg-3">
-                  <div class="ibox ">
-                    <div class="ibox-content mailbox-content">
-                      <div class="file-manager"> <a class="btn btn-block btn-primary compose-mail" href="../manager/mail_compose.html">Compose</a>
-                        <div class="space-25"></div>
-                        <h5>Folders</h5>
-                        <ul class="folder-list m-b-md" style="padding: 0">
-                          <li><a href="../manager/mailbox.html"> <i class="fa fa-inbox "></i> Inbox <span class="label label-warning float-right">16</span> </a></li>
-                          <li><a href="../manager/mailbox.html"> <i class="fa fa-envelope-o"></i> Send Mail</a></li>
-                          <li><a href="../manager/mailbox.html"> <i class="fa fa-certificate"></i> Important</a></li>
-                          <li><a href="../manager/mailbox.html"> <i class="fa fa-file-text-o"></i> Drafts <span class="label label-danger float-right">2</span></a></li>
-                          <li><a href="../manager/mailbox.html"> <i class="fa fa-trash-o"></i> Trash</a></li>
-                        </ul>
-                        <h5>Categories</h5>
-                        <ul class="category-list" style="padding: 0">
-                          <li><a href="#"> <i class="fa fa-circle text-navy"></i> Work </a></li>
-                          <li><a href="#"> <i class="fa fa-circle text-danger"></i> Documents</a></li>
-                          <li><a href="#"> <i class="fa fa-circle text-primary"></i> Social</a></li>
-                          <li><a href="#"> <i class="fa fa-circle text-info"></i> Advertising</a></li>
-                          <li><a href="#"> <i class="fa fa-circle text-warning"></i> Clients</a></li>
-                        </ul>
-                        <h5 class="tag-title">Labels</h5>
-                        <ul class="tag-list" style="padding: 0">
-                          <li><a href=""><i class="fa fa-tag"></i> Family</a></li>
-                          <li><a href=""><i class="fa fa-tag"></i> Work</a></li>
-                          <li><a href=""><i class="fa fa-tag"></i> Home</a></li>
-                          <li><a href=""><i class="fa fa-tag"></i> Children</a></li>
-                          <li><a href=""><i class="fa fa-tag"></i> Holidays</a></li>
-                          <li><a href=""><i class="fa fa-tag"></i> Music</a></li>
-                          <li><a href=""><i class="fa fa-tag"></i> Photography</a></li>
-                          <li><a href=""><i class="fa fa-tag"></i> Film</a></li>
-                        </ul>
-                        <div class="clearfix"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
+    
         <div class="col-lg-12">
           <div class="mail-box-header">
             <h2> 部门员工请假申请 </h2>
@@ -130,12 +94,12 @@
                   <td class="mail-ontact">开始时间</td>
                   <td class="mail-ontact">结束时间</td>
                 </tr> 
-                <tr class="read" v-for="(leaveApp,index) in leaveApps">
+                <tr class="read" v-for="(EXwork2,index) in EXworks2">
                   <td class="check-mail"><input type="checkbox" class="i-checks" :id='"drop-remove_"+index'></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.applicatdPersonName}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.applicatdPerson}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.startTime}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.endTime}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">duff</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork2.applicatedId}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork2.startTime}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork2.endTime}}</a></td>
                 </tr>
 				  
 				  
@@ -157,12 +121,14 @@ $(document).ready(function(){
   new Vue({
     el:"#app2",
     data:{
+		userInfo:[],
       selected:[],
 	  leaveApps:[],
 	  ajaxFlag:0,
-		person:[],
-		staffs:[],
-		EXworks:[]
+	  person:[],
+	  staffs:[],
+	  EXworks:[],
+	  EXworks2:[]
     },
     methods:{
 		///page init
@@ -295,6 +261,7 @@ $(document).ready(function(){
 					   success:function(data){
 						 that.EXworks.push( JSON.parse(data));
 					   },
+
 					   error:function(data){
 						 console.log("fail");
 					   }
@@ -302,11 +269,11 @@ $(document).ready(function(){
 			
 		},
 		///查某部门所有员工(可用)
-        getAllStaffByLocal:function(){
+        getAllStaffByDepartId:function(DepartId){
 			var that = this;
       		jQuery.ajax({
 			type:"GET",
-			url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+localStorage.sectorId,
+			url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+DepartId,
 			contentType:"application/json",
 			xhrFields: {
 			  withCredentials: true
@@ -379,23 +346,20 @@ $(document).ready(function(){
 		}
     },
     created:function(){
-		console.log("page begin ")
-		this.getLeaveAppByDepId(123);///这个地方的值是静态的
-		
-			for(var i=0;i<this.leaveApps.length;i++){
-				console.log("for"+i)
+		this.userInfo = JSON.parse(sessionStorage.userInfo)//获取管理员信息
+		this.getLeaveAppByDepId(this.userInfo.sectorId);///获取待批准ID
+		for(var i=0;i<this.leaveApps.length;i++){        ////获取名字
 				this.getEmployeeById(this.leaveApps[i].applicatdPerson)
-				this.leaveApps[i]["applicatdPersonName"] = this.person.name
-				}
-		
+				this.leaveApps[i]["applicatdPersonName"] = this.person.name}
 		////以上代码没问题
-		this.getAllStaffByLocal();
+		this.getAllStaffByDepartId(this.userInfo.sectorId);
 			for(var i=0;i<this.staffs.length;i++){
 				this.getExworkByStaffId(this.staffs[i].employeeId)
 			}
-		console.log("fin")
-		console.dir(this.EXworks)
-		
+//		this.getExworkByStaffId(12)
+//		console.log("fin")
+//		this.EXworks2=this.EXworks[0]
+//      console.dir(this.EXworks2)
 		
     }
 

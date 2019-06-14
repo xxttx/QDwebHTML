@@ -223,7 +223,7 @@ var myvue = new Vue({
 				jsono["startTime"]=that.value1[0];
 				jsono["endTime"]=that.value1[1];
 				jsono["arrangePerson"]="1";
-				jsono["employeeId"]= $("#staffSelc option:selected").attr("id");/////这个是错的
+				jsono["employeeId"]= $("#staffSelc option:selected").attr("id");///
 				jQuery.ajax({
 				type:"POST",
 				url:"http://39.105.38.34:8080/api/v1/workA/employees/2",
