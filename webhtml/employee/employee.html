@@ -114,40 +114,14 @@
 var app = new Vue({
   el: '#app1',
   data: {
-	UID:4,
-    sectorId:123,
-    userInfo:{}
+	  userInfo:[]
   },
   created:function () {
-    this.UID=localStorage.getItem('employeeId');
-    var that=this;
-    jQuery.ajax({
-      type: "GET",
-      url: "http://39.105.38.34:8080/api/v1/employees/" + that.UID,
-      contentType: "application/json",
-      xhrFields: {
-        withCredentials: true
-      },
-      crossDomain: true,
-      success: function (data) {
-        var userArray = JSON.parse(data)
-        that.userInfo = userArray[0];
-        that.sectorId=userInfo.sectorId;
-        if (typeof(Storage)!=="undefined")
-        {
-          console.log(data);
-          localStorage.employee=data;
-          localStorage.sectorId=userInfo.sectorId;
-        }
-        else
-        {
-          console.log("不支持Storage");
-        }
-      },
-      error: function (data) {
-        console.log("fail");
-      }
-    })
+	  	if(sessionStorage.getItem('userInfo')== null)
+			alert("请先登录啊")
+		else {
+			this.userInfo = JSON.parse(sessionStorage.userInfo)
+		}	
   }
 })
 </script>

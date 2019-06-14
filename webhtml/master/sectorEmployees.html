@@ -88,14 +88,14 @@
         data: {
             message: 'Hello Vue!',
             departments:[],
-            departmentsRowNum:0
+            departmentsRowNum:0,
+			userInfo:[]
         },
-        method:{
-        },
-        created:function(){
-            console.log("ajax beging \n")
-            var that = this;
-            jQuery.ajax({
+        methods:{
+			///获取所有部门
+			getAllSectors:function(){
+				 var that = this;
+            	 jQuery.ajax({
                 type:"GET",
                 url:"http://39.105.38.34:8080/api/v1/sectors",
                 contentType:"application/json",
@@ -113,6 +113,12 @@
 
                 }
             })
+			}
+			
+        },
+        created:function(){
+            this.userInfo = JSON.parse(sessionStorage.userInfo)
+            this.getAllSectors();
         }
     })
 </script>

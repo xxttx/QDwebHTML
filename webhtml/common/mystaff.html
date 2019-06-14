@@ -114,9 +114,9 @@
   new Vue({
     el: '#wrapper',
     data: {
-      name: 'Hello Vue.js!',
       staffs:[],
-      sectorId:123
+      sectorId:0,
+	  userInfo:[]
     },
     methods:{
       deleteEmployee:function(id){
@@ -137,15 +137,12 @@
             window.location.assign("mystaff.html");
           }
         });
-      }
-    },
-    created:function(){
-      
-      console.log("ajax beging \n")
-      var that = this;
+      },
+	  getMystaff:function(){
+		 var that = this;
       jQuery.ajax({
         type:"GET",
-        url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+localStorage.sectorId,
+        url:"http://39.105.38.34:8080/api/v1/employees/sectors/"+that.sectorId,
         contentType:"application/json",
         xhrFields: {
           withCredentials: true
@@ -159,7 +156,19 @@
 
         }
       })
-    }
+		
+	}
+		
+    },
+    created:function(){
+      
+      if(sessionStorage.getItem('userInfo')== null)
+					alert("请先登录啊")
+	  else {
+				this.userInfo = JSON.parse(sessionStorage.userInfo);
+				this.sectorId = this. userInfo.sectorId;}
+				this.getMystaff()
+        }
   })
 
 </script>

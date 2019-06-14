@@ -172,10 +172,12 @@ new Vue({
 	  userInfo:{}
   },
 	created:function(){
-		var userArray = JSON.parse(localStorage.getItem('employee'));
-        this.userInfo = userArray[0];
-		console.log(this.userInfo)
-	}
+		if(sessionStorage.getItem('userInfo')== null)
+					alert("请先登录啊")
+			else {
+			this.userInfo = JSON.parse (sessionStorage.userInfo)
+				}
+        }
 })
 	
 </script>

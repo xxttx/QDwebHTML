@@ -92,20 +92,10 @@ var myvue = new Vue({
       el: '#app1',
 	data: {
 		events: [
-                {
-                    title: 'Long Event',
-                    start: new Date(2019, 6, 2),
-                    end: new Date(2019, 6, 8)
-                },
-                {
-                    id: 999,
-                    title: 'Repeating Event',
-                    start: new Date(2019, 6, 12, 16, 0),
-                    allDay: false
-                }
             ],
 		workshifts:[],
-		workshift:[]
+		workshift:[],
+		userInfo:[]
          },
 	methods:{
 			///从数据库拉取某员工的工作班次(可用)
@@ -178,7 +168,8 @@ var myvue = new Vue({
 		},
 	created:function(){
 		var that =this
-		this.pullWorkShiftByEmpId(2);
+		this.userInfo = JSON.parse(sessionStorage.userInfo)
+		this.pullWorkShiftByEmpId(this.userInfo.employeeId);
 		this.calendarInit();
 	}
     })

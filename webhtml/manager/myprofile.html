@@ -53,7 +53,7 @@
                         <div class="widget-head-color-box navy-bg p-lg text-center">
                             <div class="m-b-md">
                             <h2 class="font-bold no-margins">
-                                王鑫雨
+                                {{userInfo.name}}
                             </h2>
                              
                             </div>
@@ -79,10 +79,10 @@
 				
               <li> <span class="fa fa-phone m-r-xs"></span>
                 <label>年龄:</label>
-                21</li>
+                {{userInfo.age}}</li>
 				<li> <span class="fa fa-envelope m-r-xs"></span>
                 <label>工资:</label>
-                999999999 </li>
+                {{userInfo.salary}} </li>
               <li> <span class="fa fa-home m-r-xs"></span>
                 <label>性别:</label>
                 男 </li>
@@ -94,7 +94,7 @@
                 北京科技大学 </li>
               <li> <span class="fa fa-phone m-r-xs"></span>
                 <label>Contact:</label>
-                12491247892174</li>
+                {{userInfo.phoneNumber}}</li>
             </ul>
           </div>
         </div>
@@ -135,31 +135,10 @@
 new Vue({
   el: '#app1',
   data: {
-	  userInfo:{},
-	  UID:2
+	  userInfo:{}
   },
 	created:function(){
-		var params=location.search;
-		var arr = params.substring(1).split("&");
-		this.UID = arr[0].replace("UID=","");
-		console.log("ajax beging \n")
-		var that = this;
-		jQuery.ajax({
-			type:"GET",
-            url:"http://39.105.38.34:8080/api/v1/employees/"+that.UID,
-			contentType:"application/json",
-			xhrFields: {
-                withCredentials: true
-            },
-            crossDomain: true,
-			success:function(data){
-				var userArray=JSON.parse(data)
-				that.userInfo=userArray[0];
-            },
-			error:function(data){
-				console.log("fail");
-			}
-		})
+		this.userInfo = sessionStorage.userInfo;
 	}
 })
 	

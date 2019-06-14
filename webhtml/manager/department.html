@@ -89,7 +89,8 @@ var app = new Vue({
   el: '#app1',
   data: {
 	departments:[],
-	departmentsRowNum:0
+	departmentsRowNum:0,
+	 userInfo:[]
   },
 methods:{
 	///拉取所有部门(可用)
@@ -115,10 +116,9 @@ methods:{
 		});}
 },
 created:function(){
-		console.log("ajax beging \n")
+		this.userInfo = sessionStorage.userInfo;
 		var that = this;
 		this.pullAllDepartments();
-
 	}
 })
 </script>

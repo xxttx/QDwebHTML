@@ -28,11 +28,11 @@
           <div class="logo-element"> IN+ </div>
         </li>
         <li class="active"> <a class="J_menuItem" href="sectorT.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">部门今日</span></a> </li>
-        <li> <a class="J_menuItem"  :href="'../common/myprofile.html?UID='+UID" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的账户信息</span> </a> </li>
-        <li> <a class="J_menuItem" href=".html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的工作班次</span> </a> </li>
-        <li> <a class="J_menuItem" :href="'../common/mystaff.html?departmentId='+sectorId" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">部门员工概览</span> </a> </li>
+        <li> <a class="J_menuItem"  href="../common/myprofile.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的账户信息</span> </a> </li>
+        <li> <a class="J_menuItem" href="../common/schedule.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">我的工作班次</span> </a> </li>
+        <li> <a class="J_menuItem" href="../common/mystaff.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">部门员工概览</span> </a> </li>
         <!--        "'../common/mystaff.html?departmentId='+department.sectorId"-->
-        <li> <a class="J_menuItem" href="../common/schedule.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">安排工作</span> </a> </li>
+        <li> <a class="J_menuItem" href="workshift.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">安排工作</span> </a> </li>
 
         <li> <a class="J_menuItem" href="approval.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">审批</span> </a> </li>
         <li> <a class="J_menuItem" href="../common/examine.html" target="iframe0"> <i class="fa fa-th-large"></i> <span class="nav-label">考勤统计</span> </a> </li>
@@ -123,48 +123,11 @@
 	
 	
 <script type="text/javascript">
-
   new Vue({
     data: {
-      UID:0,
-      userInfo:{},
-      sectorId:123
+		
     },
     el: '#wrapper',
-	  
-	 methods:{
-		 ///获取用户信息并以字符串保存在sessionStorage
-		 getUserInfo:function(UID){
-		var that=this;
-        jQuery.ajax({
-        type: "GET",
-        url: "http://39.105.38.34:8080/api/v1/employees/" + UID,
-        contentType: "application/json",
-        xhrFields: {
-          withCredentials: true
-        },
-        crossDomain: true,
-        success: function (data) {
-          var userArray = JSON.parse(data)
-			///[{"sectorId":127,"enrollTime":"1970-01-01","phoneNumber":1234567,"manager":true,"sex":true,"name":"张和","employeeId":5,"salary":3000,"userId":1003,"age":26}]
-          if (typeof(Storage)!=="undefined")
-          {
-            sessionStorage.userInfo=JSON.stringify(userArray[0]);
-          }
-          else
-          {
-            alert("不支持Storage,即将跳转到登录页");
-			window.location= ("../../index.html");
-          }
-        },
-        error: function (data) {
-			 alert("网络失败,即将跳转到登录页");
-			//window.location= ("../../index.html");
-        }
-      })
-		 }
-		 
-	 },
     created: function () { 
 		if(sessionStorage.getItem('userInfo')== null)
 			alert("请先登录啊")

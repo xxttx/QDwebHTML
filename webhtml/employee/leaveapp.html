@@ -396,7 +396,9 @@
             }
           }]
         },
-        value1: ''
+        value1: '',
+		  userInfo:[],
+		  applicatdPerson:0
       },
 	methods:{
 		///新建一个请假申请
@@ -404,7 +406,7 @@
 			var jsono={};		
 			jsono["startTime"]=this.value1[0];
 			jsono["endTime"]=this.value1[1];
-			jsono["applicatdPerson"]="1";////这个值未来要改
+			jsono["applicatdPerson"]=this.applicatdPerson;////这个值未来要改
 			jsono["leaveReason"]="jQuery('#summernoteContent').html()";
 			jsono["leaveType"]=(jQuery('#leaveTypeSelc').val()=="病假"?1:2);
 			jQuery.ajax({
@@ -419,19 +421,23 @@
 			data:JSON.stringify(jsono),
             success:function(data){
                 console.log("success");
+				alert("申请成功")
 			},
             error:function(data){
                 console.log("fail");
+				alert("网络原因，申请失败")
             }
         });
 		}
 	},
 		created:function(){
-			
-			
-			
+				if(sessionStorage.getItem('userInfo')== null)
+					alert("请先登录啊")
+				else {
+					this.userInfo = JSON.parse(sessionStorage.userInfo);
+					this.applicatdPerson = this.userInfo.employeeId
+				}	
 		}
-
     })
   </script>
 </html>

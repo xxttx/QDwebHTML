@@ -271,7 +271,9 @@
             }
           }]
         },
-        value1: ''
+      value1: '',
+	  applicatedId:0,
+	  userInfo:[]
       },
     methods:{
         ///新建一个加班申请
@@ -279,7 +281,7 @@
             var jsono={};       
             jsono["startTime"]=this.value1[0];
             jsono["endTime"]=this.value1[1];
-            jsono["applicatedId"]="1";////这个值未来要改
+            jsono["applicatedId"]=this.applicatedId;
             jsono["ewReason"]="我就是想加班";
             jQuery.ajax({
             type:"POST",
@@ -293,15 +295,22 @@
             data:JSON.stringify(jsono),
             success:function(data){
                 console.log("success");
+				alert("申请成功")
             },
             error:function(data){
                 console.log("fail");
+				alert("网络原因，申请失败")
             }
         });
         }
     },
         created:function(){
-
+			if(sessionStorage.getItem('userInfo')== null)
+					alert("请先登录啊")
+			else {
+			this.userInfo = JSON.parse (sessionStorage.userInfo)
+			 this.applicatedId = this.userInfo.employeeId;
+				}
         }
 
     })

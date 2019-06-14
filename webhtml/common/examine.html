@@ -113,7 +113,8 @@
     data:{
 	  attendances:[],
 		events:[],
-		event:[]
+		event:[],
+		userInfo:[]
     },
     methods:{
 		///日历初始化
@@ -172,7 +173,7 @@
          			});
 		},
 		///更新events数组
-		calendarUiUpdate:function(){
+		addEvent:function(){
 				for(var i=0;i<this.attendances.length;i++){
 					var event={allDay: false}
 					event["title"]=this.attendances[i].PersonName;
@@ -192,9 +193,10 @@
 		
     },
     created:function(){
-		this.getAttByDepartId(127);
+		this.userInfo = JSON.parse(sessionStorage.userInfo)
+		this.getAttByDepartId(this.userInfo.sectorId);
 		this.addNameToAttendancesArr();
-		this.calendarUiUpdate();
+		this.addEvent();
 		this.calendarInit();
     }
 	  	

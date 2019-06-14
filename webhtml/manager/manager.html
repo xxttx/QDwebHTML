@@ -93,7 +93,7 @@
 <script src="../../js/plugins/flot/jquery.flot.pie.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.symbol.js"></script> 
 <script src="../../js/plugins/flot/jquery.flot.time.js"></script> 
-
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <!-- Peity --> 
 <script src="../../js/plugins/peity/jquery.peity.min.js"></script> 
 <script src="../../js/demo/peity-demo.js"></script> 
@@ -113,5 +113,20 @@
 
 <!-- Sparkline demo data  --> 
 <script src="../../js/demo/sparkline-demo.js"></script> 
+<script type="text/javascript">
+  new Vue({
+    data: {
+
+    },
+    el: '#wrapper',
+    created: function () { 
+		if(sessionStorage.getItem('userInfo')== null)
+			alert("请先登录啊")
+		else {
+			
+		}	
+    },
+  });
+</script>	
 </body>
 </html>

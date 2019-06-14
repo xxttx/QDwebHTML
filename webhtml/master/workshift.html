@@ -211,7 +211,8 @@ var myvue = new Vue({
 		workshifts:[],
 		workshift:[],
 		staffs:[],
-		options:[]
+		options:[],
+		userInfo:[]
 	},
 		methods:{
 				///新增一条工作班次(可用)
@@ -246,7 +247,7 @@ var myvue = new Vue({
 
 				},
 				///从数据库拉取某员工的工作班次(可用)
-				calendarUiUpdate:function(employeesId){
+				addEvent:function(employeesId){
 					var that = this;
 						jQuery.ajax({
 				type:"GET",
@@ -350,11 +351,10 @@ var myvue = new Vue({
 			},
 	created:function(){
 		var that =this
-		console.log("refresh")
-		this.getAllStaffByDepartId(localStorage.sectorId)
-		console.dir(this.staffs)
+		this.userInfo = JSON.parse(sessionStorage.userInfo)
+		this.getAllStaffByDepartId(this.userInfo.sectorId)
 		for(var i=0;i<this.staffs.length;i++){
-			this.calendarUiUpdate(this.staffs[i].employeeId);
+			this.addEvent(this.staffs[i].employeeId);
 		}
 	}
     })
