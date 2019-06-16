@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/common/myprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/common/myprofile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/employee/employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/employee/employee.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/adduser.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/adduser.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webhtml/manager/mystaff.html" beforeDir="false" afterPath="$PROJECT_DIR$/webhtml/manager/mystaff.html" afterDir="false" />
-    </list>
+    <list default="true" id="5afa31fe-cf38-462d-b96a-0d56212d7a01" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +19,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/webhtml/manager/adduser.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="169" column="32" lean-forward="true" selection-end-line="218" />
+            <state relative-caret-position="330">
+              <caret line="166" column="27" selection-start-line="166" selection-start-column="27" selection-end-line="166" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -115,8 +108,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -124,21 +115,12 @@
               <item name="QDwebHTML" type="b2602c69:ProjectViewProjectNode" />
               <item name="QDwebHTML" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="QDwebHTML" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QDwebHTML" type="462c0819:PsiDirectoryNode" />
-              <item name="webhtml" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="QDwebHTML" type="b2602c69:ProjectViewProjectNode" />
-              <item name="QDwebHTML" type="462c0819:PsiDirectoryNode" />
-              <item name="webhtml" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -189,11 +171,12 @@
       <workItem from="1560353379278" duration="9306000" />
       <workItem from="1560385895573" duration="5638000" />
       <workItem from="1560429353465" duration="4566000" />
+      <workItem from="1560499668997" duration="288000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="107266000" />
+    <option name="totallyTimeSpent" value="107554000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="925" extended-state="6" />
@@ -202,7 +185,7 @@
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.19682059" />
+      <window_info active="true" content_ui="combo" id="Project" order="4" visible="true" weight="0.19984859" />
       <window_info id="Structure" order="5" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="6" weight="0.329296" />
       <window_info anchor="bottom" id="Version Control" order="0" />
@@ -346,17 +329,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webhtml/manager/changeuser.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4278">
-          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
-          <folding>
-            <element signature="e#8933#9853#0" />
-            <element signature="e#9900#10287#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/webhtml/manager/changeuser.html" />
     <entry file="file://$PROJECT_DIR$/webhtml/manager/mystaff.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
@@ -429,8 +402,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/webhtml/manager/adduser.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="169" column="32" lean-forward="true" selection-end-line="218" />
+        <state relative-caret-position="330">
+          <caret line="166" column="27" selection-start-line="166" selection-start-column="27" selection-end-line="166" selection-end-column="27" />
         </state>
       </provider>
     </entry>

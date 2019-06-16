@@ -25,7 +25,7 @@
     </p>
     <p>快快登录，见识他的实力</p>
 	  <div id="myDiv" style="color: red"> </div>
-    <form class="m-t" role="form" action="http://39.105.38.34:8080/login">
+    <form class="m-t" role="form" action="http://39.105.38.34:8080/login/login">
       <div class="form-group">
         <input id="username" class="form-control" placeholder="Username" required="">
       </div>
@@ -58,7 +58,7 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
 		if($('#username').val()!=''  && $('#password').val()!=''){
         $.ajax({
             type:"POST",
-            url:"http://39.105.38.34:8080/api/v1/login",
+            url:"http://39.105.38.34:8080/api/v1/login/login",
 			contentType:"application/json",
 			data:JSON.stringify(getjson()),
             dataType:'json',
@@ -76,15 +76,17 @@ $.cookie('the_cookie1231', 'the_value131231', { expires: 10, path: '/js' });
 					//员工
 					window.location=("webhtml/employee/employee.html");
 				}
-				else{
+				else if(data.degree=='55'){
 					//经理
 					window.location=("webhtml/manager/manager.html");
 				}
+				else{
+					
+					alert("请检查用户密码！！！");
+				}
 				
             },
-			error:function(){
-				getUserInfo(1007)
-				window.location=("webhtml/manager/manager.html");
+			error:function(){	
 				alert("请检查用户密码！！！");
 			}
            
