@@ -39,8 +39,7 @@
   <div id="page-wrapper" class="gray-bg" style="margin: 0;">
     <div class="wrapper wrapper-content"  id="app2">
       <div class="row"> 
-    
-        <div class="col-lg-12">
+          <div class="col-lg-12">
           <div class="mail-box-header">
             <h2> 部门员工请假申请 </h2>
             <div class="mail-tools tooltip-demo m-t-md">
@@ -59,22 +58,22 @@
                   <td class="mail-ontact">开始时间</td>
                   <td class="mail-ontact">结束时间</td>
                 </tr> 
+				  
+				  
                 <tr class="read" v-for="(leaveApp,index) in leaveApps">
                   <td class="check-mail"><input type="checkbox" class="i-checks" :id='"drop-remove_"+index'></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.applicatdPersonName}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.applicatdPerson}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.startTime}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{leaveApp.endTime}}</a></td>
+                  <td class="mail-ontact">{{leaveApp.applicatdPersonName}}</td>
+                  <td class="mail-ontact">{{leaveApp.applicatdPerson}}</td>
+                  <td class="mail-ontact">{{leaveApp.startTime}}</td>
+                  <td class="mail-ontact">{{leaveApp.endTime}}</td>
                 </tr>
-				  
-				  
               </tbody>
             </table>
+			  <div v-if="leaveApps.length==0" align="center" style="margin: 20px 0px">
+				  	没有任何记录
+				  </div>
           </div>
         </div>
-       
-		  
-		  
 		  <div class="col-lg-12">
           <div class="mail-box-header">
             <h2> 部门员工加班申请 </h2>
@@ -94,19 +93,72 @@
                   <td class="mail-ontact">开始时间</td>
                   <td class="mail-ontact">结束时间</td>
                 </tr> 
-                <tr class="read" v-for="(EXwork2,index) in EXworks2">
-                  <td class="check-mail"><input type="checkbox" class="i-checks" :id='"drop-remove_"+index'></td>
+
+                <tr class="read" v-for="(EXwork,index) in EXworks">
+                  <td class="check-mail"><input type="checkbox" class="i-checks" :id='"drop-remove2_"+index'></td>
                   <td class="mail-ontact"><a href="../manager/mail_detail.html">duff</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork2.applicatedId}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork2.startTime}}</a></td>
-                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork2.endTime}}</a></td>
-                </tr>
-				  
-				  
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork.applicatedId}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork.startTime}}</a></td>
+                  <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork.endTime}}</a></td>
+                </tr> 
               </tbody>
             </table>
+			  		<div v-if="EXworks.length==0" align="center" style="margin: 20px 0px"> 
+				  	没有任何记录
+				  </div>
           </div>
         </div>
+
+            <div class="col-lg-12">
+              <div class="ibox ">
+                <div class="ibox-title">
+                  <h5>加班申请历史记录 <small> 在此处查看加班申请记录，包括待批、同意、驳回…… </small></h5>
+                  <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
+                    <ul class="dropdown-menu dropdown-user">
+                      <li><a href="#" class="dropdown-item">Config option 1</a> </li>
+                      <li><a href="#" class="dropdown-item">Config option 2</a> </li>
+                    </ul>
+                    <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
+                </div>
+                <div class="ibox-content">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                      <thead>
+                        <tr>
+                          <th>编号</th>
+                          <th>申请人名字</th>
+                          <th>申请人工号)</th>
+                          <th>开始时间</th>
+                          <th>结束时间</th>
+							<th>审批人工号</th>
+							<th>申请状态</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+						   
+                        <tr class="gradeX" v-for="(EXworkHistory,index) in EXworksHistory">
+                          <td>{{index}}</td>
+                          <td>{{EXworkHistory.name}}</td>
+                          <td>{{EXworkHistory.applicatedId}}</td>
+                          <td class="center">{{EXworkHistory.startTime}}</td>
+                          <td class="center">{{EXworkHistory.endTime}}</td>
+							<td class="center">{{EXworkHistory.ratifyId}}</td>
+							<td class="center"  v-if="EXworkHistory.ewState==1">同意</td>
+							<td class="center"  v-if="EXworkHistory.ewState==0">待批</td>
+							<td class="center"  v-if="EXworkHistory.ewState==2">驳回</td>
+                        </tr>
+                      </tbody>
+                    
+                    </table>
+					  <div v-if="EXworksHistory.length==0" align="center" style="margin: 20px 0px">
+				  	没有任何记录
+				  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
       </div>
     </div>
   </div>
@@ -128,7 +180,8 @@ $(document).ready(function(){
 	  person:[],
 	  staffs:[],
 	  EXworks:[],
-	  EXworks2:[]
+	  EXworksArr:[],
+	  EXworksHistory:[]
     },
     methods:{
 		///page init
@@ -204,9 +257,11 @@ $(document).ready(function(){
 					   crossDomain: true,
 						async:false,
 					   success:function(data){
+						   alert("操作成功")
 						window.location.reload()
 					   },
 					   error:function(data){
+						   alert("操作失败")
 						 console.log("fail");
 					   }
          			});
@@ -249,7 +304,7 @@ $(document).ready(function(){
 			
 		},
 		
-		///查询加班申请
+		///通过员工ID查询加班申请
 		getExworkByStaffId:function(StaffId){
 			var that=this;
 			jQuery.ajax({
@@ -263,7 +318,33 @@ $(document).ready(function(){
 						async:false,
 					   success:function(data){
 						   
-						 that.EXworks.push( JSON.parse(data));
+						 that.EXworksArr.push( JSON.parse(data));
+						  for(var i = 0; i< that.EXworksArr[0].length;i++){
+							  that.EXworksHistory.push(that.EXworksArr[0][i]);
+						  }
+
+					   },
+
+					   error:function(data){
+						 console.log("fail");
+					   }
+         			});
+			
+		},
+		///通过部门ID查询待审批加班申请
+		getExworkByDepartId:function(sectorId){
+			var that=this;
+			jQuery.ajax({
+					   type:"GET",
+					   url:"http://39.105.38.34:8080/api/v1/EWs/uncheck/sectors/"+sectorId,
+					   contentType:"application/json",
+					   xhrFields: {
+						 withCredentials: true
+					   },
+					   crossDomain: true,
+						async:false,
+					   success:function(data){
+						 that.EXworks=JSON.parse(data);
 					   },
 
 					   error:function(data){
@@ -298,28 +379,38 @@ $(document).ready(function(){
 		approvalEXApp:function(EXId){
 			var that=this;
 			var jsono={};
-			jsono["ewId"]=EXId;
-			jsono["ratifyId"]=1;
-			jsono["ewState"]=1;
-			jQuery.ajax({
-			type:"POST",
-			url:"http://39.105.38.34:8080/api/v1/EWs/ratify",
-			contentType:"application/json",
-			xhrFields: {
-			  withCredentials: true
-			},
-			dataType:"json",
-			data:JSON.stringify(jsono),
-			async:false,
-			crossDomain: true,
-			success:function(data){
-			  console.log("succ")
-			},
-			error:function(data){
-			  console.log("fail");
-
+			for(var i=0;i<this.EXworks.length;i++){
+				if ($('#drop-remove2_'+i).is(':checked')){
+					jsono["ewId"]=this.EXworks[i].ewId;
+					jsono["ratifyId"]=1;
+					jsono["ewState"]=1;
+					jQuery.ajax({
+					type:"POST",
+					url:"http://39.105.38.34:8080/api/v1/EWs/ratify",
+					contentType:"application/json",
+					xhrFields: {
+					  withCredentials: true
+					},
+					dataType:"json",
+					data:JSON.stringify(jsono),
+					async:false,
+					crossDomain: true,
+					success:function(data){
+					  alert("操作成功")
+					  window.location.reload()
+					},
+					error:function(data){
+						alert("操作失败")
+						 console.log("fail");
+					}
+				  })
+					
+					
+				}
 			}
-		  })
+			
+			
+			
 		},
 		///不批准某条加班申请
 		disApprovalEXApp:function(EXId){
@@ -358,16 +449,21 @@ $(document).ready(function(){
 		
 		////以上代码没问题
 		this.getAllStaffByDepartId(this.userInfo.sectorId);
-		for(var i=0;i<this.staffs.length;i++){
-				this.getExworkByStaffId(this.staffs[i].employeeId)
-			}
+		this.getExworkByDepartId(this.userInfo.sectorId)
+		
+		
+		//////加班申请历史记录
 		for(var i =0 ;i<this.staffs.length;i++){
-			if(this.staffs[i].employeeId ! = this.userInfo.employeeId){
+			if(this.staffs[i].employeeId != this.userInfo.employeeId){
 			this.getExworkByStaffId(this.staffs[i].employeeId)}
 		}
-		
-
-//		this.EXworks2=this.EXworks[0]
+		///把名字添加到加班申请历史记录数组中
+		for(var i=0;i<this.EXworksHistory.length;i++){        ////获取名字
+				this.getEmployeeById(this.EXworksHistory[i].applicatedId)
+				this.EXworksHistory[i]["name"] = this.person.name
+		}
+						   console.dir(" that.EXworks.push")
+						   console.dir(this.EXworksHistory)
 		
     }
 
