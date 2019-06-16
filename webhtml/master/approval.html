@@ -121,7 +121,7 @@ $(document).ready(function(){
   new Vue({
     el:"#app2",
     data:{
-		userInfo:[],
+	  userInfo:[],
       selected:[],
 	  leaveApps:[],
 	  ajaxFlag:0,
@@ -159,7 +159,7 @@ $(document).ready(function(){
 					   }
          			});
 		},
-		///获取某部门所有待批准的请假申请(接口地址待修改)
+		///获取某部门所有待批准的请假申请
 		getLeaveAppByDepId:function(departmentId){
 			var that=this;
 			jQuery.ajax({
@@ -172,7 +172,10 @@ $(document).ready(function(){
 					   crossDomain: true,
 						async:false,
 					   success:function(data){
-						 that.leaveApps = JSON.parse(data);
+						   if(JSON.parse(data).state!=0)
+						 {that.leaveApps = JSON.parse(data);}
+						  console.dir("that.leaveApps")
+						    console.dir(that.leaveApps)
 					   },
 					   error:function(data){
 						 console.log("fail");
@@ -259,6 +262,7 @@ $(document).ready(function(){
 					   crossDomain: true,
 						async:false,
 					   success:function(data){
+						   
 						 that.EXworks.push( JSON.parse(data));
 					   },
 
@@ -351,15 +355,19 @@ $(document).ready(function(){
 		for(var i=0;i<this.leaveApps.length;i++){        ////获取名字
 				this.getEmployeeById(this.leaveApps[i].applicatdPerson)
 				this.leaveApps[i]["applicatdPersonName"] = this.person.name}
+		
 		////以上代码没问题
 		this.getAllStaffByDepartId(this.userInfo.sectorId);
-			for(var i=0;i<this.staffs.length;i++){
+		for(var i=0;i<this.staffs.length;i++){
 				this.getExworkByStaffId(this.staffs[i].employeeId)
 			}
-//		this.getExworkByStaffId(12)
-//		console.log("fin")
+		for(var i =0 ;i<this.staffs.length;i++){
+			if(this.staffs[i].employeeId ! = this.userInfo.employeeId){
+			this.getExworkByStaffId(this.staffs[i].employeeId)}
+		}
+		
+
 //		this.EXworks2=this.EXworks[0]
-//      console.dir(this.EXworks2)
 		
     }
 
