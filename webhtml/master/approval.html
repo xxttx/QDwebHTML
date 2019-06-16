@@ -45,7 +45,7 @@
             <div class="mail-tools tooltip-demo m-t-md">
               <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> 刷新 </button>
               <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="agree"  v-on:click="approvalApp"><i class="fa fa-exclamation"></i> 同意 </button>
-              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="disagree"  v-on:click="approvalApp"><i class="fa fa-trash-o" ></i> 驳回 </button>
+              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="disagree"  v-on:click="disApprovalApp"><i class="fa fa-trash-o" ></i> 驳回 </button>
             </div>
           </div>
           <div class="mail-box">
@@ -80,7 +80,7 @@
             <div class="mail-tools tooltip-demo m-t-md">
               <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Refresh inbox"><i class="fa fa-refresh"></i> 刷新 </button>
               <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="agree"  v-on:click="approvalEXApp"><i class="fa fa-exclamation"></i> 同意 </button>
-              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="disagree"  v-on:click="approvalEXApp"><i class="fa fa-trash-o" ></i> 驳回 </button>
+              <button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="disagree"  v-on:click="disApprovalEXApp"><i class="fa fa-trash-o" ></i> 驳回 </button>
             </div>
           </div>
           <div class="mail-box">
@@ -94,7 +94,7 @@
                   <td class="mail-ontact">结束时间</td>
                 </tr> 
 
-                <tr class="read" v-for="(EXwork,index) in EXworks">
+                <tr class="read" v-for="(EXwork,index) in EXworks"  v-if="EXwork.ewState==0">
                   <td class="check-mail"><input type="checkbox" class="i-checks" :id='"drop-remove2_"+index'></td>
                   <td class="mail-ontact"><a href="../manager/mail_detail.html">duff</a></td>
                   <td class="mail-ontact"><a href="../manager/mail_detail.html">{{EXwork.applicatedId}}</a></td>
@@ -243,7 +243,7 @@ $(document).ready(function(){
 					//console.log(i+" is cheaked")
 					var jsono={};
 					jsono["leaveId"]=this.leaveApps[i].leaveId;
-					jsono["ratifiedPerson"]=localStorage.getItem("employeeId");
+					jsono["ratifiedPerson"]=that.userInfo.employeeId;
 					jsono["state"]="1";
 					jQuery.ajax({
 					   type:"POST",
@@ -278,7 +278,7 @@ $(document).ready(function(){
 					//console.log(i+" is cheaked")
 					var jsono={};
 					jsono["leaveId"]=this.leaveApps[i].leaveId;
-					jsono["ratifiedPerson"]=localStorage.getItem("employeeId");
+					jsono["ratifiedPerson"]=that.userInfo.employeeId;
 					jsono["state"]="0";
 					jQuery.ajax({
 					   type:"POST",
@@ -404,42 +404,43 @@ $(document).ready(function(){
 						 console.log("fail");
 					}
 				  })
-					
-					
 				}
 			}
-			
-			
-			
 		},
 		///不批准某条加班申请
 		disApprovalEXApp:function(EXId){
 			var that=this;
 			var jsono={};
-			jsono["ewId"]=EXId;
-			jsono["ratifyId"]=1;
-			jsono["ewState"]=2;
-			jQuery.ajax({
-			type:"POST",
-			url:"http://39.105.38.34:8080/api/v1/EWs/ratify",
-			contentType:"application/json",
-			xhrFields: {
-			  withCredentials: true
-			},
-			dataType:"json",
-			data:JSON.stringify(jsono),
-			async:false,
-			crossDomain: true,
-			success:function(data){
-			  console.log("succ")
-			},
-			error:function(data){
-			  console.log("fail");
-
+			for(var i=0;i<this.EXworks.length;i++){
+				if ($('#drop-remove2_'+i).is(':checked')){
+					jsono["ewId"]=this.EXworks[i].ewId;
+					jsono["ratifyId"]=1;
+					jsono["ewState"]=2;
+					jQuery.ajax({
+					type:"POST",
+					url:"http://39.105.38.34:8080/api/v1/EWs/ratify",
+					contentType:"application/json",
+					xhrFields: {
+					  withCredentials: true
+					},
+					dataType:"json",
+					data:JSON.stringify(jsono),
+					async:false,
+					crossDomain: true,
+					success:function(data){
+					  alert("操作成功")
+					  window.location.reload()
+					},
+					error:function(data){
+						alert("操作失败")
+						 console.log("fail");
+					}
+				  })
+				}
 			}
-		  })
+		
 		}
-    },
+	},
     created:function(){
 		this.userInfo = JSON.parse(sessionStorage.userInfo)//获取管理员信息
 		this.getLeaveAppByDepId(this.userInfo.sectorId);///获取待批准ID
