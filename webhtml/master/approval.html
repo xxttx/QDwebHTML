@@ -235,7 +235,7 @@ $(document).ready(function(){
 					   }
          			});
 		},
-		///管理员批准某请假申请 (可用)
+		///管理员批准某请假申请 
 		approvalApp:function(){
 			var that=this;
 			for(var i=0;i<this.leaveApps.length;i++){
@@ -245,6 +245,7 @@ $(document).ready(function(){
 					jsono["leaveId"]=this.leaveApps[i].leaveId;
 					jsono["ratifiedPerson"]=that.userInfo.employeeId;
 					jsono["state"]="1";
+					jsono["applicatdPerson"] = this.leaveApps[i].applicatdPerson
 					jQuery.ajax({
 					   type:"POST",
 					   url:"http://39.105.38.34:8080/api/v1/leaves/ratify",
@@ -270,7 +271,7 @@ $(document).ready(function(){
 			
 			
 		},
-		///管理员拒绝某请假申请 （不可用）
+		///管理员拒绝某请假申请 
 		disApprovalApp:function(){
 			var that=this;
 			for(var i=0;i<this.leaveApps.length;i++){
@@ -280,6 +281,7 @@ $(document).ready(function(){
 					jsono["leaveId"]=this.leaveApps[i].leaveId;
 					jsono["ratifiedPerson"]=that.userInfo.employeeId;
 					jsono["state"]="0";
+					jsono["applicatdPerson"] = this.leaveApps[i].applicatdPerson
 					jQuery.ajax({
 					   type:"POST",
 					   url:"http://39.105.38.34:8080/api/v1/leaves/ratify",
@@ -353,7 +355,7 @@ $(document).ready(function(){
          			});
 			
 		},
-		///查某部门所有员工(可用)
+		///查某部门所有员工
         getAllStaffByDepartId:function(DepartId){
 			var that = this;
       		jQuery.ajax({
@@ -384,6 +386,7 @@ $(document).ready(function(){
 					jsono["ewId"]=this.EXworks[i].ewId;
 					jsono["ratifyId"]=1;
 					jsono["ewState"]=1;
+					jsono["applicatedId"]= this.EXworks[i].applicatdPerson
 					jQuery.ajax({
 					type:"POST",
 					url:"http://39.105.38.34:8080/api/v1/EWs/ratify",
@@ -416,6 +419,7 @@ $(document).ready(function(){
 					jsono["ewId"]=this.EXworks[i].ewId;
 					jsono["ratifyId"]=1;
 					jsono["ewState"]=2;
+					jsono["applicatedId"]= this.EXworks[i].applicatdPerson
 					jQuery.ajax({
 					type:"POST",
 					url:"http://39.105.38.34:8080/api/v1/EWs/ratify",

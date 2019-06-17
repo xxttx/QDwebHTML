@@ -108,7 +108,7 @@
 	
 	
 <script type="text/javascript">
-  new Vue({
+ var myapp = new Vue({
     el:"#app1",
     data:{
 	  attendances:[],
@@ -118,20 +118,7 @@
     },
     methods:{
 		///日历初始化
-		calendarInit:function(){
-			var that = this;
-			jQuery('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            editable: false,
-            droppable: false,
-            events:that.events
-        });
-			
-		},
+		
 		///根据employeeId获取员工名
 		getEmployeeById:function(employeeId){
 			var that = this
@@ -197,12 +184,26 @@
 		this.getAttByDepartId(this.userInfo.sectorId);
 		this.addNameToAttendancesArr();
 		this.addEvent();
-		this.calendarInit();
+		
     }
 	  	
   })
-
 </script>
-	
+<script type="text/javascript">
+
+$(document).ready(function(){
+	jQuery('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: false,
+            droppable: false,
+            events:myapp.events
+        });}
+)
+</script>
+
 </body>
 </html>
