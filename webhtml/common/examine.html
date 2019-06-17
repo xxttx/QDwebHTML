@@ -153,7 +153,7 @@
 					async:false,
 					   crossDomain: true,
 					   success:function(data){
-						 that.attendances = JSON.parse(data);
+						 that.attendances.push(JSON.parse(data);)
 					   },
 					   error:function(data){
 						 console.log("fail");
@@ -203,12 +203,13 @@
     },
     created:function(){
 			if(sessionStorage.getItem('userInfo')== null){
-		this.userInfo = JSON.parse(sessionStorage.userInfo)
-		this.getAttByDepartId(this.userInfo.sectorId);
-		this.addNameToAttendancesArr();
-		this.addEvent();	
+				this.userInfo = JSON.parse(sessionStorage.userInfo)
+				this.getAttByDepartId(this.userInfo.sectorId);
+				this.addNameToAttendancesArr();
+				this.addEvent();	
 			}
 		else {
+			console.log("当前登录为经理")
 			this.pullAllDepartments();
 			for(var i =0 ;i<this.departments.length;i++)
 				{
@@ -216,6 +217,9 @@
 					this.addNameToAttendancesArr();
 					this.addEvent();
 				}
+			
+			
+			console.dir(this.attendances)
 		}
 				
     }
