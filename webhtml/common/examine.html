@@ -114,7 +114,8 @@
 	  attendances:[],
 		events:[],
 		event:[],
-		userInfo:[]
+		userInfo:[],
+		departments:[]
     },
     methods:{
 		///日历初始化
@@ -176,15 +177,47 @@
 				this.attendances[i]["PersonName"] = this.person.name
 				}
 
-		}
+		},
+		///拉取所有部门(可用)
+	    pullAllDepartments:function(){
+		var that = this;
+		jQuery.ajax({
+			type:"GET",
+            url:"http://39.105.38.34:8080/api/v1/sectors",
+			contentType:"application/json",
+			xhrFields: {
+                withCredentials: true
+            },
+			async:false,
+            crossDomain: true,
+			success:function(data){
+				that.departments=JSON.parse(data);
+				
+            },
+			error:function(data){
+				console.log("fail");
+				
+			}
+		});}
 		
     },
     created:function(){
+			if(sessionStorage.getItem('userInfo')== null){
 		this.userInfo = JSON.parse(sessionStorage.userInfo)
 		this.getAttByDepartId(this.userInfo.sectorId);
 		this.addNameToAttendancesArr();
-		this.addEvent();
-		
+		this.addEvent();	
+			}
+		else {
+			this.pullAllDepartments();
+			for(var i =0 ;i<this.departments.length;i++)
+				{
+					this.getAttByDepartId(this.departments[i].sectorId)
+					this.addNameToAttendancesArr();
+					this.addEvent();
+				}
+		}
+				
     }
 	  	
   })
