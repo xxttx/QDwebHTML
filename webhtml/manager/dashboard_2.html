@@ -21,7 +21,7 @@
               <h5>公司总人数</h5>
             </div>
             <div class="ibox-content">	
-              <h1 class="no-margins">15</h1>
+              <h1 class="no-margins">{{totalnum}}</h1>
               <div class="stat-percent font-bold text-success">98% <i class="fa fa-bolt"></i></div>
               <small>Total people</small></div>
           </div>
@@ -32,7 +32,7 @@
               <h5>在岗人数</h5>
             </div>
             <div class="ibox-content">
-              <h1 class="no-margins">10</h1>
+              <h1 class="no-margins">{{zaigang}}</h1>
               <div class="stat-percent font-bold text-info">20% <i class="fa fa-level-up"></i></div>
 Working people<br>
             </div>
@@ -44,7 +44,7 @@ Working people<br>
               <h5>请假人数</h5>
             </div>
             <div class="ibox-content">
-              <h1 class="no-margins">5</h1>
+              <h1 class="no-margins">{{qingjia}}</h1>
               <div class="stat-percent font-bold text-navy">44% <i class="fa fa-level-up"></i></div>
               <small>Leaving people</small></div>
           </div>
@@ -55,7 +55,7 @@ Working people<br>
               <h5>加班人数</h5>
             </div>
             <div class="ibox-content">
-              <h1 class="no-margins">1</h1>
+              <h1 class="no-margins">{{jiaban}}</h1>
               <div class="stat-percent font-bold text-danger">38% <i class="fa fa-level-down"></i></div>
               <small>Overtime</small></div>
           </div>
@@ -285,17 +285,97 @@ Working people<br>
 <script type="text/javascript">
   new Vue({
     data: {
-      userInfo:{}
+      userInfo:{},
+	  totalnum:0,
+	  zaigang:0,
+		qingjia:0,
+		jiaban:0
     },
     el: '#wrapper',
     created: function () { 
+		var that=this;
 		if(sessionStorage.getItem('userInfo')== null)
 			alert("请先登录啊")
 		else {
 			this.userInfo = sessionStorage.userInfo
 		}
-		
-		
+		//获取公司总人数
+		jQuery.ajax({
+			type:"GET",
+			url:"http://39.105.38.34:8080/api/v1/sectors/peoplenum/all",
+			contentType:"application/json",
+			xhrFields: {
+			withCredentials: true
+			},
+			crossDomain: true,
+			success:function(data){
+			var t=JSON.parse(data);
+			that.totalnum=t["PeopleNumber"];
+            
+			},
+			error:function(data){
+			console.log("fail");
+			}
+		});
+		//获取公司在岗人数
+		jQuery.ajax({
+			type:"GET",
+			url:"http://39.105.38.34:8080/api/v1/employees/peoplenum/all",
+			contentType:"application/json",
+			xhrFields: {
+			withCredentials: true
+			},
+			crossDomain: true,
+			success:function(data){
+			var t=JSON.parse(data);
+			that.zaigang=t["peoplenumber"];
+            
+			},
+			error:function(data){
+			console.log("fail");
+			}
+		});
+		//请假人数
+      jQuery.ajax({
+			type:"GET",
+			url:"http://39.105.38.34:8080/api/v1/leaves/applicateLeaveNumAll",
+			contentType:"application/json",
+			xhrFields: {
+			withCredentials: true
+			},
+			crossDomain: true,
+			success:function(data){
+			var t=JSON.parse(data);
+              console.log(t);
+			that.qingjia=t["state"];
+            
+			},
+			error:function(data){
+			console.log("fail");
+			}
+		});
+      
+      //公司加班人数
+      jQuery.ajax({
+			type:"GET",
+			url:"http://39.105.38.34:8080/api/v1/EWs/applicateEWNumAll",
+			contentType:"application/json",
+			xhrFields: {
+			withCredentials: true
+			},
+			crossDomain: true,
+			success:function(data){
+			var t=JSON.parse(data);
+              console.log(t);
+			that.jiaban=t["state"];
+            
+			},
+			error:function(data){
+			console.log("fail");
+			}
+		});
+      
+      
     },
   });
 </script>	
