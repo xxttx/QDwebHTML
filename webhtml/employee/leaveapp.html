@@ -160,7 +160,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="gradeX"  v-for="(leaveAppHistory,index) in leaveAppsHistory"  v-if="leaveAppHistory.reportBack == false">
+                        <tr class="gradeX"  v-for="(leaveAppHistory,index) in leaveAppsHistory"  v-if="leaveAppHistory.reportBack == false  &&  leaveAppHistory.state == 1">
                           <td>{{leaveAppHistory.leaveType}}</td>
                           <td>{{leaveAppHistory.startTime}}</td>
                           <td>{{leaveAppHistory.endTime}}</td>
@@ -302,7 +302,7 @@
 			var jsono={};		
 			jsono["startTime"]=this.value1[0];
 			jsono["endTime"]=this.value1[1];
-			jsono["applicatdPerson"]=this.applicatdPerson;////这个值未来要改
+			jsono["applicatdPerson"]=this.applicatdPerson;
 			jsono["leaveReason"]="jQuery('#summernoteContent').html()";
 			jsono["leaveType"]=(jQuery('#leaveTypeSelc').val()=="病假"?1:2);
 			jQuery.ajax({
@@ -316,6 +316,7 @@
 			dataType:"json",
 			data:JSON.stringify(jsono),
             success:function(data){
+				window.location.reload()
                 console.log("success");
 				alert("申请成功")
 			},
@@ -338,6 +339,7 @@
             success:function(data){
                 console.log("success");
 				alert("申请成功")
+				window.location.reload()
 			},
             error:function(data){
                 console.log("fail");
