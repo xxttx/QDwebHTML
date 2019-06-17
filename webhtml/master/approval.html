@@ -158,7 +158,55 @@
                 </div>
               </div>
             </div>
+			 <div class="col-lg-12">
+              <div class="ibox ">
+                <div class="ibox-title">
+                  <h5>请假申请历史记录 <small> 在此处查看请假申请记录，包括待批、同意、驳回…… </small></h5>
+                  <div class="ibox-tools"> <a class="collapse-link"> <i class="fa fa-chevron-up"></i> </a> <a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-wrench"></i> </a>
+                    <ul class="dropdown-menu dropdown-user">
+                      <li><a href="#" class="dropdown-item">Config option 1</a> </li>
+                      <li><a href="#" class="dropdown-item">Config option 2</a> </li>
+                    </ul>
+                    <a class="close-link"> <i class="fa fa-times"></i> </a> </div>
+                </div>
+                <div class="ibox-content">
+                  <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                      <thead>
+                        <tr>
+                          <th>编号</th>
+                          <th>申请人名字</th>
+                          <th>申请人工号)</th>
+                          <th>开始时间</th>
+                          <th>结束时间</th>
+							<th>审批人工号</th>
+							<th>申请状态</th>
 
+                        </tr>
+                      </thead>
+                      <tbody>
+						   
+                        <tr class="gradeX" v-for="(leaveAppHistory,index) in leaveAppsHistory">
+                          <td>{{index}}</td>
+                          <td>{{leaveAppHistory.name}}</td>
+                          <td>{{leaveAppHistory.applicatdPerson}}</td>
+                          <td class="center">{{leaveAppHistory.startTime}}</td>
+                          <td class="center">{{leaveAppHistory.endTime}}</td>
+							<td class="center">{{leaveAppHistory.ratifiedPerson}}</td>
+							<td class="center"  v-if="leaveAppHistory.state==1">同意</td>
+							<td class="center"  v-if="leaveAppHistory.state==0">待批</td>
+							<td class="center"  v-if="leaveAppHistory.state==2">驳回</td>
+                        </tr>
+                      </tbody>
+                    
+                    </table>
+					  <div v-if="leaveAppsHistory.length==0" align="center" style="margin: 20px 0px">
+				  	没有任何记录
+				  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
       </div>
     </div>
   </div>
@@ -181,7 +229,9 @@ $(document).ready(function(){
 	  staffs:[],
 	  EXworks:[],
 	  EXworksArr:[],
-	  EXworksHistory:[]
+	  EXworksHistory:[],
+	  leaveAppsHistory:[],
+	  leaveAppsArr:[]
     },
     methods:{
 		///page init
@@ -280,7 +330,7 @@ $(document).ready(function(){
 					var jsono={};
 					jsono["leaveId"]=this.leaveApps[i].leaveId;
 					jsono["ratifiedPerson"]=that.userInfo.employeeId;
-					jsono["state"]="0";
+					jsono["state"]=2;
 					jsono["applicatdPerson"] = this.leaveApps[i].applicatdPerson
 					jQuery.ajax({
 					   type:"POST",
@@ -305,6 +355,35 @@ $(document).ready(function(){
 			
 			
 		},
+		///通过员工ID查询请假申请
+		getLeaveAppByStaffId:function(StaffId){
+			var that=this;
+			jQuery.ajax({
+					   type:"GET",
+					   url:"http://39.105.38.34:8080/api/v1/leaves/employees/"+StaffId,
+					   contentType:"application/json",
+					   xhrFields: {
+						 withCredentials: true
+					   },
+					   crossDomain: true,
+						async:false,
+					   success:function(data){
+						   
+						 that.leaveAppsArr.push( JSON.parse(data));
+						  for(var i = 0; i< that.leaveAppsArr[0].length;i++){
+							  that.leaveAppsHistory.push(that.leaveAppsArr[0][i]);
+						  }
+						   that.leaveAppsArr=[]
+					   },
+
+					   error:function(data){
+						 console.log("fail");
+					   }
+         			});
+			
+		},
+		
+		
 		
 		///通过员工ID查询加班申请
 		getExworkByStaffId:function(StaffId){
@@ -323,8 +402,14 @@ $(document).ready(function(){
 						 that.EXworksArr.push( JSON.parse(data));
 						  for(var i = 0; i< that.EXworksArr[0].length;i++){
 							  that.EXworksHistory.push(that.EXworksArr[0][i]);
+							  console.log("push 第"+i+"次")
 						  }
-
+						   that.EXworksArr=[];
+						   console.log("///通过员工ID查询加班申请 本次申请结果如下")
+						   console.dir(JSON.parse(data))
+						   console.log("that.EXworksHistory is")
+						   console.dir(that.EXworksHistory)
+						   
 					   },
 
 					   error:function(data){
@@ -460,15 +545,33 @@ $(document).ready(function(){
 		//////加班申请历史记录
 		for(var i =0 ;i<this.staffs.length;i++){
 			if(this.staffs[i].employeeId != this.userInfo.employeeId){
+				console.dir("this.EXworksHistory  runss")
+				console.log("this.staffs[i].employeeId:"+this.staffs[i].employeeId)
+				console.log("this.userInfo.employeeId"+this.userInfo.employeeId)
 			this.getExworkByStaffId(this.staffs[i].employeeId)}
 		}
+		console.dir("this.EXworksHistory")
+		console.dir(this.EXworksHistory)
 		///把名字添加到加班申请历史记录数组中
 		for(var i=0;i<this.EXworksHistory.length;i++){        ////获取名字
 				this.getEmployeeById(this.EXworksHistory[i].applicatedId)
 				this.EXworksHistory[i]["name"] = this.person.name
 		}
-						   console.dir(" that.EXworks.push")
-						   console.dir(this.EXworksHistory)
+		//////请假申请历史记录
+		for(var i =0 ;i<this.staffs.length;i++){
+			if(this.staffs[i].employeeId != this.userInfo.employeeId){
+				
+			this.getLeaveAppByStaffId(this.staffs[i].employeeId)}
+		}
+				
+		
+		///把名字添加到请假申请历史记录数组中
+		for(var i=0;i<this.leaveAppsHistory.length;i++){        ////获取名字
+				this.getEmployeeById(this.leaveAppsHistory[i].applicatdPerson)
+				this.leaveAppsHistory[i]["name"] = this.person.name
+		}
+		
+
 		
     }
 
