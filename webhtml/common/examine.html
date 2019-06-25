@@ -111,11 +111,13 @@
  var myapp = new Vue({
     el:"#app1",
     data:{
-	  attendances:[],
+	    attendances:[],
 		events:[],
 		event:[],
 		userInfo:[],
-		departments:[]
+		departments:[],
+		person:[],
+		attendancesArr:[]
     },
     methods:{
 		///日历初始化
@@ -153,7 +155,12 @@
 					async:false,
 					   crossDomain: true,
 					   success:function(data){
-						 that.attendances.push(JSON.parse(data);)
+						 that.attendancesArr =(JSON.parse(data))
+						   
+						   for(var i=0; i<that.attendancesArr.length;i++){
+							   that.attendances.push(that.attendancesArr[i])
+						   }
+						   that.attendancesArr=[]
 					   },
 					   error:function(data){
 						 console.log("fail");
@@ -214,7 +221,7 @@
 			for(var i =0 ;i<this.departments.length;i++)
 				{
 					this.getAttByDepartId(this.departments[i].sectorId)
-					this.addNameToAttendancesArr();
+  				    this.addNameToAttendancesArr();
 					this.addEvent();
 				}
 			

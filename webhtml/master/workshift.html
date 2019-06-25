@@ -189,7 +189,7 @@ $('#calendar').fullCalendar({
 					  if (confirm("Are you sure about this change?")) {
 						  myvue.deleteWorkShift(event.id);
 						//UiUpdate;
-						window.location.reload()
+						//window.location.reload()
 						}
                 }
   },
@@ -353,6 +353,8 @@ var myvue = new Vue({
 		var that =this
 		this.userInfo = JSON.parse(sessionStorage.userInfo)
 		this.getAllStaffByDepartId(this.userInfo.sectorId)
+		
+		
 		for(var i=0;i<this.staffs.length;i++){
 			this.addEvent(this.staffs[i].employeeId);
 		}
